@@ -1,26 +1,32 @@
 import React from 'react';
 import './App.css';
+import Nav from './Nav';
+import List from './List';
 
 import BubbleChart from '@weknow/react-bubble-chart-d3';
+
+const list = {
+  id: 1,
+  location: "Montreal, QC",
+  name: "Black Owned MTL Restaurants",
+  created_at: "2020-06-06T17:24:29.293Z",
+  updated_at: "2020-06-06T17:24:29.293Z",
+  description: "Support local black owned businesses! Where possible, order directly with restaurants and not via UberEats, SkipTheDishes, etc, to ensure restaurants receive as much money as possible."
+  }
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <h1 className="App-intro">Any recommendations for jeans in Montreal?</h1>
+      <Nav name={list.name} location={list.location}></Nav>
+
+    <List description={list.description}/>
+    </div>
+  );
+}
+
+export default App;
+
+/* <h1 className="App-intro">Any recommendations for jeans in Montreal?</h1>
         <br />
         <BubbleChart
           width={1000}
@@ -60,9 +66,4 @@ function App() {
             { label: 'Front End', value: 26 },
             { label: 'Content', value: 26 },
           ]}
-        />
-    </div>
-  );
-}
-
-export default App;
+        /> */
