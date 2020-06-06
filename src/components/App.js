@@ -2,24 +2,19 @@ import React from 'react';
 import './App.css';
 import Nav from './Nav';
 import List from './List';
-
+import { list, businesses, business_listings, recommendations} from '../fixtures'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 
-const list = {
-  id: 1,
-  location: "Montreal, QC",
-  name: "Black Owned MTL Restaurants",
-  created_at: "2020-06-06T17:24:29.293Z",
-  updated_at: "2020-06-06T17:24:29.293Z",
-  description: "Support local black owned businesses! Where possible, order directly with restaurants and not via UberEats, SkipTheDishes, etc, to ensure restaurants receive as much money as possible."
-  }
 
 function App() {
   return (
     <div className="App">
       <Nav name={list.name} location={list.location}></Nav>
-
-    <List description={list.description}/>
+      <List 
+      description={list.description}
+      businesses={businesses}
+      business_listings={business_listings}
+      recommendations={recommendations}/>
     </div>
   );
 }
