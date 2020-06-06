@@ -115,7 +115,7 @@ const recommendations = [{
     },
     {
     id: 6,
-    because: "I LOVE the Ackee and Salt Fish. Get it, you won't regret it!",
+    because: "love Mango Bay!",
     business_id: 6,
     created_at: "2020-06-06T17:24:29.659Z",
     updated_at: "2020-06-06T17:24:29.659Z"
