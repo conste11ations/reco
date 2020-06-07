@@ -3,7 +3,6 @@ import './App.css';
 import Nav from './Nav';
 import List from './List';
 import { list, businesses, business_listings, recommendations} from '../fixtures'
-import BubbleChart from '@weknow/react-bubble-chart-d3';
 
 
 function App() {

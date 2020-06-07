@@ -1,4 +1,4 @@
-import { createMuiTheme, makeStyles, fade } from "@material-ui/core/styles";
+import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 
 const navTheme = createMuiTheme({
   palette: {

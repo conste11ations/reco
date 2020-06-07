@@ -1,5 +1,5 @@
 import React from 'react';
-import { navTheme, useNavStyle } from '../constants/Themes'
+import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
