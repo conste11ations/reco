@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   menuButton: {
-    // marginRight: theme.spacing(2)
     marginRight: 0,
   },
   title: {
@@ -28,7 +27,6 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
-    // marginRight: theme.spacing(2)
     marginRight: 0,
     marginLeft: 0,
     width: "100%",

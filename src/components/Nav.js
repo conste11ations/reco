@@ -1,6 +1,7 @@
 import React from 'react';
 import { navTheme, navStyle } from '../constants/Themes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import TextField from '@material-ui/core/TextField';
@@ -17,18 +18,20 @@ export default function Nav({ name, location }) {
       <MuiThemeProvider theme={navTheme}>
         <AppBar position='fixed'>
           <Toolbar>
-            <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
-            <Typography align='center' variant='h6' className={classes.title} noWrap>
-              Any recommendations for
+              <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
+              <Box className={classes.title}></Box>
+              <Typography align='center' variant='h6' noWrap>
+                Any recommendations for
             </Typography>
-            <Search placeholder={name} />
-            <Typography align='center' variant='h6' className={classes.title} noWrap>
-               near
+              <Search placeholder={name} />
+              <Typography align='center' variant='h6' noWrap>
+                near
             </Typography>
-            <Search placeholder={location}/>
-            <Typography align='center' variant='h6' className={classes.title} noWrap>
-               ?
+              <Search placeholder={location} />
+              <Typography align='center' variant='h6' noWrap>
+                ?
             </Typography>
+            <Box className={classes.title}></Box>
             <Button color='inherit'>About</Button>
             <Button color='inherit'>Login</Button>
             <Button color='inherit'>Sign Up</Button>
@@ -41,7 +44,6 @@ export default function Nav({ name, location }) {
           placeholder='Placeholder'
           label='TextBox' />
       </MuiThemeProvider>
-      <img src='../constants/reco-logo.png' alt='reco logo' />
     </>
   )
 }
