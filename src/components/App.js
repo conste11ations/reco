@@ -9,7 +9,8 @@ import BubbleChart from '@weknow/react-bubble-chart-d3';
 function App() {
   return (
     <div className="App">
-      <Nav name={list.name} location={list.location}></Nav>
+      <Nav name={list.name} location={list.location} ></Nav>
+
       <List 
       description={list.description}
       businesses={businesses}

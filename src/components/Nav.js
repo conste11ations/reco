@@ -1,45 +1,38 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { navTheme, navStyle } from '../constants/Themes'
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+import { AccountCircle } from '@material-ui/icons';
 
 
 export default function Nav({ name, location }) {
-  const classes = useStyles();
+  const classes = navStyle();
   return (
     <>
-      <h1>Any recommendations for {name} near {location}?</h1>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <TextField
-        placeholder="Placeholder"
-        label="TextBox" />
+      <MuiThemeProvider theme={navTheme}>
+        <AppBar position='fixed'>
+          <Toolbar>
+            <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
+            <Typography align='center' variant='h6' className={classes.title} noWrap>
+              Any recommendations for {name} near {location}?
+            </Typography>
+            <Button color='inherit'>About</Button>
+            <Button color='inherit'>Login</Button>
+            <Button color='inherit'>Sign Up</Button>
+            <Button>
+              <AccountCircle color='secondary' />
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <TextField
+          placeholder='Placeholder'
+          label='TextBox' />
+      </MuiThemeProvider>
+      <img src='../constants/reco-logo.png' alt='reco logo' />
     </>
   )
 }
