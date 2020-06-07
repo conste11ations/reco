@@ -23,15 +23,16 @@ const useStyles = makeStyles(theme => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common.white, 0.95),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
+      backgroundColor: fade(theme.palette.common.white, 0.75)
     },
     marginRight: 0,
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
       width: "auto"
     }
   },
@@ -57,18 +58,18 @@ const useStyles = makeStyles(theme => ({
       width: "30ch"
     }
   },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex"
-    }
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none"
-    }
-  }
+  // sectionDesktop: {
+  //   display: "none",
+  //   [theme.breakpoints.up("md")]: {
+  //     display: "flex"
+  //   }
+  // },
+  // sectionMobile: {
+  //   display: "flex",
+  //   [theme.breakpoints.up("md")]: {
+  //     display: "none"
+  //   }
+  // }
 }));
 
 export default function FreeSolo({ placeholder }) {
