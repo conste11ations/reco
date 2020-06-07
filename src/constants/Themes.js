@@ -1,4 +1,4 @@
-import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
+import { createMuiTheme, makeStyles, fade } from "@material-ui/core/styles";
 
 const navTheme = createMuiTheme({
   palette: {
@@ -25,7 +25,7 @@ const navTheme = createMuiTheme({
   },
 });
 
-const navStyle = makeStyles((theme) => ({
+const useNavStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -41,4 +41,4 @@ const navStyle = makeStyles((theme) => ({
   }
 }));
 
-export { navTheme, navStyle };
+export { navTheme, useNavStyle };

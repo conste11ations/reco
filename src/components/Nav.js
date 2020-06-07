@@ -1,5 +1,5 @@
 import React from 'react';
-import { navTheme, navStyle } from '../constants/Themes'
+import { navTheme, useNavStyle } from '../constants/Themes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,7 +12,7 @@ import Search from './Search'
 
 
 export default function Nav({ name, location }) {
-  const classes = navStyle();
+  const classes = useNavStyle();
   return (
     <>
       <MuiThemeProvider theme={navTheme}>
