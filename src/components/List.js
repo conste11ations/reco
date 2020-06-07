@@ -1,6 +1,6 @@
 import React from 'react';
 // import Business from './Business'
-// import Circle from './Circle.jsx'
+import Circle from './Circle.jsx'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 
 function List({ list, businesses, recommendations, business_listings }) {
@@ -20,7 +20,7 @@ function List({ list, businesses, recommendations, business_listings }) {
           data={bubbles}
           showLegend={true}
           bubbleClickFun={(label) => console.log(`our custom click functions for...${label}`)}
-          // valueFont={{color: 'none'}}
+          valueFont={{color: 'none'}}
         />
     </div>
   )
@@ -28,13 +28,12 @@ function List({ list, businesses, recommendations, business_listings }) {
 
 export default List;
 
-        // <ul>{businesses.map((business, index) =>
-        //   <Circle
-        //     website={business.website}
-        //     name={business.name}
-        //     because={recommendations[index].because}
-        //     upvotes={business_listings[index].upvotes}
-        //     downvotes={business_listings[index].downvotes}>
-        //   </Circle>
-        // )}
-        // </ul>
+{/* <ul>{businesses.map((business, index) =>
+  <Circle
+    website={business.website}
+    name={business.name}
+    because={recommendations[index].because}
+    upvotes={business_listings[index].upvotes}
+    downvotes={business_listings[index].downvotes}>
+  </Circle>
+)}</ul> */}
