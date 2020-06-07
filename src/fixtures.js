@@ -76,7 +76,8 @@ const businesses = [{
   name: "Cafe Resonance",
   created_at: "2020-06-06T17:24:29.391Z",
   updated_at: "2020-06-06T17:24:29.391Z"
-  }];
+  }
+];
 
 const recommendations = [{
     id: 1,
