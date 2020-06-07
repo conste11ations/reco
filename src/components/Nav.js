@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { AccountCircle } from '@material-ui/icons';
+import Search from './Search'
 
 
 export default function Nav({ name, location }) {
@@ -18,7 +19,15 @@ export default function Nav({ name, location }) {
           <Toolbar>
             <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
             <Typography align='center' variant='h6' className={classes.title} noWrap>
-              Any recommendations for {name} near {location}?
+              Any recommendations for
+            </Typography>
+            <Search placeholder={name} />
+            <Typography align='center' variant='h6' className={classes.title} noWrap>
+               near
+            </Typography>
+            <Search placeholder={location}/>
+            <Typography align='center' variant='h6' className={classes.title} noWrap>
+               ?
             </Typography>
             <Button color='inherit'>About</Button>
             <Button color='inherit'>Login</Button>
