@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List';
-import { list, businesses, business_listings, recommendations } from '../fixtures';
+import { list, businesses, recommendations, comments } from '../fixtures';
 import Search from './Search';
 
 
 function App() {
+
   return (
     <div className="App">
       <Nav name={list.name} location={list.location} ></Nav>
@@ -14,8 +15,8 @@ function App() {
       <ListSpace
         description={list.description}
         businesses={businesses}
-        business_listings={business_listings}
-        recommendations={recommendations} />
+        business_listings={recommendations}
+        recommendations={comments} />
     </div>
   );
 }

@@ -76,10 +76,10 @@ const businesses = [{
   name: "Cafe Resonance",
   created_at: "2020-06-06T17:24:29.391Z",
   updated_at: "2020-06-06T17:24:29.391Z"
-  }
+  },
 ];
 
-const recommendations = [{
+const comments = [{
     id: 1,
     because: "this place is awesome",
     business_id: 1,
@@ -150,7 +150,7 @@ const recommendations = [{
     updated_at: "2020-06-06T17:24:29.673Z"
     }]
 
-const business_listings = [{
+const recommendations = [{
     id: 1,
     business_id: 1,
     list_id: 1,
@@ -241,4 +241,4 @@ const business_listings = [{
     downvotes: 2
     }]
 
-    export { list, businesses, business_listings, recommendations }
+    export { list, businesses, recommendations, comments }

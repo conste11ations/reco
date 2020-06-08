@@ -42,7 +42,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
 
   return (
     <>
-      {/* <Drawer
+      <Drawer
         className={classes.drawer}
         variant="persistent"
         classes={{
@@ -62,7 +62,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
             ))}
           </List>  
         </div>
-      </Drawer> */}
+      </Drawer>
       <main className={classes.content}>
         <BubbleChart
           width={1000}
@@ -70,6 +70,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
           fontFamily="Arial"
           data={bubbles}
           showLegend={false}
+          graph={{zoom: .9}}
           bubbleClickFun={(label) => toggleDrawer()}
           valueFont={{color: 'none'}}
         />
