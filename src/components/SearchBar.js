@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import InputBase from "@material-ui/core/InputBase";
 import useDebounce from '../hooks/useDebounce';
+import { useSearchStyle } from '../constants/searchThemes'
 
 export default function SearchBar(props) {
   const [value, setValue] = useState("");
   const term = useDebounce(value, 400);
   const { placeholder } = props;
-
+  const classes = useSearchStyle();
   const onSearch = useCallback(props.onSearch, [term]);
 
   useEffect(() => {
@@ -16,8 +17,12 @@ export default function SearchBar(props) {
   return (
     <section className="search">
       <form className="search__form" onSubmit={event => event.preventDefault()}>
-        <input
-          className="radius"
+        <InputBase
+          // className="radius"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput
+          }}
           spellCheck="false"
           placeholder={placeholder}
           name="search"

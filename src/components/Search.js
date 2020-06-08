@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import Results from './Results';
 import SearchBar from './SearchBar';
+import SearchIcon from "@material-ui/icons/Search";
 import { useSearchStyle } from '../constants/searchThemes'
 
 export default function LiveSearch(props) {

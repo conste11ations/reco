@@ -1,6 +1,4 @@
 import React from "react";
-import List from './List'
-
 
 export default function Results(props) {
   const { results } = props;
