@@ -1,10 +1,49 @@
 import React, {Fragment, useState} from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
-import Drawer from '@material-ui/core/Drawer';
 
-function List({ list, businesses, recommendations, business_listings }) {
-  const [drawerState, toggleDrawer] = useState(false)
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    zIndex: 900
+  },
+  drawerContainer: {
+    overflow: 'auto',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
+
+export default function ListSpace ({ list, businesses, recommendations, business_listings }) {
+  const [drawerState, setDrawer] = useState(false)
+  const classes = useStyles();
   const colorOptions = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
+
+  const toggleDrawer = () => {
+    setDrawer(prev => !prev)
+  }
 
   const bubbles = businesses.map((business, index) => (
     {label: business.name, 
@@ -14,24 +53,42 @@ function List({ list, businesses, recommendations, business_listings }) {
 
   return (
     <>
-      <br></br>
-      <br></br>
-      <BubbleChart
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor='left'
+        open={drawerState}
+      >
+        <Toolbar />
+        <div className={classes.drawerContainer}>
+          <List>
+            {businesses.map((business, index) => (
+              <ListItem button key={business.id}>
+                <ListItemText primary={business.name} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </div>
+      </Drawer>
+      <main className={classes.content}>
+        <BubbleChart
           width={1000}
           height={900}
           fontFamily="Arial"
           data={bubbles}
-          showLegend={true}
+          showLegend={false}
           bubbleClickFun={(label) => console.log(`our custom click functions for...${label}`)}
           valueFont={{color: 'none'}}
         />
-      <button onClick={() => toggleDrawer(drawerState ? false : true)}>toggle</button>
-      <p>{`${drawerState}`}</p>
+      </main>
+      <button onClick={toggleDrawer}>toggle drawer</button>
     </>
   )
 }
-
-export default List;
 
 {/* <ul>{businesses.map((business, index) =>
   <Circle
