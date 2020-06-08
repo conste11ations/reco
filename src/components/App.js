@@ -16,8 +16,6 @@ function App() {
         businesses={businesses}
         business_listings={business_listings}
         recommendations={recommendations} />
-
-      <Search placeholder={"Montreal, QC"}/>
     </div>
   );
 }

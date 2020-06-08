@@ -27,12 +27,12 @@ export default function LiveSearch(props) {
       <header>
       </header>
       <main>
-      <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
-      </div>
-        <SearchBar className={classes} placeholder={placeholder} onSearch={term => setTerm(term)} />
-        <Results results={results} />
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <SearchBar className={classes} placeholder={placeholder} onSearch={term => setTerm(term)} />
+          <Results results={results} />
         </div>
       </main>
     </Fragment>
