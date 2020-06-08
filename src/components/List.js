@@ -1,34 +1,19 @@
 import React, {Fragment, useState} from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
+import DrawerItem from './DrawerItem'
 
-import { makeStyles } from '@material-ui/core/styles';
+// Material UI Components and Styling
+import {makeStyles} from "@material-ui/core/styles";
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
-const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
   drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
     zIndex: 900
   },
-  drawerContainer: {
-    overflow: 'auto',
+  drawerPaper: {
+    zIndex: 900
   },
   content: {
     flexGrow: 1,
@@ -37,9 +22,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListSpace ({ list, businesses, recommendations, business_listings }) {
-  const [drawerState, setDrawer] = useState(false)
+  const [drawerState, setDrawer] = useState(true)
+  
   const classes = useStyles();
-  const colorOptions = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
+  
+  const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
   const toggleDrawer = () => {
     setDrawer(prev => !prev)
@@ -47,7 +34,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
 
   const bubbles = businesses.map((business, index) => (
     {label: business.name, 
-    color: colorOptions[index%6], 
+    color: bubbleColours[index%6], 
     value: business_listings[index].upvotes - business_listings[index].downvotes}
     ))
 
@@ -60,18 +47,18 @@ export default function ListSpace ({ list, businesses, recommendations, business
           paper: classes.drawerPaper,
         }}
         anchor='left'
-        open={drawerState}
-      >
+        open={drawerState}>
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
             {businesses.map((business, index) => (
-              <ListItem button key={business.id}>
-                <ListItemText primary={business.name} />
-              </ListItem>
+              <DrawerItem 
+              business={business}
+              upvotes={business_listings[index].upvotes}
+              downvotes={business_listings[index].downvotes}
+              />
             ))}
-          </List>
-          <Divider />
+          </List>  
         </div>
       </Drawer>
       <main className={classes.content}>
@@ -81,7 +68,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
           fontFamily="Arial"
           data={bubbles}
           showLegend={false}
-          bubbleClickFun={(label) => console.log(`our custom click functions for...${label}`)}
+          bubbleClickFun={(label) => toggleDrawer()}
           valueFont={{color: 'none'}}
         />
       </main>
