@@ -25,7 +25,7 @@ export default function DrawerItem({business, upvotes, downvotes}){
   return (
     <>
       <ListItem button key={business.id} onClick={handleClick}>
-        <ListItemText primary={business.name}/>
+        <ListItemText primary={`${business.name} (${upvotes - downvotes})`}/>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>

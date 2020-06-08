@@ -1,9 +1,11 @@
 import React, {Fragment, useState} from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import DrawerItem from './DrawerItem'
+import RecommendationCard from './RecommendationCard'
 
 // Material UI Components and Styling
 import {makeStyles} from "@material-ui/core/styles";
+
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListSpace ({ list, businesses, recommendations, business_listings }) {
-  const [drawerState, setDrawer] = useState(true)
+  const [drawerState, setDrawer] = useState(false)
   
   const classes = useStyles();
   
@@ -40,7 +42,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
 
   return (
     <>
-      <Drawer
+      {/* <Drawer
         className={classes.drawer}
         variant="persistent"
         classes={{
@@ -60,7 +62,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
             ))}
           </List>  
         </div>
-      </Drawer>
+      </Drawer> */}
       <main className={classes.content}>
         <BubbleChart
           width={1000}
@@ -72,17 +74,20 @@ export default function ListSpace ({ list, businesses, recommendations, business
           valueFont={{color: 'none'}}
         />
       </main>
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor='right'
+        open={drawerState}>
+      <Toolbar />
+      <RecommendationCard 
+        commentsList={["everybody raves about st v or fairmount bagels, but this spot is the real deal. If you've never been, you don't know a Montreal bagel.", "this place is awesome"]}
+        business={businesses[0]}/>
+      </Drawer>
       <button onClick={toggleDrawer}>toggle drawer</button>
     </>
   )
 }
-
-{/* <ul>{businesses.map((business, index) =>
-  <Circle
-    website={business.website}
-    name={business.name}
-    because={recommendations[index].because}
-    upvotes={business_listings[index].upvotes}
-    downvotes={business_listings[index].downvotes}>
-  </Circle>
-)}</ul> */}
