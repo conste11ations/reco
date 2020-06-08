@@ -28,6 +28,7 @@ export default function SearchBar(props) {
           name="search"
           type="text"
           value={value}
+          autoComplete="off"
           onChange={event => setValue(event.target.value)}
         />
       </form>

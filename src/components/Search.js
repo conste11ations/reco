@@ -7,20 +7,21 @@ import { useSearchStyle } from '../constants/searchThemes'
 
 export default function LiveSearch(props) {
   const [term, setTerm] = useState('');
+  const [queryKey, setQueryKey] = useState('invalid')
   const [results, setResults] = useState([]);
   const { placeholder } = props;
   const classes = useSearchStyle();
 
   useEffect(() => {
     const BASE_URL = 'http://localhost:3001/api';
-    const ENDPOINT = '/lists';
-    const query = `${BASE_URL}${ENDPOINT}`
+    const ENDPOINT = '/search';
+    const query = `${BASE_URL}${ENDPOINT}?key=${queryKey}&term=${term}`
 
     axios({
       method: 'GET',
       url: query
-    }).then(response => setResults(response.data.results) && console.log("response", response.data))
-  }, [term]);
+    }).then(response => setResults(response.data) && console.log("response", response.data))
+  }, [queryKey, term]);
 
   return (
     <Fragment>
