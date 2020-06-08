@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './Nav';
 import List from './List';
 import { list, businesses, business_listings, recommendations } from '../fixtures';
-import Autocomplete from './Autocomplete';
+import Search from './Search';
 
 
 function App() {
@@ -17,17 +17,7 @@ function App() {
         business_listings={business_listings}
         recommendations={recommendations} />
 
-      <Autocomplete
-        options={[
-          "Papaya",
-          "Persimmon",
-          "Paw Paw",
-          "Prickly Pear",
-          "Peach",
-          "Pomegranate",
-          "Pineapple"
-        ]}
-      />
+      <Search placeholder={"Montreal, QC"}/>
     </div>
   );
 }
