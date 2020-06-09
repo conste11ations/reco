@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
-<<<<<<< HEAD:src/components/List/List.js
-import DrawerItem from './../DrawerItem'
-import RecommendationCard from './../RecommendationCard'
-=======
-import ListsDrawer from './ListsDrawer'
-import RecommendationDrawer from './RecommendationDrawer'
->>>>>>> master:src/components/List.js
+import ListsDrawer from './../ListsDrawer'
+import RecommendationDrawer from './../RecommendationDrawer'
 
 // Material UI Components and Styling
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,11 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-<<<<<<< HEAD:src/components/List/List.js
-export default function ListSpace({ list, businesses, recommendations, business_listings }) {
-=======
 export default function ListSpace ({ description, businesses, recommendations, comments }) {
->>>>>>> master:src/components/List.js
   const [drawerState, setDrawer] = useState(false)
 
   const classes = useStyles();
@@ -38,38 +29,6 @@ export default function ListSpace ({ description, businesses, recommendations, c
   }
 
   const bubbles = businesses.map((business, index) => (
-<<<<<<< HEAD:src/components/List/List.js
-    {
-      label: business.name,
-      color: bubbleColours[index % 6],
-      value: business_listings[index].upvotes - business_listings[index].downvotes
-    }
-  ))
-
-  return (
-    <>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor='left'
-        open={drawerState}>
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {businesses.map((business, index) => (
-              <DrawerItem
-                business={business}
-                upvotes={business_listings[index].upvotes}
-                downvotes={business_listings[index].downvotes}
-              />
-            ))}
-          </List>
-        </div>
-      </Drawer>
-=======
     {label: business.name, 
     color: bubbleColours[index%6], 
     value: recommendations[index].upvotes - recommendations[index].downvotes}
@@ -81,7 +40,6 @@ export default function ListSpace ({ description, businesses, recommendations, c
         description={description}
         recommendations={recommendations} 
         businesses={businesses}/>
->>>>>>> master:src/components/List.js
       <main className={classes.content}>
         <BubbleChart
           width={1000}
@@ -94,22 +52,6 @@ export default function ListSpace ({ description, businesses, recommendations, c
           valueFont={{ color: 'none' }}
         />
       </main>
-<<<<<<< HEAD:src/components/List/List.js
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor='right'
-        open={drawerState}>
-        <Toolbar />
-        <RecommendationCard
-          commentsList={["everybody raves about st v or fairmount bagels, but this spot is the real deal. If you've never been, you don't know a Montreal bagel.", "this place is awesome"]}
-          business={businesses[0]} />
-      </Drawer>
-      <button onClick={toggleDrawer}>toggle drawer</button>
-=======
       <RecommendationDrawer
       drawerState={drawerState}
       // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
@@ -118,7 +60,6 @@ export default function ListSpace ({ description, businesses, recommendations, c
       // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
       comments={comments}/>
       {/* <button onClick={toggleDrawer}>toggle drawer</button> */}
->>>>>>> master:src/components/List.js
     </>
   )
 }
