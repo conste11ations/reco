@@ -7,7 +7,7 @@ import { useSearchStyle } from '../constants/searchThemes'
 
 export default function Search(props) {
   const [term, setTerm] = useState('');
-  
+  const [value, setValue] = useState('');
   const [results, setResults] = useState([]);
   const { placeholder, queryKey } = props;
   const classes = useSearchStyle();
@@ -33,7 +33,7 @@ export default function Search(props) {
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
-          <SearchBar placeholder={placeholder} onSearch={term => setTerm(term)} />
+          <SearchBar placeholder={placeholder} onSearch={term => setTerm(term)} value={value} setValue={setValue}/>
           {/* <Autocomplete
             id="combo-box-demo"
             options={results}
@@ -43,7 +43,7 @@ export default function Search(props) {
           /> */}
         </div>
         <div className={classes.results}>        
-          <Results results={results} queryKey={queryKey} onClick={""}/>
+          <Results results={results} setResults={setResults} queryKey={queryKey} setValue={setValue}/>
         </div>
       </main>
     </>
