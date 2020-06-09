@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 import Nav from './Nav';
-import ListSpace from './List';
+import ListSpace from './List/List';
+import { New as NewList } from './List/New'
 import { list, businesses, recommendations, comments } from '../fixtures';
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
         businesses={businesses}
         business_listings={recommendations}
         recommendations={comments} />
+        <NewList>
+          
+        </NewList>
     </div>
   );
 }
