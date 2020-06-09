@@ -22,8 +22,8 @@ function reducer(state, action){
 function App() {
   const [state, dispatch] = useReducer(reducer, {})
 
-  useEffect(() => {
-    axios.get(`/api/lists/1`)
+function getList(id) {
+    axios.get(`/api/lists/${id}`)
     .then(res => {
       const list = res.data[0]
       const recommendations = res.data[1]
@@ -35,6 +35,10 @@ function App() {
     (error) => {
       console.log(error)
     })
+  }
+
+  useEffect(() => {
+    getList(1)
   }, [])
 
   return (
@@ -46,6 +50,8 @@ function App() {
         businesses={state.businesses}
         recommendations={state.recommendations}
         comments={state.comments}/> : 'LOADING'}
+
+      <button onClick={() => getList(2)}>GET_LIST 2</button>
     </div>
   );
 }
