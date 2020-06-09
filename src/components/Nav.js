@@ -23,11 +23,11 @@ export default function Nav({ name, location }) {
               <Typography align='center' variant='h6' noWrap>
                 Any recommendations for
             </Typography>
-              <Search placeholder={name} />
+              <Search placeholder={name} queryKey='list'/>
               <Typography align='center' variant='h6' noWrap>
                 near
             </Typography>
-              <Search placeholder={location} />
+              <Search placeholder={location} queryKey='location'/>
               <Typography align='center' variant='h6' noWrap>
                 ?
             </Typography>

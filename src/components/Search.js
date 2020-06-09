@@ -2,12 +2,14 @@ import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import Results from './Results';
 import SearchBar from './SearchBar';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchIcon from "@material-ui/icons/Search";
 import { useSearchStyle } from '../constants/searchThemes'
 
-export default function LiveSearch(props) {
+export default function Search(props) {
   const [term, setTerm] = useState('');
-  const [queryKey, setQueryKey] = useState('invalid')
+  const [queryKey, setQueryKey] = useState(props.queryKey)
   const [results, setResults] = useState([]);
   const { placeholder } = props;
   const classes = useSearchStyle();
@@ -15,6 +17,7 @@ export default function LiveSearch(props) {
   useEffect(() => {
     const BASE_URL = 'http://localhost:3001/api';
     const ENDPOINT = '/search';
+    console.log(queryKey)
     const query = `${BASE_URL}${ENDPOINT}?key=${queryKey}&term=${term}`
 
     axios({
@@ -33,8 +36,15 @@ export default function LiveSearch(props) {
             <SearchIcon />
           </div>
           <SearchBar className={classes} placeholder={placeholder} onSearch={term => setTerm(term)} />
-          <Results results={results} />
+          {/* <Autocomplete
+            id="combo-box-demo"
+            options={results}
+            getOptionLabel={(option) => option.name}
+            style={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+          /> */}
         </div>
+        <Results results={results} queryKey={queryKey} />
       </main>
     </Fragment>
   );

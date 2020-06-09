@@ -4,7 +4,7 @@ import useDebounce from '../hooks/useDebounce';
 import { useSearchStyle } from '../constants/searchThemes'
 
 export default function SearchBar(props) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const term = useDebounce(value, 400);
   const { placeholder } = props;
   const classes = useSearchStyle();
