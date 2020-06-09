@@ -7,6 +7,7 @@ import { useSearchStyle } from '../constants/searchThemes'
 
 export default function Search(props) {
   const [term, setTerm] = useState('');
+  
   const [results, setResults] = useState([]);
   const { placeholder, queryKey } = props;
   const classes = useSearchStyle();
@@ -42,7 +43,7 @@ export default function Search(props) {
           /> */}
         </div>
         <div className={classes.results}>        
-          <Results results={results} queryKey={queryKey} />
+          <Results results={results} queryKey={queryKey} onClick={""}/>
         </div>
       </main>
     </>

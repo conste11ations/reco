@@ -8,6 +8,6 @@ export default function Results(props) {
   const returnVal = queryKey === "list" ? "name" : "location";
   if (results === undefined) { return <div></div> };
   return results.map(result => {
-    return <div className={classes.resultItem}>{result[returnVal]}</div>;
+    return <div className={classes.resultItem} onClick={() => alert(result[returnVal])}>{result[returnVal]}</div>;
   });
 }
