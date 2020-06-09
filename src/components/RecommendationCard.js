@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -34,11 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const commentsList = ["everybody raves about st v or fairmount bagels, but this spot is the real deal. If you've never been, you don't know a Montreal bagel.", "this place is awesome"]
+// const commentsList = ["everybody raves about st v or fairmount bagels, but this spot is the real deal. If you've never been, you don't know a Montreal bagel.", "this place is awesome"]
 
-export default function RecommendationCard({business}) {
+export default function RecommendationCard({recommendation, business, comments}) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -58,17 +58,17 @@ export default function RecommendationCard({business}) {
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {/* ultimately, this should be randomized*/}
-          {`"${commentsList[0]}"`}
+          {`"${comments[0].because}"`}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="upvote">
           <ArrowUpwardIcon/>
-          <h4>52</h4>
+          <h4>{recommendation.upvotes}</h4>
         </IconButton>
         <IconButton aria-label="downvote">
           <ArrowDownwardIcon/>
-          <h4>2</h4>
+          <h4>{recommendation.downvotes}</h4>
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -83,7 +83,7 @@ export default function RecommendationCard({business}) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {commentsList.map(comment => <li>{comment}</li>)}
+          {comments.map(comment => <li>{comment.because}</li>)}
         </CardContent>
       </Collapse>
     </Card>

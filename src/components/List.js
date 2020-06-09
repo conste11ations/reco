@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
-import DrawerItem from './DrawerItem'
+import ListsDrawer from './ListsDrawer'
 import RecommendationCard from './RecommendationCard'
 
 // Material UI Components and Styling
@@ -42,27 +42,9 @@ export default function ListSpace ({ businesses, recommendations, comments }) {
 
   return (
     <>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor='left'
-        open={true}>
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {businesses.map((business, index) => (
-              <DrawerItem 
-              business={business}
-              upvotes={recommendations[index].upvotes}
-              downvotes={recommendations[index].downvotes}
-              />
-            ))}
-          </List>  
-        </div>
-      </Drawer>
+      <ListsDrawer 
+        recommendations={recommendations} 
+        businesses={businesses}/>
       <main className={classes.content}>
         <BubbleChart
           width={1000}
@@ -85,9 +67,14 @@ export default function ListSpace ({ businesses, recommendations, comments }) {
         open={drawerState}>
       <Toolbar />
       <RecommendationCard 
-        business={businesses[0]}/>
+        // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
+        recommendation={recommendations[0]}
+        business={businesses[0]}
+        // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
+        comments={comments}
+        />
       </Drawer>
-      <button onClick={toggleDrawer}>toggle drawer</button>
+      {/* <button onClick={toggleDrawer}>toggle drawer</button> */}
     </>
   )
 }
