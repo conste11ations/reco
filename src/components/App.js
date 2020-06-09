@@ -45,17 +45,6 @@ function App() {
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <Nav name={list.name} location={list.location} ></Nav>
-      <ListSpace
-        description={list.description}
-        businesses={businesses}
-        business_listings={recommendations}
-        recommendations={comments} />
-        <NewList>
-          
-        </NewList>
-=======
       {state.list ? <Nav name={state.list.name} location={state.list.location} /> : 'LOADING'}
 
       {state.recommendations ? <ListSpace
@@ -63,7 +52,6 @@ function App() {
         businesses={state.businesses}
         recommendations={state.recommendations}
         comments={state.comments}/> : 'LOADING'}
->>>>>>> master
     </div>
   );
 }
