@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListDrawer({drawerState, businesses, recommendations}) {
+export default function ListDrawer({description, businesses, recommendations}) {
 
   const classes = useStyles();
   return (

@@ -11,19 +11,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 
 const useStyles = makeStyles((theme) => ({
-  drawer: {
-    zIndex: 900
-  },
-  drawerPaper: {
-    zIndex: 900
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
 }));
 
-export default function ListSpace ({ businesses, recommendations, comments }) {
+export default function ListSpace ({ description, businesses, recommendations, comments }) {
   const [drawerState, setDrawer] = useState(false)
   
   const classes = useStyles();
@@ -43,6 +37,7 @@ export default function ListSpace ({ businesses, recommendations, comments }) {
   return (
     <>
       <ListsDrawer 
+        description={description}
         recommendations={recommendations} 
         businesses={businesses}/>
       <main className={classes.content}>
