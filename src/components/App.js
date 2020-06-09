@@ -9,9 +9,12 @@ import axios from 'axios'
 const SET_LIST = "SET_LIST";
 
 function reducer(state, action){
-  console.log(action.type)
   if (action.type === SET_LIST) {
-    const result = { list: action.data.list, recommendations: action.data.recommendations, businesses: action.data.businesses, comments: action.data.comments}
+    const result = { 
+      list: action.data.list, 
+      recommendations: action.data.recommendations, 
+      businesses: action.data.businesses, 
+      comments: action.data.comments }
     return result;
   }
 }
@@ -39,7 +42,8 @@ function App() {
 
   return (
     <div className="App">
-      {state.list ? <Nav name={state.list.name} location={state.list.location} ></Nav> : 'LOADING'}
+      {state.list ? <Nav name={state.list.name} location={state.list.location} /> : 'LOADING'}
+
       {state.recommendations ? <ListSpace
         description={state.list.description}
         businesses={state.businesses}

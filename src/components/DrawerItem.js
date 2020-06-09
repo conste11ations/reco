@@ -25,10 +25,12 @@ export default function DrawerItem({business, upvotes, downvotes}){
   return (
     <>
       <ListItem button key={business.id} onClick={handleClick}>
-        <ListItemText primary={`${business.name} (${upvotes - downvotes})`}/>
-        {open ? <ExpandLess /> : <ExpandMore />}
+        <ListItemText primary={business.name}/>
+        <ListItemText align='right' primary={` +${upvotes}`}/>
+        <ListItemText align='right' primary={` -${downvotes}`}/>
+        {/* {open ? <ExpandLess /> : <ExpandMore />} */}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      {/* <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
             <ListItemText primary={business.website} />
@@ -47,7 +49,7 @@ export default function DrawerItem({business, upvotes, downvotes}){
           </ListItem>
         </List>
         <Divider />
-      </Collapse>
+      </Collapse> */}
     </>
   )
 }
