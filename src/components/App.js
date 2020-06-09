@@ -31,13 +31,15 @@ function App() {
     ]
     )
     .then(all => {
-      // console.log(all[0].data)
+      console.log(all[0].data)
       // console.log(all[1].data)
       // console.log(all[2].data)
       // console.log(all[3].data)
       dispatch({type: SET_LIST, data: formattedFixtures})
+    },
+    (error) => {
+      console.log(error)
     })
-    .catch(e => console.log(e))
   }, [])
 
   return (
