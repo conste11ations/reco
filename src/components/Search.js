@@ -9,18 +9,19 @@ import { useSearchStyle } from '../constants/searchThemes'
 
 export default function Search(props) {
   const [term, setTerm] = useState('');
-  const [queryKey, setQueryKey] = useState('')
+  // const [queryKey, setQueryKey] = useState('')
   const [results, setResults] = useState([]);
-  const { placeholder } = props;
+  // const { placeholder } = props;
+  const { placeholder, queryKey } = props;
   const classes = useSearchStyle();
 
   useEffect(() => {
     const BASE_URL = 'http://localhost:3001/api';
     const ENDPOINT = '/search';
 
-    term === "" ? setQueryKey('') : setQueryKey(props.queryKey)
+    // term === "" ? setQueryKey('') : setQueryKey(props.queryKey)
   
-    const query = `${BASE_URL}${ENDPOINT}?key=${queryKey}&term=${term}`
+    const query = `${BASE_URL}${ENDPOINT}?key=${term === "" ? "" : queryKey}&term=${term}`
 
     axios({
       method: 'GET',
@@ -29,7 +30,7 @@ export default function Search(props) {
   }, [queryKey, term]);
 
   return (
-    <Fragment>
+    <>
       <header>
       </header>
       <main>
@@ -46,8 +47,8 @@ export default function Search(props) {
             renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
           /> */}
         </div>
-        <Results style={{ float: 'center' }} results={results} queryKey={queryKey} />
+        <Results style={{ color: 'red' }} results={results} queryKey={queryKey} />
       </main>
-    </Fragment>
+    </>
   );
 }
