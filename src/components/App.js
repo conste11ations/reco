@@ -23,19 +23,14 @@ function App() {
   const [state, dispatch] = useReducer(reducer, {})
 
   useEffect(() => {
-    Promise.all([
-      Promise.resolve(axios.get('/api/lists')),
-      // Promise.resolve(axios.get('/api/recommendations')),
-      // Promise.resolve(axios.get('/api/businesses')),
-      // Promise.resolve(axios.get('/api/comments'))
-    ]
-    )
-    .then(all => {
-      console.log(all[0].data)
-      // console.log(all[1].data)
-      // console.log(all[2].data)
-      // console.log(all[3].data)
-      dispatch({type: SET_LIST, data: formattedFixtures})
+    axios.get(`/api/lists/1`)
+    .then(res => {
+      const list = res.data[0]
+      const recommendations = res.data[1]
+      const businesses = res.data[2]
+      const comments = res.data[3]
+      dispatch({type: SET_LIST, 
+        data: {list, recommendations, businesses, comments}})
     },
     (error) => {
       console.log(error)
