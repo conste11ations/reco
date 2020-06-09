@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListSpace ({ list, businesses, recommendations, business_listings }) {
+export default function ListSpace ({ businesses, recommendations, comments }) {
   const [drawerState, setDrawer] = useState(false)
   
   const classes = useStyles();
@@ -37,7 +37,7 @@ export default function ListSpace ({ list, businesses, recommendations, business
   const bubbles = businesses.map((business, index) => (
     {label: business.name, 
     color: bubbleColours[index%6], 
-    value: business_listings[index].upvotes - business_listings[index].downvotes}
+    value: recommendations[index].upvotes - recommendations[index].downvotes}
     ))
 
   return (
@@ -49,15 +49,15 @@ export default function ListSpace ({ list, businesses, recommendations, business
           paper: classes.drawerPaper,
         }}
         anchor='left'
-        open={drawerState}>
+        open={true}>
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
             {businesses.map((business, index) => (
               <DrawerItem 
               business={business}
-              upvotes={business_listings[index].upvotes}
-              downvotes={business_listings[index].downvotes}
+              upvotes={recommendations[index].upvotes}
+              downvotes={recommendations[index].downvotes}
               />
             ))}
           </List>  
@@ -85,7 +85,6 @@ export default function ListSpace ({ list, businesses, recommendations, business
         open={drawerState}>
       <Toolbar />
       <RecommendationCard 
-        commentsList={["everybody raves about st v or fairmount bagels, but this spot is the real deal. If you've never been, you don't know a Montreal bagel.", "this place is awesome"]}
         business={businesses[0]}/>
       </Drawer>
       <button onClick={toggleDrawer}>toggle drawer</button>
