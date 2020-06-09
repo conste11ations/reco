@@ -9,7 +9,7 @@ import { useSearchStyle } from '../constants/searchThemes'
 
 export default function Search(props) {
   const [term, setTerm] = useState('');
-  const [queryKey, setQueryKey] = useState(props.queryKey)
+  const [queryKey, setQueryKey] = useState('')
   const [results, setResults] = useState([]);
   const { placeholder } = props;
   const classes = useSearchStyle();
@@ -17,7 +17,9 @@ export default function Search(props) {
   useEffect(() => {
     const BASE_URL = 'http://localhost:3001/api';
     const ENDPOINT = '/search';
-    console.log(queryKey)
+
+    term === "" ? setQueryKey('') : setQueryKey(props.queryKey)
+  
     const query = `${BASE_URL}${ENDPOINT}?key=${queryKey}&term=${term}`
 
     axios({
@@ -44,7 +46,7 @@ export default function Search(props) {
             renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
           /> */}
         </div>
-        <Results results={results} queryKey={queryKey} />
+        <Results style={{ float: 'center' }} results={results} queryKey={queryKey} />
       </main>
     </Fragment>
   );
