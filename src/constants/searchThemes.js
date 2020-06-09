@@ -15,7 +15,7 @@ const useSearchStyle = makeStyles(theme => ({
   },
   search: {
     position: "relative",
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: "25px",
     backgroundColor: fade(theme.palette.common.white, 0.95),
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.75)
@@ -51,6 +51,20 @@ const useSearchStyle = makeStyles(theme => ({
       width: "30ch"
     }
   },
+  results: {
+    position: "absolute",
+    width: "30ch",
+    textAlign: "center",
+    padding: theme.spacing(0, 6),
+  },
+  resultItem: {
+    padding: "5px",
+    backgroundColor: fade(theme.palette.common.white, 0.95),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.6),
+      color: theme.palette.text.primary
+    },
+  }
   // sectionDesktop: {
   //   display: "none",
   //   [theme.breakpoints.up("md")]: {
