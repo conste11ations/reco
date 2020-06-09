@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
-import ListsDrawer from './../ListsDrawer'
-import RecommendationDrawer from './../RecommendationDrawer'
+import ListsDrawer from './ListsDrawer'
+import RecommendationDrawer from './RecommendationDrawer'
 
 // Material UI Components and Styling
 import { makeStyles } from "@material-ui/core/styles";

@@ -26,21 +26,14 @@ export default function Search(props) {
 
   return (
     <>
-      <header>
-      </header>
+      {/* <header>
+      </header> */}
       <main>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
           <SearchBar placeholder={placeholder} onSearch={term => setTerm(term)} value={value} setValue={setValue}/>
-          {/* <Autocomplete
-            id="combo-box-demo"
-            options={results}
-            getOptionLabel={(option) => option.name}
-            style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-          /> */}
         </div>
         <div className={classes.results}>        
           <Results results={results} setResults={setResults} queryKey={queryKey} setValue={setValue}/>
