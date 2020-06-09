@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
-import RecommendationCard from './RecommendationCard'
+import RecommendationDrawer from './RecommendationDrawer'
 
 // Material UI Components and Styling
 import {makeStyles} from "@material-ui/core/styles";
@@ -57,23 +57,13 @@ export default function ListSpace ({ businesses, recommendations, comments }) {
           valueFont={{color: 'none'}}
         />
       </main>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor='right'
-        open={drawerState}>
-      <Toolbar />
-      <RecommendationCard 
-        // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
-        recommendation={recommendations[0]}
-        business={businesses[0]}
-        // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
-        comments={comments}
-        />
-      </Drawer>
+      <RecommendationDrawer
+      drawerState={drawerState}
+      // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
+      recommendation={recommendations[0]}
+      business={businesses[0]}
+      // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
+      comments={comments}/>
       {/* <button onClick={toggleDrawer}>toggle drawer</button> */}
     </>
   )
