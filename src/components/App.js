@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-      Promise.resolve(axios.get('http://localhost:3001/api/lists')),
+      Promise.resolve(axios.get('/api/lists')),
       // Promise.resolve(axios.get('/api/recommendations')),
       // Promise.resolve(axios.get('/api/businesses')),
       // Promise.resolve(axios.get('/api/comments'))
