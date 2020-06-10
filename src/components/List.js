@@ -21,30 +21,34 @@ export default function ListSpace ({ description, businesses, recommendations, c
   const [drawerState, setDrawer] = useState({open: false, index: 0})
   
   const classes = useStyles();
-  
-  const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
-  const toggleDrawer = () => {
+  const toggleRecoDrawer = () => {
     setDrawer(prev => ({...prev, open: !prev.open}))
   }
+  
+  const findIndexByName = (businesses, label) => {
+    const result = businesses.findIndex((business) => business.name === label)
+    return result
+  }
+  
+  const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
   const bubbles = businesses.map((business, index) => (
     {label: business.name, 
     color: bubbleColours[index%6], 
     value: recommendations[index].upvotes - recommendations[index].downvotes}
     ))
-  
-  const findIndexByLabel = (businesses, label) => {
-    const result = businesses.findIndex((business) => business.name === label)
-    return result
-  }
 
   return (
     <>
       <ListsDrawer 
         description={description}
         recommendations={recommendations} 
-        businesses={businesses}/>
+        businesses={businesses}
+        toggleRecoDrawer={toggleRecoDrawer}
+        setRecoDrawer={setDrawer}
+        recoDrawerState={drawerState}
+        />
       <main className={classes.content}>
         <BubbleChart
           width={1000}
@@ -54,8 +58,8 @@ export default function ListSpace ({ description, businesses, recommendations, c
           showLegend={false}
           graph={{zoom: .9}}
           bubbleClickFun={(label) => {
-            if (!drawerState.open) {toggleDrawer()}
-            const result = findIndexByLabel(businesses, label)
+            if (!drawerState.open) {toggleRecoDrawer()}
+            const result = findIndexByName(businesses, label)
             setDrawer(prev => ({...prev, index: result}))
           }}
           valueFont={{color: 'none'}}
@@ -63,13 +67,11 @@ export default function ListSpace ({ description, businesses, recommendations, c
       </main>
       <RecommendationDrawer
       drawerState={drawerState.open}
-      // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
       recommendation={recommendations[drawerState.index]}
       business={businesses[drawerState.index]}
-      // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
       comments={comments[drawerState.index]}/>
       
-      <button onClick={toggleDrawer}>toggle drawer</button>
+      <button onClick={toggleRecoDrawer}>toggle drawer</button>
     </>
   )
 }
