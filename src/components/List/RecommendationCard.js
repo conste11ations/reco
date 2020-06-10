@@ -17,6 +17,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
 import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button'
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +52,9 @@ export default function RecommendationCard({recommendation, business, comments})
   return (
     <List>
       <Card className={classes.root} square elevation={0}>
+        {/* <IconButton size='small' style={{ alignSelf: 'right'}}>
+          <CloseOutlinedIcon color='secondary'/>
+        </IconButton> */}
         <CardHeader
           title={business.name}
           subheader={<Link href={`${business.website}`} target="_blank" color='secondary'>{business.website}</Link>}
