@@ -29,8 +29,12 @@ function App() {
 
   // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(
-    false ? SHOW : CREATE
+    true ? SHOW : CREATE
   );
+
+  function transitionToCreate() {
+    transition(CREATE);
+  }
 
   function getList(id) {
     axios.get(`/api/lists/${id}`)
@@ -50,7 +54,7 @@ function App() {
   }
 
   function createList(name, location, description) {
-    axios.post(`http://localhost:3001/api/lists/`,
+    axios.post(`/api/lists/`,
     {
       name,
       location,
@@ -69,7 +73,7 @@ function App() {
 
   return (
     <div className="App">
-      {state.list ? <Nav name={state.list.name} location={state.list.location} /> : 'LOADING'}
+      {state.list ? <Nav name={state.list.name} location={state.list.location} transitionToCreate={transitionToCreate} /> : 'LOADING'}
 
       {mode === SHOW && state.recommendations ? <ListSpace
         description={state.list.description}

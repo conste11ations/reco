@@ -19,9 +19,9 @@ const formTheme = createMuiTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
-    fontSize: 18,
+    fontSize: 14,
     h2: {
-      'fontWeight': 600,
+      'fontWeight': 400,
       'color': '#007065'
     },
   },

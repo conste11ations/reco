@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search'
 
 
-export default function Nav({ name, location }) {
+export default function Nav({ name, location, transitionToCreate }) {
   const classes = useNavStyle();
   return (
     <>
@@ -40,8 +40,8 @@ export default function Nav({ name, location }) {
             <Button color='inherit'>Login</Button>
             <Button color='inherit'>Sign Up</Button>
             <Tooltip disableFocusListener disableTouchListener title="Ask for a recommendation!">
-            <Button>
-              <AddCircle fontSize='large' color='secondary'/>
+            <Button onClick={() => transitionToCreate()} color='inherit'>
+              <AddCircle fontSize='large' color='inherit'/>
             </Button>
             </Tooltip>
           </Toolbar>
