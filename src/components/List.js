@@ -18,14 +18,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListSpace ({ description, businesses, recommendations, comments }) {
-  const [drawerState, setDrawer] = useState(false)
+  const [drawerState, setDrawer] = useState({open: false, index: 0})
   
   const classes = useStyles();
   
   const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
   const toggleDrawer = () => {
-    setDrawer(prev => !prev)
+    setDrawer(prev => ({...prev, open: !prev.open}))
   }
 
   const bubbles = businesses.map((business, index) => (
@@ -33,6 +33,11 @@ export default function ListSpace ({ description, businesses, recommendations, c
     color: bubbleColours[index%6], 
     value: recommendations[index].upvotes - recommendations[index].downvotes}
     ))
+  
+  const findIndexByLabel = (businesses, label) => {
+    const result = businesses.findIndex((business) => business.name === label)
+    return result
+  }
 
   return (
     <>
@@ -48,17 +53,21 @@ export default function ListSpace ({ description, businesses, recommendations, c
           data={bubbles}
           showLegend={false}
           graph={{zoom: .9}}
-          bubbleClickFun={(label) => toggleDrawer()}
+          bubbleClickFun={(label) => {
+            if (!drawerState.open) {toggleDrawer()}
+            const result = findIndexByLabel(businesses, label)
+            setDrawer(prev => ({...prev, index: result}))
+          }}
           valueFont={{color: 'none'}}
         />
       </main>
       <RecommendationDrawer
-      drawerState={drawerState}
+      drawerState={drawerState.open}
       // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
-      recommendation={recommendations[0]}
-      business={businesses[0]}
+      recommendation={recommendations[drawerState.index]}
+      business={businesses[drawerState.index]}
       // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
-      comments={comments}/>
+      comments={comments[drawerState.index]}/>
       {/* <button onClick={toggleDrawer}>toggle drawer</button> */}
     </>
   )

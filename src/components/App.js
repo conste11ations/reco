@@ -22,7 +22,7 @@ function reducer(state, action){
 function App() {
   const [state, dispatch] = useReducer(reducer, {})
 
-function getList(id) {
+  function getList(id) {
     axios.get(`/api/lists/${id}`)
     .then(res => {
       const list = res.data[0]
