@@ -18,19 +18,22 @@ export default function Nav({ name, location }) {
       <MuiThemeProvider theme={navTheme}>
         <AppBar position='fixed'>
           <Toolbar>
-              <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
-              <Box className={classes.title}></Box>
-              <Typography align='center' variant='h6' noWrap>
-                Any recommendations for
+            <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
+            <Box className={classes.title}></Box>
+            <Typography align='center' variant='h6' noWrap>
+              Any recommendations for
             </Typography>
-              <Search placeholder={name} queryKey='list'/>
-              <Typography align='center' variant='h6' noWrap>
-                near
+            <Search placeholder={name} queryKey='list' />
+            <Typography align='center' variant='h6' noWrap>
+              near
             </Typography>
-              <Search placeholder={location} queryKey='location'/>
-              <Typography align='center' variant='h6' noWrap>
-                ?
+            <Search placeholder={location} queryKey='location' />
+            <Typography align='center' variant='h6' noWrap>
+              ?
             </Typography>
+            <Button variant="outlined" size="small" color="secondary">
+              Search
+            </Button>
             <Box className={classes.title}></Box>
             <Button color='inherit'>About</Button>
             <Button color='inherit'>Login</Button>

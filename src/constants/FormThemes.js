@@ -36,13 +36,23 @@ const useFormStyle = makeStyles((theme) => ({
       padding: theme.spacing(1),
       minWidth: '300px',
     },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+    },
+    "& label.Mui-focused": {
+      color: "#007065"
+    },
     title: {
       flexGrow: 1,
     },
-    textField: {
-      backgroundColor: "white",
-      color: "red",
-    }
+    margin: {
+      margin: theme.spacing(1),
+    },
+    [`& fieldset`]: {
+      borderRadius: 25,
+    },
   },
 }));
 

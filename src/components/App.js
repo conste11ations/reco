@@ -4,6 +4,7 @@ import Nav from './Nav';
 import ListSpace from './List';
 import { New as NewList } from './List/New'
 import formattedFixtures from '../formattedFixtures.js';
+import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
 const SET_LIST = "SET_LIST";
@@ -21,7 +22,15 @@ function reducer(state, action) {
 }
 
 function App() {
+
   const [state, dispatch] = useReducer(reducer, {})
+  const SHOW = "SHOW";
+  const CREATE = "CREATE";
+
+  // rudimentary toggle (set to true or false) to see different modes
+  const { mode, transition, back } = useVisualMode(
+    true ? SHOW : CREATE
+  );
 
   useEffect(() => {
     Promise.all([
@@ -47,12 +56,12 @@ function App() {
     <div className="App">
       {state.list ? <Nav name={state.list.name} location={state.list.location} /> : 'LOADING'}
 
-      {/* {state.recommendations ? <ListSpace
+      {mode === SHOW && state.recommendations ? <ListSpace
         description={state.list.description}
         businesses={state.businesses}
         recommendations={state.recommendations}
-        comments={state.comments} /> : 'LOADING'} */}
-      <NewList></NewList>
+        comments={state.comments} /> : 'LOADING'}
+      {mode === CREATE && <NewList></NewList>}
 
     </div>
   );
