@@ -18,15 +18,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListSpace ({ description, businesses, recommendations, comments }) {
-  const [drawerState, setDrawer] = useState(false)
+  const [drawerState, setDrawer] = useState({open: false, index: 0})
 
   const classes = useStyles();
 
-  const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
-
-  const toggleDrawer = () => {
-    setDrawer(prev => !prev)
+  const toggleRecoDrawer = () => {
+    setDrawer(prev => ({...prev, open: !prev.open}))
   }
+  
+  const findIndexByName = (businesses, label) => {
+    const result = businesses.findIndex((business) => business.name === label)
+    return result
+  }
+  
+  const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
   const bubbles = businesses.map((business, index) => (
     {label: business.name, 
@@ -39,7 +44,11 @@ export default function ListSpace ({ description, businesses, recommendations, c
       <ListsDrawer 
         description={description}
         recommendations={recommendations} 
-        businesses={businesses}/>
+        businesses={businesses}
+        toggleRecoDrawer={toggleRecoDrawer}
+        setRecoDrawer={setDrawer}
+        recoDrawerState={drawerState}
+        />
       <main className={classes.content}>
         <BubbleChart
           width={1000}
@@ -47,19 +56,22 @@ export default function ListSpace ({ description, businesses, recommendations, c
           fontFamily="Arial"
           data={bubbles}
           showLegend={false}
-          graph={{ zoom: .9 }}
-          bubbleClickFun={(label) => toggleDrawer()}
-          valueFont={{ color: 'none' }}
+          graph={{zoom: .9}}
+          bubbleClickFun={(label) => {
+            if (!drawerState.open) {toggleRecoDrawer()}
+            const result = findIndexByName(businesses, label)
+            setDrawer(prev => ({...prev, index: result}))
+          }}
+          valueFont={{color: 'none'}}
         />
       </main>
       <RecommendationDrawer
-      drawerState={drawerState}
-      // CLICK WILL DESIGNATE WHICH RECO and BUSINESS
-      recommendation={recommendations[0]}
-      business={businesses[0]}
-      // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
-      comments={comments}/>
-      {/* <button onClick={toggleDrawer}>toggle drawer</button> */}
+      drawerState={drawerState.open}
+      recommendation={recommendations[drawerState.index]}
+      business={businesses[drawerState.index]}
+      comments={comments[drawerState.index]}/>
+      
+      <button onClick={toggleRecoDrawer}>toggle drawer</button>
     </>
   )
 }
