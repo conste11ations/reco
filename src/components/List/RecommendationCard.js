@@ -15,12 +15,11 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
-import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button'
-import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Slide from '@material-ui/core/Slide';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function RecommendationCard({toggleRecoDrawer, recommendation, business, comments}) {
+export default function RecommendationCard({toggleRecoDrawer, drawerState, recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -58,12 +57,17 @@ export default function RecommendationCard({toggleRecoDrawer, recommendation, bu
 
   return (
     <List>
-      <ListItem button dense={true} className={classes.hover}onClick={() => toggleRecoDrawer()}><ArrowBackIosOutlinedIcon color='secondary'/></ListItem>
-      
+      <ListItem button dense={true} className={classes.hover}onClick={() => toggleRecoDrawer()}><HighlightOffIcon style={{color: '#FF7373'}}/></ListItem>
+      {/* <ListItem>
+        <IconButton 
+          className={clsx(classes.expand, {
+                [classes.expandOpen]: drawerState.open,
+              })}
+          onClick={() => toggleRecoDrawer()}>
+          <HighlightOffIcon style={{color: '#FF7373'}}/>
+        </IconButton>
+      </ListItem> */}
       <Card className={classes.root} square elevation={0}>
-        {/* <IconButton size='small' style={{ alignSelf: 'right'}}>
-          <CloseOutlinedIcon color='secondary'/>
-        </IconButton> */}
         <CardHeader
           title={business.name}
           subheader={<Link href={`${business.website}`} target="_blank" color='secondary'>{business.website}</Link>}
