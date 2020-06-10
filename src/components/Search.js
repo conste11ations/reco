@@ -10,7 +10,8 @@ export default function Search(props) {
   const [term, setTerm] = useState('');
   const [value, setValue] = useState('');
   const [results, setResults] = useState([]);
-  const { placeholder, queryKey } = props;
+  const [placeholder, setPlaceholder] = useState(props.placeholder);
+  const { queryKey } = props;
   const classes = useSearchStyle();
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Search(props) {
           <SearchBar placeholder={placeholder} onSearch={term => setTerm(term)} value={value} setValue={setValue}/>
         </div>
         <div className={classes.results}>        
-          <Results results={results} setResults={setResults} queryKey={queryKey} setValue={setValue}/>
+          <Results results={results} setResults={setResults} queryKey={queryKey} setValue={setValue} setPlaceholder={setPlaceholder}/>
         </div>
       </main>
     </>
