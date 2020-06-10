@@ -49,6 +49,20 @@ function App() {
         })
   }
 
+  function createList(name, location, description) {
+    axios.post(`http://localhost:3001/api/lists`,
+    {
+      name: name,
+      location: location,
+      description: description
+    })
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   useEffect(() => {
     getList(1)
   }, [])
@@ -62,7 +76,7 @@ function App() {
         businesses={state.businesses}
         recommendations={state.recommendations}
         comments={state.comments} /> : 'LOADING'}
-      {mode === CREATE && <NewList></NewList>}
+      {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>}
       <button onClick={() => getList(2)}>GET_LIST 2</button>
     </div>
   );
