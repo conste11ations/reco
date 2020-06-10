@@ -7,7 +7,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { AccountCircle } from '@material-ui/icons';
+import { AccountCircle, AddCircle } from '@material-ui/icons';
+import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search'
 
 
@@ -38,9 +39,11 @@ export default function Nav({ name, location }) {
             <Button color='inherit'>About</Button>
             <Button color='inherit'>Login</Button>
             <Button color='inherit'>Sign Up</Button>
+            <Tooltip disableFocusListener disableTouchListener title="Ask for a recommendation!">
             <Button>
-              <AccountCircle color='secondary' />
+              <AddCircle fontSize='large' color='secondary'/>
             </Button>
+            </Tooltip>
           </Toolbar>
         </AppBar>
         <TextField
