@@ -20,7 +20,7 @@ const formTheme = createMuiTheme({
       '"Segoe UI Symbol"',
     ].join(','),
     fontSize: 18,
-    h3: {
+    h2: {
       'fontWeight': 600,
       'color': '#007065'
     },
@@ -32,11 +32,16 @@ const useFormStyle = makeStyles((theme) => ({
     '& > *': {
       position: 'absolute',
       margin: theme.spacing(1),
+      marginLeft: theme.spacing(-0.4),
       padding: theme.spacing(1),
-      minWidth: '800px',
+      minWidth: '300px',
     },
     title: {
       flexGrow: 1,
+    },
+    textField: {
+      backgroundColor: "white",
+      color: "red",
     }
   },
 }));
