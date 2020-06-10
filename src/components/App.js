@@ -52,9 +52,9 @@ function App() {
   function createList(name, location, description) {
     axios.post(`http://localhost:3001/api/lists/`,
     {
-      name: name,
-      location: location,
-      description: description
+      name,
+      location,
+      description
     })
     .then((response) => {
       console.log("response", response);
