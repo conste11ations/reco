@@ -39,7 +39,8 @@ export default function ListDrawer({list, businesses, recommendations, recoDrawe
         <DrawerCard list={list}></DrawerCard>
         <List>
           {businesses.map((business, index) => (
-            <DrawerItem 
+            <DrawerItem
+            key={business.id} 
             business={business}
             upvotes={recommendations[index].upvotes}
             downvotes={recommendations[index].downvotes}

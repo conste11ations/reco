@@ -56,7 +56,7 @@ export default function ListCard({list}) {
       </CardContent>
       <CardActions disableSpacing>
           {/* ADD + ICON ? or some other button*/}
-          <Button variant="contained" color="primary" size='large'>
+          <Button variant="outlined" color="primary" size='large' disableElevation>
             ADD RECOMMENDATION
           </Button>
       </CardActions>
