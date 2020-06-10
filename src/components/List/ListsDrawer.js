@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListDrawer({description, businesses, recommendations}) {
+export default function ListDrawer({description, businesses, recommendations, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
 
   const classes = useStyles();
   return (
@@ -41,6 +41,9 @@ export default function ListDrawer({description, businesses, recommendations}) {
             business={business}
             upvotes={recommendations[index].upvotes}
             downvotes={recommendations[index].downvotes}
+            showReco={() => setRecoDrawer(prev => ({...prev, index}))}
+            recoDrawerState={recoDrawerState}
+            toggleRecoDrawer={toggleRecoDrawer}
             />
           ))}
         </List>  
