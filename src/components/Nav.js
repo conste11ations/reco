@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
@@ -12,7 +12,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search'
 
 
-export default function Nav({ name, location, transitionToCreate }) {
+export default function Nav({ name, location, transitionToCreate, transitionToShow, getList }) {
+  const [resultId, setResultId] = useState(null);
+
   const classes = useNavStyle();
   return (
     <>
@@ -24,15 +26,15 @@ export default function Nav({ name, location, transitionToCreate }) {
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={name} queryKey='list' />
+            <Search placeholder={name} queryKey='list' setResultId={setResultId}/>
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>
-            <Search placeholder={location} queryKey='location' />
+            <Search placeholder={location} queryKey='location' setResultId={setResultId}/>
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>
-            <Button className={classes.button} variant='contained' size='small' color='secondary'>
+            <Button onClick={() => {getList(resultId); transitionToShow()}} className={classes.button} variant='contained' size='small' color='secondary'>
               Search
             </Button>
             <Box className={classes.title}></Box>

@@ -36,6 +36,10 @@ function App() {
     transition(CREATE);
   }
 
+  function transitionToShow() {
+    transition(SHOW);
+  }
+
   function getList(id) {
     axios.get(`/api/lists/${id}`)
       .then(res => {
@@ -55,16 +59,25 @@ function App() {
 
   function createList(name, location, description) {
     axios.post(`/api/lists/`,
-    {
-      name,
-      location,
-      description
-    })
-    .then((response) => {
-      console.log("response", response);
-    }, (error) => {
-      console.log(error);
-    });
+      {
+        name,
+        location,
+        description
+      })
+      .then((response) => {
+        console.log("response", response);
+      // .then(res => {
+      //   const list = res.data[0]
+      //   const recommendations = res.data[1]
+      //   const businesses = res.data[2]
+      //   const comments = res.data[3]
+      //   dispatch({
+      //     type: SET_LIST,
+      //     data: { list, recommendations, businesses, comments }
+      //   })
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -73,7 +86,10 @@ function App() {
 
   return (
     <div className="App">
-      {state.list ? <Nav name={state.list.name} location={state.list.location} transitionToCreate={transitionToCreate} /> : 'LOADING'}
+      {state.list ? <Nav 
+      name={state.list.name} 
+      location={state.list.location} 
+      transitionToCreate={transitionToCreate} getList={getList} transitionToShow={transitionToShow}/> : 'LOADING'}
 
       {mode === SHOW && state.recommendations ? <ListSpace
         list={state.list}
