@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListSpace ({ description, businesses, recommendations, comments }) {
+export default function ListSpace ({ list, businesses, recommendations, comments }) {
   const [drawerState, setDrawer] = useState({open: false, index: 0})
 
   const classes = useStyles();
@@ -42,7 +42,7 @@ export default function ListSpace ({ description, businesses, recommendations, c
   return (
     <>
       <ListsDrawer 
-        description={description}
+        list={list}
         recommendations={recommendations} 
         businesses={businesses}
         toggleRecoDrawer={toggleRecoDrawer}

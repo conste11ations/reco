@@ -1,4 +1,5 @@
 import React from 'react';
+import DrawerCard from './DrawerCard'
 import DrawerItem from './DrawerItem'
 
 // Material UI Components and Styling
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListDrawer({description, businesses, recommendations, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
+export default function ListDrawer({list, businesses, recommendations, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
 
   const classes = useStyles();
   return (
@@ -35,9 +36,11 @@ export default function ListDrawer({description, businesses, recommendations, re
       open={true}>
       <Toolbar />
       <div className={classes.drawerContainer}>
+        <DrawerCard list={list}></DrawerCard>
         <List>
           {businesses.map((business, index) => (
-            <DrawerItem 
+            <DrawerItem
+            key={business.id} 
             business={business}
             upvotes={recommendations[index].upvotes}
             downvotes={recommendations[index].downvotes}

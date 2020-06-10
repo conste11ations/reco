@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -13,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem'
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const commentsList = ["everybody raves about st v or fairmount bagels, but this spot is the real deal. If you've never been, you don't know a Montreal bagel.", "this place is awesome"]
-
 export default function RecommendationCard({recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -52,7 +53,7 @@ export default function RecommendationCard({recommendation, business, comments})
       />
       <CardMedia
         className={classes.media}
-        image="https://www.thespruceeats.com/thmb/_i6XSGjRXDBhOaQ4gqpfi7dbaIk=/4486x2523/smart/filters:no_upscale()/mango-at-the-market-506813675-587e60f53df78c17b6967f5e.jpg"
+        image={business.image}
         title="Paella dish"
       />
       <CardContent>
@@ -83,7 +84,13 @@ export default function RecommendationCard({recommendation, business, comments})
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {comments.map(comment => <li>{comment.because}</li>)}
+          <List>
+            {comments.map((comment, index ) => 
+              <ListItem>
+                <Typography key={comment.id} paragraph>{comment.because}</Typography>
+              </ListItem>
+            )}
+          </List>
         </CardContent>
       </Collapse>
     </Card>
