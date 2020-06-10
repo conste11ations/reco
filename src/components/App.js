@@ -63,7 +63,6 @@ function App() {
         recommendations={state.recommendations}
         comments={state.comments} /> : 'LOADING'}
       {mode === CREATE && <NewList></NewList>}
-
       <button onClick={() => getList(2)}>GET_LIST 2</button>
     </div>
   );
