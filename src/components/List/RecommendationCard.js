@@ -16,10 +16,14 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
 import Divider from '@material-ui/core/Divider';
+import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button'
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
+    minWidth: 340,
   },
   media: {
     height: 0,
@@ -34,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
+  }
 }));
 
 export default function RecommendationCard({recommendation, business, comments}) {
@@ -46,53 +50,59 @@ export default function RecommendationCard({recommendation, business, comments})
   };
 
   return (
-    <Card className={classes.root} square>
-      <CardHeader
-        title={business.name}
-        subheader={business.website}
-      />
-      <CardMedia
-        className={classes.media}
-        image={business.image}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {/* ultimately, this should be randomized*/}
-          {`"${comments[0].because}"`}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="upvote">
-          <ArrowUpwardIcon/>
-          <h4>{recommendation.upvotes}</h4>
-        </IconButton>
-        <IconButton aria-label="downvote">
-          <ArrowDownwardIcon/>
-          <h4>{recommendation.downvotes}</h4>
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <List>
+      <Card className={classes.root} square elevation={0}>
+        {/* <IconButton size='small' style={{ alignSelf: 'right'}}>
+          <CloseOutlinedIcon color='secondary'/>
+        </IconButton> */}
+        <CardHeader
+          title={business.name}
+          subheader={<Link href={`${business.website}`} target="_blank" color='secondary'>{business.website}</Link>}
+        />
+        <CardMedia
+          className={classes.media}
+          image={business.image}
+          title="Paella dish"
+        />
         <CardContent>
-          <List>
-            {comments.map((comment, index ) => 
-              <ListItem>
-                <Typography key={comment.id} paragraph>{comment.because}</Typography>
-              </ListItem>
-            )}
-          </List>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {/* ultimately, this should be randomized*/}
+            {`"${comments[0].because}"`}
+          </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton aria-label="upvote" style={{color: '#27AE60'}}>
+            <ArrowUpwardIcon/>
+            <h4>{recommendation.upvotes}</h4>
+          </IconButton>
+          <IconButton aria-label="downvote" style={{color: '#FF7373'}}>
+            <ArrowDownwardIcon/>
+            <h4>{recommendation.downvotes}</h4>
+          </IconButton>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent style={{backgroundColor: '#FFF3DD'}}>
+            {/* HOW THE EFF DO I SET THIS BACKGROUND?? */}
+            <List>
+              {comments.map((comment, index ) => 
+                <ListItem>
+                  <Typography key={comment.id} paragraph color='secondary'>{comment.because}</Typography>
+                </ListItem>
+              )}
+            </List>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </List>
   );
 }
