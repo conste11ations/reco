@@ -52,7 +52,7 @@ export default function RecommendationCard({recommendation, business, comments})
       />
       <CardMedia
         className={classes.media}
-        image="https://www.thespruceeats.com/thmb/_i6XSGjRXDBhOaQ4gqpfi7dbaIk=/4486x2523/smart/filters:no_upscale()/mango-at-the-market-506813675-587e60f53df78c17b6967f5e.jpg"
+        image={business.image}
         title="Paella dish"
       />
       <CardContent>

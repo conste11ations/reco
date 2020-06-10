@@ -58,7 +58,7 @@ function App() {
       {state.list ? <Nav name={state.list.name} location={state.list.location} /> : 'LOADING'}
 
       {mode === SHOW && state.recommendations ? <ListSpace
-        description={state.list.description}
+        list={state.list}
         businesses={state.businesses}
         recommendations={state.recommendations}
         comments={state.comments} /> : 'LOADING'}
