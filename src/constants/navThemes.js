@@ -38,6 +38,9 @@ const useNavStyle = makeStyles((theme) => ({
   logo: {
     maxWidth: 200,
     maxHeight: 50,
+  },
+  button: {
+    // margin: theme.spacing(2),
   }
 }));
 

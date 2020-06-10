@@ -18,7 +18,7 @@ export default function Nav({ name, location }) {
       <MuiThemeProvider theme={navTheme}>
         <AppBar position='fixed'>
           <Toolbar>
-            <img src="reco-logo.png" alt="reco logo" className={classes.logo} />
+            <img src='reco-logo.png' alt="reco logo" className={classes.logo} />
             <Box className={classes.title}></Box>
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
@@ -29,9 +29,9 @@ export default function Nav({ name, location }) {
             </Typography>
             <Search placeholder={location} queryKey='location' />
             <Typography align='center' variant='h6' noWrap>
-              ?
+              ?&nbsp;&nbsp;
             </Typography>
-            <Button variant="contained" size="small" color="secondary">
+            <Button className={classes.button} variant='contained' size='small' color='secondary'>
               Search
             </Button>
             <Box className={classes.title}></Box>
