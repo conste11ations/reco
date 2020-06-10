@@ -31,7 +31,7 @@ export default function Nav({ name, location }) {
             <Typography align='center' variant='h6' noWrap>
               ?
             </Typography>
-            <Button variant="outlined" size="small" color="secondary">
+            <Button variant="contained" size="small" color="secondary">
               Search
             </Button>
             <Box className={classes.title}></Box>
