@@ -22,10 +22,5 @@ export default createMuiTheme({
     h6: {
       "fontWeight": 600,
     },
-  },
-  overrides: {
-    MuiCard: {
-      backgroundColor: 'red'
-    }
   }
 });

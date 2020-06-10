@@ -66,7 +66,8 @@ export default function ListSpace ({ list, businesses, recommendations, comments
         />
       </main>
       <RecommendationDrawer
-      drawerState={drawerState.open}
+      drawerState={drawerState}
+      toggleRecoDrawer={toggleRecoDrawer}
       recommendation={recommendations[drawerState.index]}
       business={businesses[drawerState.index]}
       comments={comments[drawerState.index]}/>

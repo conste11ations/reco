@@ -19,6 +19,8 @@ import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button'
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
+import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,10 +40,15 @@ const useStyles = makeStyles((theme) => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
+  },
+  hover: {
+    '&:hover': {
+      color: '#007065'
+    }
   }
 }));
 
-export default function RecommendationCard({recommendation, business, comments}) {
+export default function RecommendationCard({toggleRecoDrawer, recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -51,6 +58,8 @@ export default function RecommendationCard({recommendation, business, comments})
 
   return (
     <List>
+      <ListItem button dense={true} className={classes.hover}onClick={() => toggleRecoDrawer()}><ArrowBackIosOutlinedIcon color='secondary'/></ListItem>
+      
       <Card className={classes.root} square elevation={0}>
         {/* <IconButton size='small' style={{ alignSelf: 'right'}}>
           <CloseOutlinedIcon color='secondary'/>
