@@ -39,7 +39,7 @@ export function New(props) {
           </FormControl>
         </Box>
         <Box position="relative" mt={35}>
-          <Button onClick={(name, location, description) => props.onSave(name, location, description)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
+          <Button onClick={() => props.onSave(name, location, description)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
         </Box>

@@ -50,14 +50,14 @@ function App() {
   }
 
   function createList(name, location, description) {
-    axios.post(`http://localhost:3001/api/lists`,
+    axios.post(`http://localhost:3001/api/lists/`,
     {
       name: name,
       location: location,
       description: description
     })
     .then((response) => {
-      console.log(response);
+      console.log("response", response);
     }, (error) => {
       console.log(error);
     });
@@ -76,7 +76,8 @@ function App() {
         businesses={state.businesses}
         recommendations={state.recommendations}
         comments={state.comments} /> : 'LOADING'}
-      {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>}
+      {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
+      {mode === CREATE && <NewList onSave={createList}></NewList>}
       <button onClick={() => getList(2)}>GET_LIST 2</button>
     </div>
   );
