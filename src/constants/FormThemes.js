@@ -31,7 +31,7 @@ const useFormStyle = makeStyles((theme) => ({
   root: {
     '& > *': {
       position: 'absolute',
-      margin: theme.spacing(1),
+      margin: theme.spacing(2),
       marginLeft: theme.spacing(-0.4),
       padding: theme.spacing(1),
       minWidth: '300px',
@@ -39,6 +39,7 @@ const useFormStyle = makeStyles((theme) => ({
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: 'white',
+        color: 'white',
       },
     },
     "& label.Mui-focused": {

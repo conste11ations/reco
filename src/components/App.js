@@ -29,7 +29,7 @@ function App() {
 
   // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(
-    true ? SHOW : CREATE
+    false ? SHOW : CREATE
   );
 
   function getList(id) {
