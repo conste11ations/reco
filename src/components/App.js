@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import Nav from './Nav';
-import ListSpace from './List';
+import ListSpace from './List/';
 import { New as NewList } from './List/New'
 import formattedFixtures from '../formattedFixtures.js';
 import useVisualMode from "../hooks/useVisualMode";
