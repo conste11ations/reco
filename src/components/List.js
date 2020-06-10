@@ -68,7 +68,8 @@ export default function ListSpace ({ description, businesses, recommendations, c
       business={businesses[drawerState.index]}
       // NEED TO FILTER COMMENTS FOR GIVEN BUSINESS
       comments={comments[drawerState.index]}/>
-      {/* <button onClick={toggleDrawer}>toggle drawer</button> */}
+      
+      <button onClick={toggleDrawer}>toggle drawer</button>
     </>
   )
 }
