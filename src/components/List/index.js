@@ -6,10 +6,6 @@ import RecommendationDrawer from './RecommendationDrawer'
 // Material UI Components and Styling
 import { makeStyles } from "@material-ui/core/styles";
 
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
@@ -71,8 +67,6 @@ export default function ListSpace ({ list, businesses, recommendations, comments
       recommendation={recommendations[drawerState.index]}
       business={businesses[drawerState.index]}
       comments={comments[drawerState.index]}/>
-      
-      <button onClick={toggleRecoDrawer}>toggle drawer</button>
     </>
   )
 }

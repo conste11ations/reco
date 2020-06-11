@@ -16,9 +16,6 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
 import Link from '@material-ui/core/Link';
-import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Slide from '@material-ui/core/Slide';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme) => ({
@@ -40,11 +37,6 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  hover: {
-    '&:hover': {
-      color: '#007065'
-    }
-  }
 }));
 
 export default function RecommendationCard({toggleRecoDrawer, drawerState, recommendation, business, comments}) {
@@ -57,16 +49,11 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
 
   return (
     <List>
-      <ListItem button dense={true} className={classes.hover}onClick={() => toggleRecoDrawer()}><HighlightOffIcon style={{color: '#FF7373'}}/></ListItem>
-      {/* <ListItem>
-        <IconButton 
-          className={clsx(classes.expand, {
-                [classes.expandOpen]: drawerState.open,
-              })}
-          onClick={() => toggleRecoDrawer()}>
-          <HighlightOffIcon style={{color: '#FF7373'}}/>
+      {/* <ListItem dense={true}> */}
+        <IconButton style={{display: 'flex'}}>
+        <HighlightOffIcon button style={{color: '#FF7373'}} onClick={() => toggleRecoDrawer()}/>
         </IconButton>
-      </ListItem> */}
+        {/* </ListItem> */}
       <Card className={classes.root} square elevation={0}>
         <CardHeader
           title={business.name}
@@ -98,14 +85,12 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
             })}
             onClick={handleExpandClick}
             aria-expanded={expanded}
-            aria-label="show more"
-          >
+            aria-label="show more">
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent style={{backgroundColor: '#FFF3DD'}}>
-            {/* HOW THE EFF DO I SET THIS BACKGROUND?? */}
             <List>
               {comments.map((comment, index ) => 
                 <ListItem>
