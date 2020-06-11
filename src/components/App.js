@@ -2,7 +2,8 @@ import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List/';
-import { New as NewList } from './List/New'
+import Main from './Main';
+import { New as NewList } from './List/New';
 import formattedFixtures from '../formattedFixtures.js';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
@@ -30,15 +31,21 @@ function App() {
 
   // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(
-    true ? SHOW : CREATE
+    // true ? SHOW : CREATE
+    MAIN
   );
 
+  // i wonder if there is a better way to implement this?
   function transitionToCreate() {
     transition(CREATE);
   }
 
   function transitionToShow() {
     transition(SHOW);
+  }
+
+  function transitionToMain() {
+    transition(MAIN);
   }
 
   function getList(id) {
@@ -83,16 +90,22 @@ function App() {
       {state.list ? <Nav
         name={state.list.name}
         location={state.list.location}
-        transitionToCreate={transitionToCreate} getList={getList} transitionToShow={transitionToShow} /> : 'LOADING'}
+        transitionToCreate={transitionToCreate}
+        transitionToShow={transitionToShow} 
+        transitionToMain={transitionToMain} 
+        getList={getList} /> : 'LOADING'}
+
+      {mode === MAIN && <Main></Main>}
 
       {mode === SHOW && state.recommendations ? <ListSpace
         list={state.list}
         businesses={state.businesses}
         recommendations={state.recommendations}
         comments={state.comments} /> : 'LOADING'}
+
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
       {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
-      <button onClick={() => getList(2)}>GET_LIST 2</button>
+      {/* <button onClick={() => getList(2)}>GET_LIST 2</button> */}
     </div>
   );
 }

@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search/Search'
 
 
-export default function Nav({ name, location, transitionToCreate, transitionToShow, getList }) {
+export default function Nav({ name, location, transitionToCreate, transitionToShow, transitionToMain, getList }) {
   const [resultId, setResultId] = useState(null);
 
   const classes = useNavStyle();
@@ -21,7 +21,7 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
       <MuiThemeProvider theme={navTheme}>
         <AppBar position='fixed'>
           <Toolbar>
-            <img src='reco-logo.png' alt="reco logo" className={classes.logo} />
+            <img src='reco-logo.png' alt="reco logo" className={classes.logo} onClick={() => transitionToMain()}/>
             <Box className={classes.title}></Box>
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
