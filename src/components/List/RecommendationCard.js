@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationCard({toggleRecoDrawer, drawerState, recommendation, business, comments}) {
+export default function RecommendationCard({dispatch, toggleRecoDrawer, drawerState, recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -52,14 +52,14 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
   const upvote = (recoID) => {
     axios
     .put(`/api/recommendations/${recoID}`, {type: 'upvote'})
-    .then(res => console.log(res))
+    .then(res => dispatch({type: 'VOTE', data: res.data}))
     .catch(e => console.log(e))
   }
 
   const downvote = (recoID) => {
     axios
     .put(`/api/recommendations/${recoID}`, {type: 'downvote'})
-    .then(res => console.log(res))
+    .then(res => dispatch({type: 'VOTE', data: res.data}))
     .catch(e => console.log(e))
   }
 

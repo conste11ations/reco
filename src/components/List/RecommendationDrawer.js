@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationDrawer({toggleRecoDrawer, drawerState, recommendation, business, comments}) {
+export default function RecommendationDrawer({dispatch, toggleRecoDrawer, drawerState, recommendation, business, comments}) {
 
   const classes = useStyles();
 
@@ -35,6 +35,7 @@ export default function RecommendationDrawer({toggleRecoDrawer, drawerState, rec
       open={drawerState.open}>
       <Toolbar />
         <RecommendationCard
+          dispatch={dispatch}
           drawerState={drawerState}
           toggleRecoDrawer={toggleRecoDrawer}
           recommendation={recommendation}

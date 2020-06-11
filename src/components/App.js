@@ -8,6 +8,7 @@ import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
 const SET_LIST = "SET_LIST";
+const VOTE = 'VOTE';
 
 function reducer(state, action) {
   if (action.type === SET_LIST) {
@@ -18,6 +19,14 @@ function reducer(state, action) {
       comments: action.data.comments
     }
     return result;
+  }
+  if (action.type === VOTE) {
+    const recos = [...state.recommendations]
+    const result = recos.map(reco => {
+      return reco.id === action.data.id ? action.data
+        : reco
+    })
+    return {...state, recommendations: [...result]}
   }
 }
 
@@ -86,6 +95,7 @@ function App() {
         transitionToCreate={transitionToCreate} getList={getList} transitionToShow={transitionToShow} /> : 'LOADING'}
 
       {mode === SHOW && state.recommendations ? <ListSpace
+        dispatch={dispatch}
         list={state.list}
         businesses={state.businesses}
         recommendations={state.recommendations}
