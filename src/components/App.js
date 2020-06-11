@@ -41,7 +41,7 @@ function App() {
   // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(
     // true ? SHOW : CREATE
-    SHOW
+   SHOW
   );
 
   // i wonder if there is a better way to implement this?
