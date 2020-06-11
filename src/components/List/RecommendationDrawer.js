@@ -34,12 +34,12 @@ export default function RecommendationDrawer({toggleRecoDrawer, drawerState, rec
       anchor='right'
       open={drawerState.open}>
       <Toolbar />
-        {recommendation ? <RecommendationCard
+        <RecommendationCard
           drawerState={drawerState}
           toggleRecoDrawer={toggleRecoDrawer}
           recommendation={recommendation}
           business={business}
-          comments={comments}/> : 'LOADING'}
+          comments={comments}/>
     </Drawer>
   )
 }
