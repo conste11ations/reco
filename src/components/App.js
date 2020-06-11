@@ -34,7 +34,12 @@ function reducer(state, action) {
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, {
+    list: {},
+    recommendations: [],
+    businesses: [],
+    comments: []
+  })
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
@@ -104,16 +109,10 @@ function App() {
         comments={state.comments} /> : 'LOADING'}
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
       {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
-      <button onClick={() => getList(2)}>GET_LIST 2</button>
+      {/* <button onClick={() => getList(2)}>GET_LIST 2</button> */}
     </div>
   );
 }
 
 export default App;
 
-// {
-//   list: {},
-//   recommendations: [],
-//   businesses: [],
-//   comments: []
-// }

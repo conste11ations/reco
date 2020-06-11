@@ -1,4 +1,6 @@
 import React from 'react';
+import useVisualMode from "../../hooks/useVisualMode";
+import {sortAlphabetical, sortUpVotes, sortDownVotes, sortRecentRecos} from '../../helpers/sorters.js'
 import DrawerCard from './DrawerCard'
 import DrawerItem from './DrawerItem'
 
@@ -24,12 +26,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ListDrawer({list, businesses, recommendations, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
+const DEFAULT = 'DEFAULT';
+const AZ = 'AZ';
+const UPVOTES = 'UPVOTES';
+const DOWNVOTES = 'DOWNVOTES';
+const RECENTLY_RECOED = 'RECENTLY_RECOED';
+
+export default function ListDrawer({list, businesses, recommendations, comments, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
+  const {mode, transition, back} = useVisualMode(DEFAULT)
 
   const businessList = businesses.map((business, index) => (
     <DrawerItem
     key={business.id} 
     business={business}
+    comments={comments[index]}
     upvotes={recommendations[index].upvotes}
     downvotes={recommendations[index].downvotes}
     showReco={() => setRecoDrawer(prev => ({...prev, index}))}
@@ -37,24 +47,6 @@ export default function ListDrawer({list, businesses, recommendations, recoDrawe
     toggleRecoDrawer={toggleRecoDrawer}
     />
   ))
-
-  const sortAlphabetical = () => {
-    businessList.sort((a, b) => {
-      if (a.props.business.name < b.props.business.name) {
-        return -1;
-      }
-      if (a.props.business.name > b.props.business.name) {
-        return 1;
-      }
-  
-      return 0
-    })
-  }
-  
-
-  // businessList.sort((a, b) => {
-  //   return b.props.upvotes - a.props.upvotes
-  // })
 
   const classes = useStyles();
   return (
@@ -72,13 +64,17 @@ export default function ListDrawer({list, businesses, recommendations, recoDrawe
         <List>
           <ListItem style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
             <Typography style={{marginBottom: '1em'}}>order by:</Typography>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => sortAlphabetical()}>a-z</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} >upvotes</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}}>most reco'd</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}}>recently reco'd</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(AZ)}>a-z</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(UPVOTES)}>most upvotes</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(DOWNVOTES)}>least downvotes</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(RECENTLY_RECOED)}>first reco'd</Button>
           </ListItem>
           {/* ORDER BY - alphabetical,  */}
-          {businessList}
+          {mode === DEFAULT && businessList}
+          {mode === AZ && sortAlphabetical(businessList)}
+          {mode === UPVOTES && sortUpVotes(businessList)}
+          {mode === DOWNVOTES && sortDownVotes(businessList)}
+          {mode === RECENTLY_RECOED && sortRecentRecos(businessList, comments)}
         </List>  
       </div>
     </Drawer>

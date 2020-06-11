@@ -48,6 +48,7 @@ export default function ListSpace ({ dispatch, list, businesses, recommendations
         list={list}
         recommendations={recommendations} 
         businesses={businesses}
+        comments={comments}
         toggleRecoDrawer={toggleRecoDrawer}
         setRecoDrawer={setDrawer}
         recoDrawerState={drawerState}
