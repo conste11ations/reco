@@ -22,7 +22,7 @@ import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
+    maxWidth: 380,
     minWidth: 340,
   },
   media: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationCard({dispatch, toggleRecoDrawer, drawerState, recommendation, business, comments}) {
+export default function RecommendationCard({dispatch, toggleRecoDrawer, drawerState, list, recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -65,11 +65,9 @@ export default function RecommendationCard({dispatch, toggleRecoDrawer, drawerSt
 
   return (
     <List>
-      {/* <ListItem dense={true}> */}
         <IconButton style={{display: 'flex'}}>
-        <HighlightOffIcon button style={{color: '#FF7373'}} onClick={() => toggleRecoDrawer()}/>
+          <HighlightOffIcon button style={{color: '#FF7373'}} onClick={() => toggleRecoDrawer()}/>
         </IconButton>
-        {/* </ListItem> */}
       <Card className={classes.root} square elevation={0}>
         <CardHeader
           title={business.name}
@@ -81,7 +79,7 @@ export default function RecommendationCard({dispatch, toggleRecoDrawer, drawerSt
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            {/* ultimately, this should be randomized*/}
+            {/* ultimately, this should be randomized, maybe also carousel?*/}
             {`"${comments[0].because}"`}
           </Typography>
         </CardContent>

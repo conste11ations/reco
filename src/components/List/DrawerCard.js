@@ -15,7 +15,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 380,
     minWidth: 300
   },
   media: {
