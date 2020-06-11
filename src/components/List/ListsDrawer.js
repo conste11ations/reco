@@ -20,11 +20,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 900
   },
   drawerContainer: {
-    maxWidth: 380,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+    maxWidth: 340,
   }
 }));
 
