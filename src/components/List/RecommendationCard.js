@@ -1,4 +1,5 @@
 import React, {useState, Fragment} from 'react';
+import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -48,6 +49,18 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
     setExpanded(!expanded);
   };
 
+  const upvote = (recoID) => {
+    axios
+    .put(`/api/recommendations/${recoID}`, {type: 'upvote'})
+    .then(res => console.log(res))
+  }
+
+  const downvote = (recoID) => {
+    axios
+    .put(`/api/recommendations/${recoID}`, {type: 'downvote'})
+    .then(res => console.log(res))
+  }
+
   return (
     <List>
       {/* <ListItem dense={true}> */}
@@ -71,11 +84,11 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="upvote" style={{color: '#27AE60'}}>
+          <IconButton aria-label="upvote" style={{color: '#27AE60'}} onClick={() => upvote(recommendation.id)}>
             <ArrowUpwardIcon/>
             <h4>{recommendation.upvotes}</h4>
           </IconButton>
-          <IconButton aria-label="downvote" style={{color: '#FF7373'}}>
+          <IconButton aria-label="downvote" style={{color: '#FF7373'}} onClick={() => downvote(recommendation.id)}>
             <ArrowDownwardIcon/>
             <h4>{recommendation.downvotes}</h4>
           </IconButton>
@@ -92,7 +105,7 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent style={{backgroundColor: '#FFF3DD'}}>
           <Button variant='outlined' color="secondary" size='large' disableElevation fullWidth>
-            recommend this business
+            boost this business
           </Button>
             <List>
               {comments.map((comment, index ) => 
