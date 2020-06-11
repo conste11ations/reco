@@ -12,28 +12,35 @@ const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 
 function reducer(state, action) {
-  if (action.type === SET_LIST) {
-    const result = {
-      list: action.data.list,
-      recommendations: action.data.recommendations,
-      businesses: action.data.businesses,
-      comments: action.data.comments
+  switch(action.type) {
+    case SET_LIST: {
+      const result = {
+        list: action.data.list,
+        recommendations: action.data.recommendations,
+        businesses: action.data.businesses,
+        comments: action.data.comments
+      }
+      return result;
     }
-    return result;
-  }
-  if (action.type === VOTE) {
-    const recos = [...state.recommendations]
-    const result = recos.map(reco => {
-      return reco.id === action.data.id ? action.data
-        : reco
-    })
-    return {...state, recommendations: [...result]}
+    case VOTE: {
+      const recos = [...state.recommendations]
+      const result = recos.map(reco => {
+        return reco.id === action.data.id ? action.data
+          : reco
+      })
+      return {...state, recommendations: [...result]}
+    }
   }
 }
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, {
+    list: {},
+    recommendations: [],
+    businesses: [],
+    comments: []
+  })
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
@@ -115,16 +122,10 @@ function App() {
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
       {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
-      <button onClick={() => getList(2)}>GET_LIST 2</button>
+      {/* <button onClick={() => getList(2)}>GET_LIST 2</button> */}
     </div>
   );
 }
 
 export default App;
 
-// {
-//   list: {},
-//   recommendations: [],
-//   businesses: [],
-//   comments: []
-// }
