@@ -61,12 +61,12 @@ export default function ListSpace ({ list, businesses, recommendations, comments
           valueFont={{color: 'none'}}
         />
       </main>
-      <RecommendationDrawer
+      {recommendations[drawerState.index] && <RecommendationDrawer
       drawerState={drawerState}
       toggleRecoDrawer={toggleRecoDrawer}
       recommendation={recommendations[drawerState.index]}
       business={businesses[drawerState.index]}
-      comments={comments[drawerState.index]}/>
+      comments={comments[drawerState.index]}/>}
     </>
   )
 }
