@@ -53,12 +53,14 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
     axios
     .put(`/api/recommendations/${recoID}`, {type: 'upvote'})
     .then(res => console.log(res))
+    .catch(e => console.log(e))
   }
 
   const downvote = (recoID) => {
     axios
     .put(`/api/recommendations/${recoID}`, {type: 'downvote'})
     .then(res => console.log(res))
+    .catch(e => console.log(e))
   }
 
   return (
