@@ -17,6 +17,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
 import Link from '@material-ui/core/Link';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +63,6 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
         <CardMedia
           className={classes.media}
           image={business.image}
-          title="Paella dish"
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
@@ -91,6 +91,9 @@ export default function RecommendationCard({toggleRecoDrawer, drawerState, recom
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent style={{backgroundColor: '#FFF3DD'}}>
+          <Button variant='outlined' color="secondary" size='large' disableElevation fullWidth>
+            recommend this business
+          </Button>
             <List>
               {comments.map((comment, index ) => 
                 <ListItem>
