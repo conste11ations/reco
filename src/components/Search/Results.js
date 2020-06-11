@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchStyle } from '../constants/searchThemes'
+import { useSearchStyle } from '../../constants/searchThemes'
 
 export default function Results(props) {
 

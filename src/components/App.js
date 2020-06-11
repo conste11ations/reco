@@ -26,6 +26,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, {})
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const MAIN = "MAIN";
 
   // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(
@@ -64,20 +65,13 @@ function App() {
         location,
         description
       })
-      .then((response) => {
-        console.log("response", response);
-      // .then(res => {
-      //   const list = res.data[0]
-      //   const recommendations = res.data[1]
-      //   const businesses = res.data[2]
-      //   const comments = res.data[3]
-      //   dispatch({
-      //     type: SET_LIST,
-      //     data: { list, recommendations, businesses, comments }
-      //   })
-      }, (error) => {
-        console.log(error);
-      });
+      .then(res => {
+        getList(res.data.id);
+        transitionToShow();
+      },
+        (error) => {
+          console.log(error)
+        })
   }
 
   useEffect(() => {
@@ -86,10 +80,10 @@ function App() {
 
   return (
     <div className="App">
-      {state.list ? <Nav 
-      name={state.list.name} 
-      location={state.list.location} 
-      transitionToCreate={transitionToCreate} getList={getList} transitionToShow={transitionToShow}/> : 'LOADING'}
+      {state.list ? <Nav
+        name={state.list.name}
+        location={state.list.location}
+        transitionToCreate={transitionToCreate} getList={getList} transitionToShow={transitionToShow} /> : 'LOADING'}
 
       {mode === SHOW && state.recommendations ? <ListSpace
         list={state.list}
@@ -97,7 +91,7 @@ function App() {
         recommendations={state.recommendations}
         comments={state.comments} /> : 'LOADING'}
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
-      {mode === CREATE && <NewList onSave={createList}></NewList>}
+      {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
       <button onClick={() => getList(2)}>GET_LIST 2</button>
     </div>
   );
