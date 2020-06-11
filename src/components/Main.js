@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Search from './Search/Search'
 
-export default function Main() {
+export default function Main({ transitionToShow }) {
 
   const classes = useMainStyle();
 
@@ -34,7 +34,8 @@ export default function Main() {
             </Typography>
           </div>
           <div>
-            <Button onClick={() => { "getList(resultId); transitionToShow()" }} variant='contained' size='small' color='secondary'>
+            {/* <Button onClick={() => { getList(resultId); transitionToShow() }} variant='contained' size='small' color='secondary'> */}
+            <Button onClick={() => { transitionToShow() }} variant='contained' size='small' color='secondary'>
               Search
             </Button>
           </div>

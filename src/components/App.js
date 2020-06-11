@@ -95,7 +95,7 @@ function App() {
         transitionToMain={transitionToMain} 
         getList={getList} />}
 
-      {mode === MAIN && <Main></Main>}
+      {mode === MAIN && <Main transitionToShow={transitionToShow} ></Main>}
 
       {mode === SHOW && state.recommendations ? <ListSpace
         list={state.list}
