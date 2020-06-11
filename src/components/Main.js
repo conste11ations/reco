@@ -13,28 +13,31 @@ export default function Main() {
     <ThemeProvider theme={mainTheme}>
       <div className={classes.root}>
         <h1>Reco</h1>
-
         <section className={classes.section}>
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, 
-        content here', making it look like readable English. 
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+          The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,
+          content here', making it look like readable English.
         </section>
         <section className={classes.section}>
-          <Typography align='center' variant='h6' noWrap>
-            Any recommendations for
+          <div>
+            <Typography align='center' variant='h6' noWrap>
+              Any recommendations for
             </Typography>
-          <Search placeholder={"name"} queryKey='list' setResultId={"setResultId"} />
+            <Search placeholder={"name"} queryKey='list' setResultId={"setResultId"} />
 
-          <Typography align='center' variant='h6' noWrap>
-            near
+            <Typography align='center' variant='h6' noWrap>
+              near
             </Typography>
-          <Search placeholder={"location" + ' (optional)'} queryKey='location' setResultId={"setResultId"} />
-          <Typography align='center' variant='h6' noWrap>
-            ?
+            <Search placeholder={"location" + ' (optional)'} queryKey='location' setResultId={"setResultId"} />
+            <Typography align='center' variant='h6' noWrap>
+              ?
             </Typography>
-          <Button onClick={() => { "getList(resultId); transitionToShow()" }} variant='contained' size='small' color='secondary'>
-            Search
-        </Button>
+          </div>
+          <div>
+            <Button onClick={() => { "getList(resultId); transitionToShow()" }} variant='contained' size='small' color='secondary'>
+              Search
+            </Button>
+          </div>
         </section>
       </div>
     </ThemeProvider>
