@@ -1,9 +1,9 @@
 import React from "react";
-import { mainTheme, useMainStyle } from '../constants/mainThemes'
+import { mainTheme, useMainStyle } from '../../constants/mainThemes'
 import { ThemeProvider } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Search from './Search/Search'
+import Search from '../Search/Search'
 
 export default function Main({ transitionToShow }) {
 
