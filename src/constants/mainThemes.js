@@ -1,8 +1,14 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 
 const mainTheme = createMuiTheme({
+  palette: {
+    primary: { main: '#ffeecf', contrastText: '#007065' },
+    secondary: { main: '#007065', contrastText: '#ffeecf' }
+  },
   overrides: {
     // Style sheet name ⚛️
+    root: {
+    },
     MuiButton: {
       // Name of the rule
       text: {
@@ -19,8 +25,25 @@ const mainTheme = createMuiTheme({
   },
 });
 
+const useMainStyle = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    height: "100vh",
+    width: "100vw",
+    backgroundColor: "#ffeecf",
+    background: 'linear-gradient(45deg, #ffeecf 30%, #ffac80 90%)',
+  },
+  section: {
+    height: "30%",
+    width: "80%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }
+})
+);
 
-export { mainTheme };
+export { mainTheme, useMainStyle };
 
 
 

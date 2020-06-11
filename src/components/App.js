@@ -87,13 +87,13 @@ function App() {
 
   return (
     <div className="App">
-      {state.list ? <Nav
+      {mode !== MAIN && <Nav
         name={state.list.name}
         location={state.list.location}
         transitionToCreate={transitionToCreate}
         transitionToShow={transitionToShow} 
         transitionToMain={transitionToMain} 
-        getList={getList} /> : 'LOADING'}
+        getList={getList} />}
 
       {mode === MAIN && <Main></Main>}
 
