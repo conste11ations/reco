@@ -105,7 +105,7 @@ function App() {
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
       {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
-      {/* <button onClick={() => getList(2)}>GET_LIST 2</button> */}
+      <button onClick={() => getList(2)}>GET_LIST 2</button>
     </div>
   );
 }
