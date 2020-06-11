@@ -10,7 +10,7 @@ export default function Results(props) {
   if (results === undefined) { return <div></div> };
   return results.map(result => {
     return (
-      <div
+      <div key={result.id}
         className={classes.resultItem}
         onClick={() => { setValue(""); setPlaceholder(result[returnVal]); setResultId(result.id)}}>
         {result[returnVal]}
