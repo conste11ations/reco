@@ -23,18 +23,17 @@ export default function Main({ transitionToShow }) {
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={"name"} queryKey='list' setResultId={"setResultId"} />
+            <Search placeholder={"Black owned MTL restaurants"} queryKey='list' setResultId={"setResultId"} />
 
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>
-            <Search placeholder={"location" + ' (optional)'} queryKey='location' setResultId={"setResultId"} />
+            <Search placeholder={"Montreal, QC (optional)"} queryKey='location' setResultId={"setResultId"} />
             <Typography align='center' variant='h6' noWrap>
               ?
             </Typography>
           </div>
           <div>
-            {/* <Button onClick={() => { getList(resultId); transitionToShow() }} variant='contained' size='small' color='secondary'> */}
             <Button onClick={() => { transitionToShow() }} variant='contained' size='small' color='secondary'>
               Search
             </Button>

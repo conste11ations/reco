@@ -17,7 +17,7 @@ export function New(props) {
     <>
       <MuiThemeProvider theme={formTheme}>
         <Box mt={8} position="relative" align="center">
-          <Circle></Circle>
+        <Circle cx={400} cy={400} r={400} fill="#ABD3BA"></Circle>
         </Box>
         <Box className={classes.root} mt={-60} position="relative" display="flex" justifyContent="center" alignItems="center">
           <FormControl>

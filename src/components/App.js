@@ -32,7 +32,7 @@ function App() {
   // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(
     // true ? SHOW : CREATE
-    MAIN
+    SHOW
   );
 
   // i wonder if there is a better way to implement this?
@@ -87,7 +87,7 @@ function App() {
 
   return (
     <div className="App">
-      {mode !== MAIN && <Nav
+      {mode !== MAIN && state.list && <Nav
         name={state.list.name}
         location={state.list.location}
         transitionToCreate={transitionToCreate}
