@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import InputBase from "@material-ui/core/InputBase";
-import useDebounce from '../hooks/useDebounce';
-import { useSearchStyle } from '../constants/searchThemes'
+import useDebounce from '../../hooks/useDebounce';
+import { useSearchStyle } from '../../constants/searchThemes'
 
 export default function SearchBar(props) {
   const { placeholder, value, setValue } = props;
