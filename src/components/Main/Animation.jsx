@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
-export const Example = (props) => {
+export const Animation = (props) => {
   return (
     <motion.div
       animate={{
