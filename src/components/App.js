@@ -42,7 +42,7 @@ function App() {
   const MAIN = "MAIN";
 
   // rudimentary toggle (set to true or false) to see different modes
-  const { mode, transition, back } = useVisualMode(SHOW);
+  const { mode, transition, back } = useVisualMode(MAIN);
 
   function transitionToCreate() {
     transition(CREATE);
@@ -103,7 +103,9 @@ function App() {
         transitionToMain={transitionToMain} 
         getList={getList} />}
 
-      {mode === MAIN && <Main transitionToShow={transitionToShow} ></Main>}
+      {mode === MAIN && <Main 
+      transitionToShow={transitionToShow} 
+      transitionToCreate={transitionToCreate}></Main>}
 
       {mode === SHOW && state.recommendations && <ListSpace
         dispatch={dispatch}

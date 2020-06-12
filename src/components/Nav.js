@@ -21,7 +21,8 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
       <MuiThemeProvider theme={navTheme}>
         <AppBar position='fixed'>
           <Toolbar>
-            <img src='reco-logo.png' alt="reco logo" className={classes.logo} onClick={() => transitionToMain()}/>
+            <img src='reco-logo.png' alt="reco logo" className={classes.logo} onClick={() => transitionToMain()} />
+
             <Box className={classes.title}></Box>
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
@@ -38,6 +39,7 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
               Search
             </Button>
             <Box className={classes.title}></Box>
+
             <Button color='inherit'>About</Button>
             <Button color='inherit'>Login</Button>
             <Button color='inherit'>Sign Up</Button>
@@ -48,9 +50,6 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
             </Tooltip>
           </Toolbar>
         </AppBar>
-        {/* <TextField
-          placeholder='Placeholder'
-          label='TextBox' /> */}
       </MuiThemeProvider>
     </>
   )
