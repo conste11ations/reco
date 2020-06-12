@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationCard({dispatch, toggleRecoDrawer, list, recommendation, business, comments}) {
+export default function RecommendationCard({transition, dispatch, toggleRecoDrawer, list, recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -95,7 +95,8 @@ export default function RecommendationCard({dispatch, toggleRecoDrawer, list, re
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent style={{backgroundColor: '#FFF3DD'}}>
-          <Button variant='outlined' color="secondary" size='large' disableElevation fullWidth>
+            {/* on click, transition to show circle */}
+          <Button variant='outlined' color="secondary" size='large' disableElevation fullWidth onClick={() => transition('COMMENT')}>
             boost this business
           </Button>
             <List>

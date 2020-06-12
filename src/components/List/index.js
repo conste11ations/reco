@@ -2,15 +2,24 @@ import React, { useState } from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
 import RecommendationDrawer from './RecommendationDrawer'
+import useVisualMode from '../../hooks/useVisualMode';
+import Circle from '../Circle'
+import CommentForm from './CommentForm'
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  bubbleContainer: {
     maxWidth: 1000,
     display: 'flex',
     justifyContent: 'center',
+  },
+  commentContainer: {
+    maxWidth: 1000,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '10em'
   },
   content: {
     flexGrow: 1,
@@ -20,8 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
+const LIST = 'LIST';
+const COMMENT = 'COMMENT';
+
 export default function ListSpace ({ state, dispatch }) {
   const [drawerState, setDrawer] = useState({open: false, index: 0})
+  const {mode, transition} = useVisualMode(LIST)
 
   const classes = useStyles();
 
@@ -30,7 +43,7 @@ export default function ListSpace ({ state, dispatch }) {
   }
   
   const findIndexByName = (businesses, label) => {
-    const result = state.businesses.findIndex((business) => business.name === label)
+    const result = businesses.findIndex((business) => business.name === label)
     return result
   }
 
@@ -48,8 +61,9 @@ export default function ListSpace ({ state, dispatch }) {
         setRecoDrawer={setDrawer}
         recoDrawerState={drawerState}
         />
-      <Container className={classes.container} style={{paddingTop: '4em'}}>
-        <BubbleChart
+
+      {mode === LIST && <Container className={classes.bubbleContainer} style={{paddingTop: '4em'}}>
+      <BubbleChart
           width={1000}
           height={900}
           fontFamily="Arial"
@@ -63,9 +77,16 @@ export default function ListSpace ({ state, dispatch }) {
             setDrawer(prev => ({...prev, index: result}))
           }}
           valueFont={{color: 'none'}}
-        />
-      </Container>
+          />
+      </Container>}
+
+      {mode === COMMENT && <CommentForm 
+      list={state.list} 
+      business={state.businesses[drawerState.index]}
+      transition={transition}/>}
+
       {state.recommendations[drawerState.index] && <RecommendationDrawer
+      transition={transition}
       dispatch={dispatch}
       drawerState={drawerState}
       toggleRecoDrawer={toggleRecoDrawer}
