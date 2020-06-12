@@ -100,11 +100,11 @@ function App() {
       })
       .then(res => {
         getList(res.data.id);
-        transitionToShow();
       },
         (error) => {
           console.log(error)
-        })
+        }).then(res => { transitionToShow() })
+
   }
 
   return (
