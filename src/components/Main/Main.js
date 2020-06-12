@@ -49,7 +49,7 @@ export default function Main({ transitionToShow, transitionToCreate, name, locat
           <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>
-          <Button onClick={() => { getList(resultId) }} variant='contained' size='small' color='secondary'>
+          <Button onClick={() => { getList(resultId); transitionToShow() }} variant='contained' size='small' color='secondary'>
             Search
             </Button>
         </section>

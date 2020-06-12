@@ -10,7 +10,7 @@ export default function Search(props) {
   const [value, setValue] = useState('');
   const [results, setResults] = useState([]);
   const [placeholder, setPlaceholder] = useState(props.placeholder);
-  const { queryKey, setResultId, transitionToShow } = props;
+  const { queryKey, setResultId } = props;
   const classes = useSearchStyle();
 
   useEffect(() => {
@@ -23,13 +23,10 @@ export default function Search(props) {
       method: 'GET',
       url: query
     }).then(response => setResults(response.data))
-    .then(transitionToShow())
   }, [queryKey, term]);
 
   return (
     <>
-      {/* <header>
-      </header> */}
       <main>
         <div className={classes.search}>
           <div className={classes.searchIcon}>

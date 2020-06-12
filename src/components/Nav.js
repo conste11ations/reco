@@ -26,11 +26,11 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={name} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow}/>
+            <Search placeholder={name} queryKey='list' setResultId={setResultId} />
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>
-            <Search placeholder={location + ' (optional)'} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
+            <Search placeholder={location + ' (optional)'} queryKey='location' setResultId={setResultId}  />
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>
