@@ -31,22 +31,22 @@ export default function Main({ transitionToShow, transitionToCreate }) {
       <div className={classes.root}>
         <h1>Reco</h1>
         <section className={classes.sectionMid}>
-          Reco is a platform for building community spaces around local businesses through word-of-mouth<br/>
+          Reco is a platform for building community spaces around local businesses through word-of-mouth.<br/>
           Users create a list asking for recommendations, or respond by adding business contacts. <br/>
           We create long-lasting bridges between entrepreneurs, small businesses, and their consumers/supporters. 
         </section>
         <section className={classes.sectionBottom}>
 
-          <Typography align='center' variant='h5' noWrap>
+          <Typography align='center' variant='h6' noWrap>
             Any recommendations for
             </Typography>
           <Search placeholder={"Black owned MTL restaurants"} queryKey='list' setResultId={"setResultId"} />
 
-          <Typography align='center' variant='h5' noWrap>
+          <Typography align='center' variant='h6' noWrap>
             near
             </Typography>
           <Search placeholder={"Montreal, QC (optional)"} queryKey='location' setResultId={"setResultId"} />
-          <Typography align='center' variant='h5' noWrap>
+          <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>
           <Button onClick={() => { transitionToShow() }} variant='contained' size='small' color='secondary'>

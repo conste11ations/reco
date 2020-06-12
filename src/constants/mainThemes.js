@@ -3,13 +3,26 @@ import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 const mainTheme = createMuiTheme({
   palette: {
     primary: { main: '#ffeecf', contrastText: '#007065' },
-    secondary: { main: '#007065', contrastText: '#ffeecf' }
+    secondary: { main: '#007065', contrastText: '#ffeecf' },
   },
-  overrides: {
-    // Style sheet name ⚛️
-    root: {
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    fontSize: 14,
+    h6: {
+      "fontWeight": 600,
     },
-  },
+  }
 });
 
 const useMainStyle = makeStyles((theme) => ({
@@ -19,7 +32,6 @@ const useMainStyle = makeStyles((theme) => ({
     width: "100vw",
     backgroundColor: "#ffeecf",
     background: "linear-gradient(45deg, #ffeecf 30%, #ffac80 90%)",
-    marginTop: "-20px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

@@ -9,13 +9,13 @@ const Ball = () => {
       <div className="Ball1-container" style={{ margin: "100px", position: "absolute" }}>
         <Animation duration={3} />
       </div>
-      <div className="Ball2-container" style={{ marginTop: "675px", marginLeft: "500px", position: "absolute" }}>
+      <div className="Ball2-container" style={{ marginTop: "655px", marginLeft: "500px", position: "absolute" }}>
         <Animation duration={4} />
       </div>
       <div className="Ball3-container" style={{ marginLeft: "500px", position: "absolute" }}>
         <Animation duration={5} />
       </div>
-      <div className="Ball4-container" style={{ marginLeft: "1200px", marginTop: "420px", position: "absolute" }}>
+      <div className="Ball4-container" style={{ marginLeft: "1200px", marginTop: "400px", position: "absolute" }}>
         <Animation duration={6} />
       </div>
       <div className="Ball5-container" style={{ marginLeft: "800px", marginTop: "300px", position: "absolute" }}>
