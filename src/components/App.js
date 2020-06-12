@@ -41,9 +41,20 @@ function App() {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
-
-  // rudimentary toggle (set to true or false) to see different modes
+  
   const { mode, transition, back } = useVisualMode(MAIN);
+
+  const BUBBLE = 'BUBBLE';
+  const COMMENT = 'COMMENT';
+
+  const {mode: listMode, transition: listTransition} = useVisualMode(BUBBLE)
+
+  const [drawerState, setDrawer] = useState({open: false, index: 0})
+
+  function resetList() {
+    listTransition(BUBBLE)
+    setDrawer({open: false, index: 0})
+  }
 
   function transitionToCreate() {
     transition(CREATE);
@@ -116,6 +127,10 @@ function App() {
         transitionToCreate={transitionToCreate}></Main>}
 
       {mode === SHOW && state.recommendations && <ListSpace
+        drawerState={drawerState}
+        setDrawer={setDrawer}
+        mode={listMode}
+        transition={listTransition}
         dispatch={dispatch}
         state={state} />}
 

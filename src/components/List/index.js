@@ -32,9 +32,7 @@ const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#
 const BUBBLE = 'BUBBLE';
 const COMMENT = 'COMMENT';
 
-export default function ListSpace ({ state, dispatch }) {
-  const [drawerState, setDrawer] = useState({open: false, index: 0})
-  const {mode, transition} = useVisualMode(BUBBLE)
+export default function ListSpace ({ drawerState, setDrawer, mode, transition, state, dispatch }) {
 
   const classes = useStyles();
 
