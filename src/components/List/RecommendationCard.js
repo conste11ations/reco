@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationCard({dispatch, toggleRecoDrawer, drawerState, list, recommendation, business, comments}) {
+export default function RecommendationCard({dispatch, toggleRecoDrawer, list, recommendation, business, comments}) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 

@@ -3,8 +3,6 @@ import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
 import RecommendationDrawer from './RecommendationDrawer'
 
-
-// Material UI Components and Styling
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container'
 
@@ -20,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
+
 export default function ListSpace ({ state, dispatch }) {
   const [drawerState, setDrawer] = useState({open: false, index: 0})
 
@@ -33,8 +33,6 @@ export default function ListSpace ({ state, dispatch }) {
     const result = state.businesses.findIndex((business) => business.name === label)
     return result
   }
-  
-  const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
   const bubbles = state.businesses.map((business, index) => (
     {label: business.name, 
