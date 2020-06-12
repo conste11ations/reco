@@ -8,6 +8,7 @@ import { New as NewList } from './List/New';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
+// reducer dispatches
 const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 
