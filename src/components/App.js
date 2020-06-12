@@ -29,6 +29,7 @@ function reducer(state, action) {
       })
       return {...state, recommendations: [...result]}
     }
+    default: throw new Error('not a valid dispatch type')
   }
 }
 

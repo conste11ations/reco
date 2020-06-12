@@ -35,6 +35,7 @@ export default function RecommendationDrawer({dispatch, drawerState, toggleRecoD
       open={drawerState.open}>
       <Toolbar />
         <RecommendationCard
+          key={recommendation.id}
           dispatch={dispatch}
           drawerState={drawerState}
           toggleRecoDrawer={toggleRecoDrawer}

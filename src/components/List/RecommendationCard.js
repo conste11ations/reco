@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 import clsx from 'clsx';
@@ -56,8 +56,8 @@ export default function RecommendationCard({dispatch, toggleRecoDrawer, list, re
 
   return (
     <List>
-        <IconButton style={{display: 'flex'}}>
-          <HighlightOffIcon button style={{color: '#FF7373'}} onClick={() => toggleRecoDrawer()}/>
+        <IconButton style={{display: 'flex'}} onClick={() => toggleRecoDrawer()}>
+          <HighlightOffIcon button='true' style={{color: '#FF7373'}}/>
         </IconButton>
       <Card className={classes.root} square elevation={0}>
         <CardHeader
@@ -100,8 +100,8 @@ export default function RecommendationCard({dispatch, toggleRecoDrawer, list, re
           </Button>
             <List>
               {comments.map((comment, index ) => 
-                <ListItem>
-                  <Typography key={comment.id} paragraph color='secondary'>{comment.because}</Typography>
+                <ListItem key={index}>
+                  <Typography paragraph color='secondary'>{comment.because}</Typography>
                 </ListItem>
               )}
             </List>

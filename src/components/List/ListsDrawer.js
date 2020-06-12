@@ -27,7 +27,7 @@ const DOWNVOTES = 'DOWNVOTES';
 const RECENTLY_RECOED = 'RECENTLY_RECOED';
 
 export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
-  const {mode, transition, back} = useVisualMode(DEFAULT)
+  const {mode, transition} = useVisualMode(DEFAULT)
 
   const businessList = state.businesses.map((business, index) => (
     <DrawerItem
