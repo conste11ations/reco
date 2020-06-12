@@ -36,7 +36,12 @@ function reducer(state, action) {
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, {
+    list: {},
+    businesses: [],
+    recommendations: [],
+    comments: []
+  })
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -83,16 +88,19 @@ function App() {
       })
       .then(res => {
         getList(res.data.id);
+        // transitionToShow();
+      })
+      .then(res => {
         transitionToShow();
-      },
-        (error) => {
+      })
+        .catch((error) => {
           console.log(error)
-        })
+        });
   }
 
-  useEffect(() => {
-    getList(1)
-  }, [])
+  // useEffect(() => {
+  //   getList(5)
+  // }, [])
 
   return (
     <div className="App">

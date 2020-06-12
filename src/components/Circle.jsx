@@ -1,6 +1,4 @@
 import React from "react";
-import Typography from '@material-ui/core/Typography';
-import Search from './Search/Search';
 
 const Circle = props => (
   <svg

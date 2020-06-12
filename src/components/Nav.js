@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
