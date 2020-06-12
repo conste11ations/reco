@@ -36,7 +36,12 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, {
+    list: {},
+    businesses: [],
+    recommendations: [],
+    comments: []
+  })
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -101,10 +106,6 @@ function App() {
           console.log(error)
         })
   }
-
-  useEffect(() => {
-    getList(1)
-  }, [])
 
   return (
     <div className="App">
