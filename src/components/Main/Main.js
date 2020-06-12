@@ -12,6 +12,7 @@ export default function Main({ transitionToShow }) {
 
   return (
     <ThemeProvider theme={mainTheme}>
+
       <div className={classes.root}>
         <Ball></Ball>
         <h1>Reco</h1>
