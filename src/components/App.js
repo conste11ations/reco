@@ -47,13 +47,13 @@ function App() {
   const BUBBLE = 'BUBBLE';
   const COMMENT = 'COMMENT';
 
-  const {mode: listMode, transition: listTransition} = useVisualMode(BUBBLE)
+  const { mode: listMode, transition: listTransition } = useVisualMode(BUBBLE)
 
-  const [drawerState, setDrawer] = useState({open: false, index: 0})
+  const [drawerState, setDrawer] = useState({ open: false, index: 0 })
 
   function resetList() {
     listTransition(BUBBLE)
-    setDrawer({open: false, index: 0})
+    setDrawer({ open: false, index: 0 })
     transition(SHOW);
   }
 
@@ -83,7 +83,7 @@ function App() {
       },
         (error) => {
           console.log(error)
-        })
+        }).then(res => { transitionToShow() })
   }
 
   function createList(name, location, description) {
