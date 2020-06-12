@@ -36,7 +36,6 @@ function reducer(state, action) {
 }
 
 function App() {
-
   const [state, dispatch] = useReducer(reducer, {})
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";

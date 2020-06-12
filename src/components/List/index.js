@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
 
-const LIST = 'LIST';
+const BUBBLE = 'BUBBLE';
 const COMMENT = 'COMMENT';
 
 export default function ListSpace ({ state, dispatch }) {
   const [drawerState, setDrawer] = useState({open: false, index: 0})
-  const {mode, transition} = useVisualMode(LIST)
+  const {mode, transition} = useVisualMode(BUBBLE)
 
   const classes = useStyles();
 
@@ -62,7 +62,7 @@ export default function ListSpace ({ state, dispatch }) {
         recoDrawerState={drawerState}
         />
 
-      {mode === LIST && <Container className={classes.bubbleContainer} style={{paddingTop: '4em'}}>
+      {mode === BUBBLE && <Container className={classes.bubbleContainer} style={{paddingTop: '4em'}}>
       <BubbleChart
           width={1000}
           height={900}

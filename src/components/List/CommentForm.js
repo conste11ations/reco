@@ -29,7 +29,7 @@ export default function New({list, business, transition}) {
           <Button onClick={() => console.log('submit comment func')} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button> 
-        <span style={{color: '#007065', margin: '0 1em'}}>or</span> <Button variant='outlined' style={{opacity: .60}} onClick={() => transition('LIST')}>cancel</Button>
+        <span style={{color: '#007065', margin: '0 1em'}}>or</span> <Button variant='outlined' style={{opacity: .60}} onClick={() => transition('BUBBLE')}>cancel</Button>
         
         </Box>
       </MuiThemeProvider>
