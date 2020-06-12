@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List/';
@@ -37,6 +37,7 @@ function reducer(state, action) {
 function App() {
 
   const [state, dispatch] = useReducer(reducer, {})
+  const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
@@ -98,6 +99,8 @@ function App() {
       {mode !== MAIN && state.list && <Nav
         name={state.list.name}
         location={state.list.location}
+        resultId={resultId}
+        setResultId={setResultId}
         transitionToCreate={transitionToCreate}
         transitionToShow={transitionToShow}
         transitionToMain={transitionToMain}
@@ -106,6 +109,8 @@ function App() {
       {mode === MAIN && state.list && <Main
         name={state.list.name}
         location={state.list.location}
+        resultId={resultId}
+        setResultId={setResultId}
         getList={getList}
         transitionToShow={transitionToShow}
         transitionToCreate={transitionToCreate}></Main>}

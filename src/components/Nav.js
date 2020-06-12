@@ -12,8 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search/Search'
 
 
-export default function Nav({ name, location, transitionToCreate, transitionToShow, transitionToMain, getList }) {
-  const [resultId, setResultId] = useState(null);
+export default function Nav({ name, location, transitionToCreate, transitionToShow, transitionToMain, getList, resultId, setResultId }) {
 
   const classes = useNavStyle();
   return (
@@ -27,11 +26,11 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={name} queryKey='list' setResultId={setResultId} />
+            <Search placeholder={name} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow}/>
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>
-            <Search placeholder={location + ' (optional)'} queryKey='location' setResultId={setResultId} />
+            <Search placeholder={location + ' (optional)'} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>

@@ -7,7 +7,7 @@ import Search from '../Search/Search';
 import Ball from './Ball.jsx';
 
 
-export default function Main({ transitionToShow, transitionToCreate, name, location }) {
+export default function Main({ transitionToShow, transitionToCreate, name, location, getList, resultId, setResultId }) {
 
   const classes = useMainStyle();
 
@@ -40,16 +40,16 @@ export default function Main({ transitionToShow, transitionToCreate, name, locat
           <Typography align='center' variant='h6' noWrap>
             Any recommendations for
             </Typography>
-          <Search placeholder={name} queryKey='list' setResultId={"setResultId"} />
+          <Search placeholder={name} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow} />
 
           <Typography align='center' variant='h6' noWrap>
             near
             </Typography>
-          <Search placeholder={location + " (optional)"} queryKey='location' setResultId={"setResultId"} />
+          <Search placeholder={location + " (optional)"} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
           <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>
-          <Button onClick={() => { transitionToShow() }} variant='contained' size='small' color='secondary'>
+          <Button onClick={() => { getList(resultId) }} variant='contained' size='small' color='secondary'>
             Search
             </Button>
         </section>
