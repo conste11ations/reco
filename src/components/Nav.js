@@ -26,15 +26,15 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={name} queryKey='list' setResultId={setResultId} />
+            <Search placeholder={'Enter a list name'} queryKey='list' setResultId={setResultId} />
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>
-            <Search placeholder={location + ' (optional)'} queryKey='location' setResultId={setResultId}  />
+            <Search placeholder={'Enter a location (optional)'} queryKey='location' setResultId={setResultId}  />
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>
-            <Button onClick={() => { getList(resultId); transitionToShow() }} className={classes.button} variant='contained' size='small' color='secondary'>
+            <Button onClick={() => { getList(resultId) }} className={classes.button} variant='contained' size='small' color='secondary'>
               Search
             </Button>
             <Box className={classes.title}></Box>

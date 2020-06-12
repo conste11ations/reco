@@ -40,12 +40,12 @@ export default function Main({ transitionToShow, transitionToCreate, name, locat
           <Typography align='center' variant='h6' noWrap>
             Any recommendations for
             </Typography>
-          <Search placeholder={name} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow} />
+          <Search placeholder={"Enter a list name"} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow} />
 
           <Typography align='center' variant='h6' noWrap>
             near
             </Typography>
-          <Search placeholder={location + " (optional)"} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
+          <Search placeholder={"Enter a location (optional)"} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
           <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>

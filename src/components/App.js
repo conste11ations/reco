@@ -47,7 +47,6 @@ function App() {
   const CREATE = "CREATE";
   const MAIN = "MAIN";
 
-  // rudimentary toggle (set to true or false) to see different modes
   const { mode, transition, back } = useVisualMode(MAIN);
 
   function transitionToCreate() {
@@ -76,7 +75,8 @@ function App() {
       },
         (error) => {
           console.log(error)
-        })
+        }).then(res =>
+          transitionToShow());
   }
 
   function createList(name, location, description) {
@@ -88,19 +88,14 @@ function App() {
       })
       .then(res => {
         getList(res.data.id);
-        // transitionToShow();
       })
       .then(res => {
         transitionToShow();
       })
-        .catch((error) => {
-          console.log(error)
-        });
+      .catch((error) => {
+        console.log(error)
+      });
   }
-
-  // useEffect(() => {
-  //   getList(5)
-  // }, [])
 
   return (
     <div className="App">
