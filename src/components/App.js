@@ -5,7 +5,6 @@ import Nav from './Nav';
 import ListSpace from './List/';
 import Main from './Main/Main';
 import { New as NewList } from './List/New';
-import formattedFixtures from '../formattedFixtures.js';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
@@ -31,26 +30,19 @@ function reducer(state, action) {
       })
       return {...state, recommendations: [...result]}
     }
+    default: throw new Error('not a valid dispatch type')
   }
 }
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, {
-    // list: {},
-    // recommendations: [],
-    // businesses: [],
-    // comments: []
-  })
+  const [state, dispatch] = useReducer(reducer, {})
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
 
   // rudimentary toggle (set to true or false) to see different modes
-  const { mode, transition, back } = useVisualMode(
-    // true ? SHOW : CREATE
-    SHOW
-  );
+  const { mode, transition, back } = useVisualMode(SHOW);
 
   function transitionToCreate() {
     transition(CREATE);
@@ -115,10 +107,7 @@ function App() {
 
       {mode === SHOW && state.recommendations && <ListSpace
         dispatch={dispatch}
-        list={state.list}
-        businesses={state.businesses}
-        recommendations={state.recommendations}
-        comments={state.comments} />}
+        state={state} />}
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
       {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}

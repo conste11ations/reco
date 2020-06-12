@@ -1,7 +1,4 @@
-import React, {Fragment, useState} from 'react';
-
-// Material UI Components and Styling
-import listThemes from '../../constants/ListThemes';
+import React from 'react';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';

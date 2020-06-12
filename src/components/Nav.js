@@ -48,9 +48,9 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
             </Tooltip>
           </Toolbar>
         </AppBar>
-        <TextField
+        {/* <TextField
           placeholder='Placeholder'
-          label='TextBox' />
+          label='TextBox' /> */}
       </MuiThemeProvider>
     </>
   )
