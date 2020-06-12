@@ -36,6 +36,9 @@ function reducer(state, action) {
 
 function App() {
 
+  const [term, setTerm] = useState('');
+  const [value, setValue] = useState('');
+
   const [state, dispatch] = useReducer(reducer, {
     list: {},
     businesses: [],
@@ -104,6 +107,10 @@ function App() {
         location={state.list.location}
         resultId={resultId}
         setResultId={setResultId}
+        term={term}
+        setTerm={setTerm}
+        value={value}
+        setValue={setValue}
         transitionToCreate={transitionToCreate}
         transitionToShow={transitionToShow}
         transitionToMain={transitionToMain}
@@ -114,6 +121,10 @@ function App() {
         location={state.list.location}
         resultId={resultId}
         setResultId={setResultId}
+        term={term}
+        setTerm={setTerm}
+        value={value}
+        setValue={setValue}
         getList={getList}
         transitionToShow={transitionToShow}
         transitionToCreate={transitionToCreate}></Main>}

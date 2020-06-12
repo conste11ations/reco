@@ -7,7 +7,7 @@ import Search from '../Search/Search';
 import Ball from './Ball.jsx';
 
 
-export default function Main({ transitionToShow, transitionToCreate, name, location, getList, resultId, setResultId }) {
+export default function Main({ transitionToShow, transitionToCreate, name, location, getList, resultId, setResultId, term, setTerm, value, setValue }) {
 
   const classes = useMainStyle();
 
@@ -31,21 +31,21 @@ export default function Main({ transitionToShow, transitionToCreate, name, locat
       <div className={classes.root}>
         <h1 className={classes.h1}>Reco</h1>
         <section className={classes.sectionMid}>
-          Reco is a platform for building community spaces around local businesses through word-of-mouth.<br/>
-          Users create a list asking for recommendations, or respond by adding business contacts. <br/>
-          We forge long-lasting bridges between entrepreneurs, small businesses, and their consumers/supporters. 
+          Reco is a platform for building community spaces around local businesses through word-of-mouth.<br />
+          Users create a list asking for recommendations, or respond by adding business contacts. <br />
+          We forge long-lasting bridges between entrepreneurs, small businesses, and their consumers/supporters.
         </section>
         <section className={classes.sectionBottom}>
 
           <Typography align='center' variant='h6' noWrap>
             Any recommendations for
             </Typography>
-          <Search placeholder={"Enter a list name"} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow} />
+          <Search placeholder={"Enter a list name"} queryKey='list' setResultId={setResultId} transitionToShow={transitionToShow} term={term} setTerm={setTerm} value={value} setValue={setValue}/>
 
           <Typography align='center' variant='h6' noWrap>
             near
             </Typography>
-          <Search placeholder={"Enter a location (optional)"} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
+          <Search placeholder={"Enter a location (optional)"} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} term={term} setTerm={setTerm} value={value} setValue={setValue}/>
           <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>

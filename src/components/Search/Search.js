@@ -6,11 +6,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useSearchStyle } from '../../constants/searchThemes'
 
 export default function Search(props) {
-  const [term, setTerm] = useState('');
-  const [value, setValue] = useState('');
+  // const [term, setTerm] = useState('');
+  // const [value, setValue] = useState('');
   const [results, setResults] = useState([]);
   const [placeholder, setPlaceholder] = useState(props.placeholder);
-  const { queryKey, setResultId } = props;
+  const { queryKey, setResultId, term, setTerm, value, setValue } = props;
   const classes = useSearchStyle();
 
   useEffect(() => {
