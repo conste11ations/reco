@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
 import RecommendationDrawer from './RecommendationDrawer'
-import useVisualMode from '../../hooks/useVisualMode';
-import Circle from '../Circle'
 import CommentForm from './CommentForm'
 
 import { makeStyles } from "@material-ui/core/styles";

@@ -10,6 +10,12 @@ export default function New({list, business, transition}) {
   const classes = useFormStyle();
   const [comment, setComment] = useState("");
 
+  function onSubmit(comment) {
+    console.log(comment)
+    setComment('')
+    transition('BUBBLE')
+  }
+
   return (
     <>
       <MuiThemeProvider theme={formTheme}>
@@ -26,7 +32,7 @@ export default function New({list, business, transition}) {
           </FormControl>
         </Box>
         <Box position="relative" mt={14}>
-          <Button onClick={() => console.log('submit comment func')} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
+          <Button onClick={() => onSubmit(comment)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button> 
         <span style={{color: '#007065', margin: '0 1em'}}>or</span> <Button variant='outlined' style={{opacity: .60}} onClick={() => transition('BUBBLE')}>cancel</Button>
