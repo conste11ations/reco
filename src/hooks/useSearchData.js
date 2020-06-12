@@ -1,11 +1,6 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
 
-// const [term, setTerm] = useState('');
-// const [value, setValue] = useState('');
-// const [results, setResults] = useState([]);
-// const [placeholder, setPlaceholder] = useState(props.placeholder);
-
 const SET_TERM = "SET_TERM";
 const SET_VALUE = "SET_VALUE";
 const SET_RESULTS = "SET_RESULTS";
@@ -46,14 +41,14 @@ const reducer = (state, action) => {
   }
 }
 
-export default function useSearchData(defaultMode) {
+export default function useSearchData(placeholder, queryKey) {
 
   const [state, dispatch] = useReducer(reducer, {
     term: "",
     value: "",
     results: [],
-    placeholder: "",
-    queryKey: "list"
+    placeholder: placeholder,
+    queryKey: queryKey
   });
 
   const setQueryKey = queryKey => dispatch({ type: SET_QUERYKEY, queryKey });
