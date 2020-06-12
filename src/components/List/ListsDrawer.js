@@ -1,18 +1,12 @@
 import React from 'react';
 import useVisualMode from "../../hooks/useVisualMode";
-import {sortAlphabetical, sortUpVotes, sortDownVotes, sortRecentRecos} from '../../helpers/sorters.js'
 import DrawerCard from './DrawerCard'
 import DrawerItem from './DrawerItem'
+import {sortAlphabetical, sortUpVotes, sortDownVotes, sortRecentRecos} from '../../helpers/sorters.js'
 
 // Material UI Components and Styling
 import {makeStyles} from "@material-ui/core/styles";
-
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+import {Drawer, Toolbar, List, ListItem, Button, Typography} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -32,16 +26,16 @@ const UPVOTES = 'UPVOTES';
 const DOWNVOTES = 'DOWNVOTES';
 const RECENTLY_RECOED = 'RECENTLY_RECOED';
 
-export default function ListDrawer({list, businesses, recommendations, comments, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
+export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
   const {mode, transition, back} = useVisualMode(DEFAULT)
 
-  const businessList = businesses.map((business, index) => (
+  const businessList = state.businesses.map((business, index) => (
     <DrawerItem
     key={business.id} 
     business={business}
-    comments={comments[index]}
-    upvotes={recommendations[index].upvotes}
-    downvotes={recommendations[index].downvotes}
+    comments={state.comments[index]}
+    upvotes={state.recommendations[index].upvotes}
+    downvotes={state.recommendations[index].downvotes}
     showReco={() => setRecoDrawer(prev => ({...prev, index}))}
     recoDrawerState={recoDrawerState}
     toggleRecoDrawer={toggleRecoDrawer}
@@ -60,7 +54,7 @@ export default function ListDrawer({list, businesses, recommendations, comments,
       open={true}>
       <Toolbar />
       <div className={classes.drawerContainer}>
-        <DrawerCard list={list}></DrawerCard>
+        <DrawerCard list={state.list}></DrawerCard>
         <List>
           <ListItem style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
             <Typography style={{marginBottom: '1em'}}>order by:</Typography>
@@ -74,7 +68,7 @@ export default function ListDrawer({list, businesses, recommendations, comments,
           {mode === AZ && sortAlphabetical(businessList)}
           {mode === UPVOTES && sortUpVotes(businessList)}
           {mode === DOWNVOTES && sortDownVotes(businessList)}
-          {mode === RECENTLY_RECOED && sortRecentRecos(businessList, comments)}
+          {mode === RECENTLY_RECOED && sortRecentRecos(businessList, state.comments)}
         </List>  
       </div>
     </Drawer>

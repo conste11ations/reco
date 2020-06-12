@@ -35,21 +35,13 @@ function reducer(state, action) {
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, {
-    list: {},
-    recommendations: [],
-    businesses: [],
-    comments: []
-  })
+  const [state, dispatch] = useReducer(reducer, {})
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
 
   // rudimentary toggle (set to true or false) to see different modes
-  const { mode, transition, back } = useVisualMode(
-    // true ? SHOW : CREATE
-    SHOW
-  );
+  const { mode, transition, back } = useVisualMode(SHOW);
 
   // i wonder if there is a better way to implement this?
   function transitionToCreate() {
@@ -115,14 +107,10 @@ function App() {
 
       {mode === SHOW && state.recommendations ? <ListSpace
         dispatch={dispatch}
-        list={state.list}
-        businesses={state.businesses}
-        recommendations={state.recommendations}
-        comments={state.comments} /> : 'LOADING'}
+        state={state} /> : 'LOADING'}
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
       {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
-      {/* <button onClick={() => getList(2)}>GET_LIST 2</button> */}
     </div>
   );
 }
