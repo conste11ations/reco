@@ -31,22 +31,22 @@ export default function Main({ transitionToShow, transitionToCreate }) {
       <div className={classes.root}>
         <h1>Reco</h1>
         <section className={classes.sectionMid}>
-          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-          The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,
-          content here', making it look like readable English.
+          Reco is a platform for building community spaces around local businesses through word-of-mouth<br/>
+          Users create a list asking for recommendations, or respond by adding business contacts. <br/>
+          We create long-lasting bridges between entrepreneurs, small businesses, and their consumers/supporters. 
         </section>
         <section className={classes.sectionBottom}>
 
-          <Typography align='center' variant='h6' noWrap>
+          <Typography align='center' variant='h5' noWrap>
             Any recommendations for
             </Typography>
           <Search placeholder={"Black owned MTL restaurants"} queryKey='list' setResultId={"setResultId"} />
 
-          <Typography align='center' variant='h6' noWrap>
+          <Typography align='center' variant='h5' noWrap>
             near
             </Typography>
           <Search placeholder={"Montreal, QC (optional)"} queryKey='location' setResultId={"setResultId"} />
-          <Typography align='center' variant='h6' noWrap>
+          <Typography align='center' variant='h5' noWrap>
             ?&nbsp;&nbsp;
             </Typography>
           <Button onClick={() => { transitionToShow() }} variant='contained' size='small' color='secondary'>

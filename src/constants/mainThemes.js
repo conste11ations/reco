@@ -31,18 +31,18 @@ const useMainStyle = makeStyles((theme) => ({
     boxShadow: "none"
   },
   sectionMid: {
+    padding: "10px",
     flexDirection: "column",
-    height: "10%",
+    minHeight: "120px",
     width: "50%",
-    border: "solid",
+    fontSize: 20,
   },
   sectionBottom: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "10%",
+    minHeight: "50px",
     width: "80%",
-    border: "solid",
   },
   logo: {
     maxWidth: 200,
