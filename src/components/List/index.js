@@ -48,7 +48,7 @@ export default function ListSpace ({ state, dispatch }) {
         setRecoDrawer={setDrawer}
         recoDrawerState={drawerState}
         />
-      <Container className={classes.container}>
+      <Container className={classes.container} style={{paddingTop: '4em'}}>
         <BubbleChart
           width={1000}
           height={900}

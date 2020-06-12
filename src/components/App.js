@@ -4,7 +4,6 @@ import Nav from './Nav';
 import ListSpace from './List/';
 import Main from './Main';
 import { New as NewList } from './List/New';
-import formattedFixtures from '../formattedFixtures.js';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
