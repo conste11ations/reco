@@ -26,22 +26,28 @@ const sortDownVotes = (businessList) => {
   })
 }
 
-// NOT CURRENTLY WORKING
 const sortRecentRecos = (businessList, comments) => {
   return businessList.sort((a, b) => {
     // reduce a and b comments to most recent date 
-    const A = a.props.comments.reduce((acc, current) => {
-      // if (current.date_updated > acc.date_updated ){
-      //   return 
-      // }
-      // return current.updated_at - acc.updated_at
-      
-      console.log(current.updated_at)
+      const aStart = new Date(a.props.comments[0].updated_at).getTime()
+      const A = a.props.comments.reduce((acc, current) => {
+        const tmp = new Date(current.updated_at).getTime()
+        if (tmp > acc) {
+          acc = tmp
+        }
+        return acc
+      }, aStart)
 
-    }, comments[0])
-    // console.log(A)
-    // order by most recent date
-    // return A - B;
+      const bStart = new Date(b.props.comments[0].updated_at).getTime()
+      const B = b.props.comments.reduce((acc, current) => {
+        const tmp = new Date(current.updated_at).getTime()
+        if (tmp > acc) {
+          acc = tmp
+        }
+        return acc
+      }, bStart)
+
+    return B - A;
   })
 }
 

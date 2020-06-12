@@ -67,7 +67,7 @@ export default function ListDrawer({list, businesses, recommendations, comments,
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(AZ)}>a-z</Button>
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(UPVOTES)}>most upvotes</Button>
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(DOWNVOTES)}>least downvotes</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(RECENTLY_RECOED)}>first reco'd</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(RECENTLY_RECOED)}>recently reco'd</Button>
           </ListItem>
           {/* ORDER BY - alphabetical,  */}
           {mode === DEFAULT && businessList}
