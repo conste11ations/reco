@@ -12,7 +12,7 @@ const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 
 function reducer(state, action) {
-  switch(action.type) {
+  switch (action.type) {
     case SET_LIST: {
       const result = {
         list: action.data.list,
@@ -28,7 +28,7 @@ function reducer(state, action) {
         return reco.id === action.data.id ? action.data
           : reco
       })
-      return {...state, recommendations: [...result]}
+      return { ...state, recommendations: [...result] }
     }
     default: throw new Error('not a valid dispatch type')
   }
@@ -99,13 +99,16 @@ function App() {
         name={state.list.name}
         location={state.list.location}
         transitionToCreate={transitionToCreate}
-        transitionToShow={transitionToShow} 
-        transitionToMain={transitionToMain} 
+        transitionToShow={transitionToShow}
+        transitionToMain={transitionToMain}
         getList={getList} />}
 
-      {mode === MAIN && <Main 
-      transitionToShow={transitionToShow} 
-      transitionToCreate={transitionToCreate}></Main>}
+      {mode === MAIN && state.list && <Main
+        name={state.list.name}
+        location={state.list.location}
+        getList={getList}
+        transitionToShow={transitionToShow}
+        transitionToCreate={transitionToCreate}></Main>}
 
       {mode === SHOW && state.recommendations && <ListSpace
         dispatch={dispatch}

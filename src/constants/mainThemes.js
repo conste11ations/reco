@@ -38,16 +38,22 @@ const useMainStyle = makeStyles((theme) => ({
     flexDirection: "column",
     color: mainTheme.palette.primary.contrastText,
   },
+  h1: {
+    fontSize: 200,
+    fontFamily: "'Chango', cursive",
+    margin: 0,
+  },
   nav: {
     background: "none",
     boxShadow: "none"
   },
   sectionMid: {
-    padding: "10px",
+    padding: "20px",
     flexDirection: "column",
-    minHeight: "120px",
+    Height: "120px",
     width: "50%",
     fontSize: 20,
+    fontFamily: "Arial",
   },
   sectionBottom: {
     display: "flex",
