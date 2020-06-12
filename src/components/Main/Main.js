@@ -1,9 +1,10 @@
 import React from "react";
-import { mainTheme, useMainStyle } from '../constants/mainThemes'
+import { mainTheme, useMainStyle } from '../../constants/mainThemes'
 import { ThemeProvider } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Search from './Search/Search'
+import Search from '../Search/Search'
+import Ball from './Ball.jsx'
 
 export default function Main({ transitionToShow }) {
 
@@ -12,6 +13,7 @@ export default function Main({ transitionToShow }) {
   return (
     <ThemeProvider theme={mainTheme}>
       <div className={classes.root}>
+        <Ball></Ball>
         <h1>Reco</h1>
         <section className={classes.section}>
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.

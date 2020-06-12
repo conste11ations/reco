@@ -1,8 +1,9 @@
+/* eslint-disable default-case */
 import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List/';
-import Main from './Main';
+import Main from './Main/Main';
 import { New as NewList } from './List/New';
 import formattedFixtures from '../formattedFixtures.js';
 import useVisualMode from "../hooks/useVisualMode";
