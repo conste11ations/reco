@@ -22,7 +22,7 @@ export default function Main({ transitionToShow }) {
           content here', making it look like readable English.
         </section>
         <section className={classes.section}>
-          <div>
+
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
@@ -35,12 +35,9 @@ export default function Main({ transitionToShow }) {
             <Typography align='center' variant='h6' noWrap>
               ?
             </Typography>
-          </div>
-          <div>
             <Button onClick={() => { transitionToShow() }} variant='contained' size='small' color='secondary'>
               Search
             </Button>
-          </div>
         </section>
       </div>
     </ThemeProvider>

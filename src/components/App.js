@@ -52,7 +52,6 @@ function App() {
     SHOW
   );
 
-  // i wonder if there is a better way to implement this?
   function transitionToCreate() {
     transition(CREATE);
   }
