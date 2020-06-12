@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List/';
