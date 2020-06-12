@@ -1,23 +1,44 @@
 
-
-.example-container div {
-  background: rgb(150, 21, 107);
+.Ball1-container div {
+  position: "absolute";
+  background: rgb(4, 224, 96);
   border-radius: 30px;
-  width: 150px;
-  height: 150px;
+  width: 50px;
+  height: 50px;
+  padding: 100px;
+  opacity: 10%;
+
 }
 
-.refresh {
-  padding: 10px;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  width: 20px;
-  height: 20px;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.Ball2-container div {
+  position: "absolute";
+  background: rgb(5, 94, 64);
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  padding: 60px;
+  opacity: 10%;
 }
+
+.Ball3-container div {
+  position: "absolute";
+  background: rgb(238, 117, 4);
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  padding: 100px;
+  opacity: 10%;
+
+}
+
+.Ball4-container div {
+  position: "absolute";
+  background: rgb(122, 141, 51);
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  padding: 100px;
+  opacity: 10%;
+
+}
+
