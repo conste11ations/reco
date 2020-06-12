@@ -115,13 +115,10 @@ function App() {
         resultId={resultId}
         setResultId={setResultId}
         transitionToCreate={transitionToCreate}
-        transitionToShow={transitionToShow}
         transitionToMain={transitionToMain}
         getList={getList} />}
 
       {mode === MAIN && state.list && <Main
-        name={state.list.name}
-        location={state.list.location}
         resultId={resultId}
         setResultId={setResultId}
         getList={getList}
