@@ -41,7 +41,7 @@ function App() {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const MAIN = "MAIN";
-  
+
   const { mode, transition, back } = useVisualMode(MAIN);
 
   const BUBBLE = 'BUBBLE';
@@ -54,6 +54,7 @@ function App() {
   function resetList() {
     listTransition(BUBBLE)
     setDrawer({open: false, index: 0})
+    transition(SHOW);
   }
 
   function transitionToCreate() {
