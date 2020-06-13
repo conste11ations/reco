@@ -52,9 +52,11 @@ export default function Main({ transitionToShow, transitionToCreateList, getList
           <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>
-          <Button onClick={() => { resultId && getList(resultId) }} variant='contained' size='small' color='secondary'>
-            Search
-            </Button>
+            <Link to={`/lists/${resultId}`} style={{textDecoration: 'none'}}>
+              <Button renderAs={'button'} variant='contained' size='small' color='secondary'>
+                Search
+              </Button>
+            </Link>
         </section>
       </div>
     </ThemeProvider>
