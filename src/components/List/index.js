@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
@@ -82,7 +82,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         />
       </Container></motion.div>}
 
-      {mode === COMMENT && <motion.div key={2} initial={{ scale: 0}} animate={{ scale: 1 }} exit={{ scale: 0}} ><CommentForm
+      {mode === COMMENT && <motion.div key={2} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} ><CommentForm
       state={state} 
       dispatch={dispatch}
       recommendation={state.recommendations[drawerState.index]}

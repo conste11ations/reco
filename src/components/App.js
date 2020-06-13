@@ -134,6 +134,7 @@ function App() {
   return (
     <div className="App">
       {mode !== MAIN && state.list && <Nav
+        resetList={resetList}
         name={state.list.name}
         location={state.list.location}
         resultId={resultId}
