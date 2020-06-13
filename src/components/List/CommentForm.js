@@ -12,12 +12,10 @@ export default function New({state, dispatch, recommendation, business, transiti
   const [comment, setComment] = useState("");
 
   function onSubmit(recoID, comment) {
-    // console.log(comment)
-    // setComment('');
     axios.post(`/api/recommendations/${recoID}/comments`, { because: comment })
     .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
     .then(() => transition('BUBBLE'))
-    // .catch(e => {throw new Error(e)})
+    .catch(e => {throw new Error(e)})
   }
 
   return (
