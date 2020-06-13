@@ -7,6 +7,14 @@ import Main from './Main/Main';
 import { New as NewList } from './List/New';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 // reducer dispatches
 const SET_LIST = "SET_LIST";
@@ -132,34 +140,57 @@ function App() {
   }
 
   return (
+  <Router>
     <div className="App">
-      {mode !== MAIN && state.list && <Nav
-        name={state.list.name}
-        location={state.list.location}
-        resultId={resultId}
-        setResultId={setResultId}
-        transitionToCreateList={transitionToCreateList}
-        transitionToMain={transitionToMain}
-        getList={getList} />}
+      <Switch>        
+        
+        <Route path='/lists/new'>
+          <Nav
+              name={state.list.name}
+              location={state.list.location}
+              resultId={resultId}
+              setResultId={setResultId}
+              transitionToCreateList={transitionToCreateList}
+              transitionToMain={transitionToMain}
+              getList={getList} />
+          <NewList onSave={createList} getList={getList}></NewList>
+        </Route>
 
-      {mode === MAIN && state.list && <Main
-        resultId={resultId}
-        setResultId={setResultId}
-        getList={getList}
-        transitionToShow={transitionToShow}
-        transitionToCreateList={transitionToCreateList}></Main>}
-
-      {mode === SHOW && state.recommendations && <ListSpace
-        drawerState={drawerState}
-        setDrawer={setDrawer}
-        mode={listMode}
-        transition={listTransition}
-        dispatch={dispatch}
-        state={state} />}
+        <Route path='/lists/:listId'>
+          <>
+            <Nav
+            name={state.list.name}
+            location={state.list.location}
+            resultId={resultId}
+            setResultId={setResultId}
+            transitionToCreateList={transitionToCreateList}
+            transitionToMain={transitionToMain}
+            getList={getList} />
+      
+          <ListSpace
+            getList={getList}
+            drawerState={drawerState}
+            setDrawer={setDrawer}
+            mode={listMode}
+            transition={listTransition}
+            dispatch={dispatch}
+            state={state} />
+          </>
+        </Route>
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
-      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}  
-    </div>
+
+          <Route path="/">
+            <Main
+              resultId={resultId}
+              setResultId={setResultId}
+              getList={getList}
+              transitionToShow={transitionToShow}
+              transitionToCreateList={transitionToCreateList}></Main>
+          </Route> 
+        </Switch> 
+      </div>
+    </Router>
   );
 }
 

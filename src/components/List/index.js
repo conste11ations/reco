@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
@@ -8,6 +8,8 @@ import RecommendationForm from './RecommendationForm'
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container'
+
+import {useParams} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   bubbleContainer: {
@@ -33,7 +35,12 @@ const BUBBLE = 'BUBBLE';
 const COMMENT = 'COMMENT';
 const RECOMMENDATION = 'RECOMMENDATION';
 
-export default function ListSpace({ drawerState, setDrawer, mode, transition, state, dispatch }) {
+export default function ListSpace({ getList, drawerState, setDrawer, mode, transition, state, dispatch }) {
+  let { listId } = useParams();
+
+  useEffect(() => {
+    getList(listId)
+  }, [])
 
   const classes = useStyles();
 
