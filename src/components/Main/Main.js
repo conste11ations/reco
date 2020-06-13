@@ -6,6 +6,7 @@ import { AddCircle } from '@material-ui/icons';
 import Search from '../Search/Search';
 import Ball from './Ball.jsx';
 
+import {Link} from "react-router-dom";
 
 export default function Main({ transitionToShow, transitionToCreateList, getList, resultId, setResultId }) {
 
@@ -21,9 +22,11 @@ export default function Main({ transitionToShow, transitionToCreateList, getList
           <Button color='inherit'>Login</Button>
           <Button color='inherit'>Sign Up</Button>
           <Tooltip disableFocusListener disableTouchListener title="Ask for a recommendation!">
-            <Button onClick={() => transitionToCreateList()} color='inherit'>
-              <AddCircle fontSize='large' color='inherit' />
-            </Button>
+            <Link to="/lists/new">
+              <Button onClick={() => {return}}>
+                <AddCircle fontSize='large' style={{color: '#007065'}}/>
+              </Button>
+            </Link>
           </Tooltip>
         </Toolbar>
       </AppBar>
