@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from "framer-motion"
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Circle from '../Circle';
 import { Box, TextField, Typography } from '@material-ui/core';
@@ -17,12 +18,13 @@ export default function New({state, dispatch, recommendation, business, transiti
     .then(() => transition('BUBBLE'))
     .catch(e => {throw new Error(e)})
   }
-
+  // scale: [0, 1.3, 0.9, 1, 1.3, 1]
   return (
     <>
+    <motion.div animate={{ y: [-600, 0] }}>
       <MuiThemeProvider theme={formTheme}>
         <Box mt={25} position="relative" align="center">
-        <Circle cx={395} cy={335} r={250} fill="#F2C94C"></Circle>
+          <Circle cx={395} cy={335} r={250} fill="#F2C94C"></Circle>
         </Box>
         <Box className={classes.root} mt={-65} position="relative" display="flex" justifyContent="center" alignItems="center">
           <FormControl>
@@ -36,11 +38,12 @@ export default function New({state, dispatch, recommendation, business, transiti
         <Box position="relative" mt={14}>
           <Button onClick={() => onSubmit(recommendation.id, comment)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
-        </Button> 
-        <span style={{color: '#007065', margin: '0 1em'}}>or</span> <Button variant='outlined' style={{opacity: .60}} onClick={() => transition('BUBBLE')}>cancel</Button>
-        
+          </Button> 
+          <span style={{color: '#007065', margin: '0 1em'}}>or</span>
+          <Button variant='outlined' style={{opacity: .60}} onClick={() => transition('BUBBLE')}>cancel</Button>
         </Box>
       </MuiThemeProvider>
+      </motion.div>
     </>
   )
 };
