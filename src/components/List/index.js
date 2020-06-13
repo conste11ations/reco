@@ -76,8 +76,10 @@ export default function ListSpace ({ drawerState, setDrawer, mode, transition, s
           />
       </Container>}
 
-      {mode === COMMENT && <CommentForm 
-      list={state.list} 
+      {mode === COMMENT && <CommentForm
+      state={state} 
+      dispatch={dispatch}
+      recommendation={state.recommendations[drawerState.index]}
       business={state.businesses[drawerState.index]}
       transition={transition}/>}
 
