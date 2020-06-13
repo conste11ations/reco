@@ -21,7 +21,6 @@ export default function New({state, dispatch, recommendation, business, transiti
   // scale: [0, 1.3, 0.9, 1, 1.3, 1]
   return (
     <>
-    <motion.div animate={{ y: [-600, 0] }}>
       <MuiThemeProvider theme={formTheme}>
         <Box mt={25} position="relative" align="center">
           <Circle cx={395} cy={335} r={250} fill="#F2C94C"></Circle>
@@ -43,7 +42,6 @@ export default function New({state, dispatch, recommendation, business, transiti
           <Button variant='outlined' style={{opacity: .60}} onClick={() => transition('BUBBLE')}>cancel</Button>
         </Box>
       </MuiThemeProvider>
-      </motion.div>
     </>
   )
 };
