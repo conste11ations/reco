@@ -12,6 +12,8 @@ import axios from 'axios'
 const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 const CREATE_COMMENT = 'CREATE_COMMENT';
+const CREATE_RECOMMENDATION = 'CREATE_RECOMMENDATION';
+const CREATE_BUSINESS = 'CREATE_BUSINESS';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -40,6 +42,18 @@ function reducer(state, action) {
       })
       return {...state, comments: [...result]}
     }
+    case CREATE_RECOMMENDATION: {
+      const recos = [...state.recommendations]
+      console.log(recos)
+      
+      return {...state}
+    }
+    case CREATE_BUSINESS: {
+      const businesses = [...state.businesses]
+      console.log(businesses)
+      return {...state}
+    }
+
     default: throw new Error('not a valid dispatch type')
   }
 }

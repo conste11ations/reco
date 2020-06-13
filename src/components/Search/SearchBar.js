@@ -17,7 +17,6 @@ export default function SearchBar(props) {
     <section className="search">
       <form className="search__form" onSubmit={event => event.preventDefault()}>
         <InputBase
-          // className="radius"
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput

@@ -5,13 +5,52 @@ import { Box, TextField, Typography } from '@material-ui/core';
 import { formTheme, useFormStyle } from './../../constants/FormThemes'
 import { FormControl } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import axios from 'axios'
 
-export default function New({ list, business, transition }) {
+export default function New({ state, dispatch, list, transition }) {
   const classes = useFormStyle();
   const [businessName, setBusinessName] = useState("");
   const [businessUrl, setBusinessUrl] = useState("");
   const [businessImg, setBusinessImg] = useState("");
   const [comment, setComment] = useState("");
+
+  function recommendBusiness(listId, comment) {
+
+    axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
+    // .then(res => console.log(res))
+      .then(res => {
+        return axios.post(`/api/recommendations/`, { list_id: listId, business_id: res.data.id }) 
+      })
+      .then(res => {
+        return axios.post(`/api/recommendations/${res.data.id}/comments`, { because: comment })
+      })
+      // .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data }}))
+      .then(() => transition('BUBBLE'))
+      .catch(error => console.log(error.response));
+
+
+      // function onSubmit(recoID, comment) {
+      //   axios.post(`/api/recommendations/${recoID}/comments`, { because: comment })
+      //   .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
+      //   .then(() => transition('BUBBLE'))
+      //   .catch(e => {throw new Error(e)})
+      // }
+  }
+
+  // axios
+  // .get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p1')
+  // .then(response => {
+  //   this.setState({ p1Location: response.data });
+  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p2');
+  // })
+  // .then(response => {
+  //   this.setState({ p2Location: response.data });
+  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p3');
+  // })
+  // .then(response => {
+  //   this.setState({ p3Location: response.data });
+  // }).catch(error => console.log(error.response));
+
 
   return (
     <>
@@ -38,7 +77,7 @@ export default function New({ list, business, transition }) {
           </FormControl>
         </Box>
         <Box position="relative" mt={26}>
-          <Button onClick={() => console.log('submit comment func')} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
+          <Button onClick={() => recommendBusiness(list.id, comment)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
           <span style={{ color: '#007065', margin: '0 1em' }}>or</span> <Button variant='outlined' style={{ opacity: .60 }} onClick={() => transition('BUBBLE')}>cancel</Button>
