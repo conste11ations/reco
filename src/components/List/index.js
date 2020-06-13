@@ -45,6 +45,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
     return result
   }
 
+  console.log(state)
   const bubbles = state.businesses.map((business, index) => (
     {
       label: business.name,
@@ -82,13 +83,15 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
       </Container>}
 
       {mode === COMMENT && <CommentForm
-      state={state} 
-      dispatch={dispatch}
-      recommendation={state.recommendations[drawerState.index]}
-      business={state.businesses[drawerState.index]}
-      transition={transition}/>}
+        state={state}
+        dispatch={dispatch}
+        recommendation={state.recommendations[drawerState.index]}
+        business={state.businesses[drawerState.index]}
+        transition={transition} />}
 
       {mode === RECOMMENDATION && <RecommendationForm
+        state={state}
+        dispatch={dispatch}
         list={state.list}
         business={state.businesses[drawerState.index]}
         transition={transition} />}

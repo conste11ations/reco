@@ -14,43 +14,33 @@ export default function New({ state, dispatch, list, transition }) {
   const [businessImg, setBusinessImg] = useState("");
   const [comment, setComment] = useState("");
 
-  function recommendBusiness(listId, comment) {
+  function recommendBusiness(listId, state, dispatch, businessName, businessUrl, businessImg, comment) {
+
+    let businessObj = {};
+    let recommendationObj = {};
+    let commentObj = {};
 
     axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
-    // .then(res => console.log(res))
+    .then(res => {
+      businessObj = res.data; console.log(businessObj); return res.data
+    })
       .then(res => {
-        return axios.post(`/api/recommendations/`, { list_id: listId, business_id: res.data.id }) 
+        return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
       })
       .then(res => {
-        return axios.post(`/api/recommendations/${res.data.id}/comments`, { because: comment })
+        recommendationObj = res.data; console.log(recommendationObj); return res.data
       })
-      // .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data }}))
+      .then(res => {
+        return axios.post(`/api/recommendations/${recommendationObj.id}/comments`, { because: comment })
+      })
+      .then(res => {
+        commentObj = res.data; console.log(commentObj); return res.data
+      })
+      .then(res => dispatch({ type: 'CREATE_RECOMMENDATION_AND_BUSINESS', data: { recommendation: recommendationObj, business: businessObj } }))
+      .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: commentObj, recoID: recommendationObj.id }}))
       .then(() => transition('BUBBLE'))
-      .catch(error => console.log(error.response));
-
-
-      // function onSubmit(recoID, comment) {
-      //   axios.post(`/api/recommendations/${recoID}/comments`, { because: comment })
-      //   .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
-      //   .then(() => transition('BUBBLE'))
-      //   .catch(e => {throw new Error(e)})
-      // }
+      .catch(error => console.log("error", error));
   }
-
-  // axios
-  // .get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p1')
-  // .then(response => {
-  //   this.setState({ p1Location: response.data });
-  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p2');
-  // })
-  // .then(response => {
-  //   this.setState({ p2Location: response.data });
-  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p3');
-  // })
-  // .then(response => {
-  //   this.setState({ p3Location: response.data });
-  // }).catch(error => console.log(error.response));
-
 
   return (
     <>
@@ -77,7 +67,8 @@ export default function New({ state, dispatch, list, transition }) {
           </FormControl>
         </Box>
         <Box position="relative" mt={26}>
-          <Button onClick={() => recommendBusiness(list.id, comment)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
+          <Button onClick={() => { recommendBusiness(list.id, state, dispatch, businessName, businessUrl, businessImg, comment) }}
+            position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
           <span style={{ color: '#007065', margin: '0 1em' }}>or</span> <Button variant='outlined' style={{ opacity: .60 }} onClick={() => transition('BUBBLE')}>cancel</Button>

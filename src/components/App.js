@@ -12,8 +12,7 @@ import axios from 'axios'
 const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 const CREATE_COMMENT = 'CREATE_COMMENT';
-const CREATE_RECOMMENDATION = 'CREATE_RECOMMENDATION';
-const CREATE_BUSINESS = 'CREATE_BUSINESS';
+const CREATE_RECOMMENDATION_AND_BUSINESS = 'CREATE_RECOMMENDATION_AND_BUSINESS';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -38,20 +37,16 @@ function reducer(state, action) {
       const listsOfComments = [...state.comments]
       const result = listsOfComments.map(comments => {
         return comments[0].recommendation_id === action.data.recoID ? [action.data.comment, ...comments]
-        : comments
+          : comments
       })
-      return {...state, comments: [...result]}
+      return { ...state, comments: [...result] }
     }
-    case CREATE_RECOMMENDATION: {
-      const recos = [...state.recommendations]
-      console.log(recos)
-      
-      return {...state}
-    }
-    case CREATE_BUSINESS: {
-      const businesses = [...state.businesses]
-      console.log(businesses)
-      return {...state}
+    case CREATE_RECOMMENDATION_AND_BUSINESS: {
+      const businesses = [...state.businesses, action.data.business]
+      const recos = [...state.recommendations, action.data.recommendation]
+      const result = { ...state, recommendations: recos, businesses: businesses }
+      console.log("result", result)
+      return { ...state, recommendations: recos, businesses: businesses }
     }
 
     default: throw new Error('not a valid dispatch type')
@@ -59,6 +54,7 @@ function reducer(state, action) {
 }
 
 function App() {
+
   const [state, dispatch] = useReducer(reducer, {
     list: {},
     businesses: [],
@@ -158,7 +154,7 @@ function App() {
         state={state} />}
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
-      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}  
+      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}
     </div>
   );
 }
