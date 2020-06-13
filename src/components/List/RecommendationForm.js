@@ -17,7 +17,7 @@ export default function New({ list, business, transition }) {
     <>
       <MuiThemeProvider theme={formTheme}>
         <Box mt={25} position="relative" align="center">
-          <Circle cx={385} cy={335} r={320} fill="#B1D6EB"></Circle>
+          <Circle cx={399} cy={335} r={320} fill="#B1D6EB"></Circle>
         </Box>
         <Box className={classes.root} mt={-62} position="relative" display="flex" justifyContent="center" alignItems="center">
           <FormControl>
