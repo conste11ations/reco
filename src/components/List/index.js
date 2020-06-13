@@ -3,6 +3,7 @@ import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
 import RecommendationDrawer from './RecommendationDrawer'
 import CommentForm from './CommentForm'
+import RecommendationForm from './RecommendationForm'
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container'
@@ -29,67 +30,76 @@ const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#
 
 const BUBBLE = 'BUBBLE';
 const COMMENT = 'COMMENT';
+const RECOMMENDATION = 'RECOMMENDATION';
 
-export default function ListSpace ({ drawerState, setDrawer, mode, transition, state, dispatch }) {
+export default function ListSpace({ drawerState, setDrawer, mode, transition, state, dispatch }) {
 
   const classes = useStyles();
 
   const toggleRecoDrawer = () => {
-    setDrawer(prev => ({...prev, open: !prev.open}))
+    setDrawer(prev => ({ ...prev, open: !prev.open }))
   }
-  
+
   const findIndexByName = (businesses, label) => {
     const result = businesses.findIndex((business) => business.name === label)
     return result
   }
 
   const bubbles = state.businesses.map((business, index) => (
-    {label: business.name, 
-    color: bubbleColours[index%6], 
-    value: state.recommendations[index].upvotes - state.recommendations[index].downvotes}
-    ))
+    {
+      label: business.name,
+      color: bubbleColours[index % 6],
+      value: state.recommendations[index].upvotes - state.recommendations[index].downvotes
+    }
+  ))
 
   return (
     <>
-      <ListsDrawer 
+      <ListsDrawer
         state={state}
         toggleRecoDrawer={toggleRecoDrawer}
         setRecoDrawer={setDrawer}
         recoDrawerState={drawerState}
-        />
+        transition={transition}
+      />
 
-      {mode === BUBBLE && <Container className={classes.bubbleContainer} style={{paddingTop: '4em'}}>
-      <BubbleChart
+      {mode === BUBBLE && <Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
+        <BubbleChart
           width={1000}
           height={900}
           fontFamily="Arial"
           data={bubbles}
           showLegend={false}
-          graph={{zoom: .9}}
+          graph={{ zoom: .9 }}
           padding={8}
           bubbleClickFun={(label) => {
-            if (!drawerState.open) {toggleRecoDrawer()}
+            if (!drawerState.open) { toggleRecoDrawer() }
             const result = findIndexByName(state.businesses, label)
-            setDrawer(prev => ({...prev, index: result}))
+            setDrawer(prev => ({ ...prev, index: result }))
           }}
-          valueFont={{color: 'none'}}
-          />
+          valueFont={{ color: 'none' }}
+        />
       </Container>}
 
-      {mode === COMMENT && <CommentForm 
-      list={state.list} 
-      business={state.businesses[drawerState.index]}
-      transition={transition}/>}
+      {mode === COMMENT && <CommentForm
+        list={state.list}
+        business={state.businesses[drawerState.index]}
+        transition={transition} />}
+
+      {mode === RECOMMENDATION && <RecommendationForm
+        list={state.list}
+        business={state.businesses[drawerState.index]}
+        transition={transition} />}
 
       {state.recommendations[drawerState.index] && <RecommendationDrawer
-      transition={transition}
-      dispatch={dispatch}
-      drawerState={drawerState}
-      toggleRecoDrawer={toggleRecoDrawer}
-      list={state.list}
-      recommendation={state.recommendations[drawerState.index]}
-      business={state.businesses[drawerState.index]}
-      comments={state.comments[drawerState.index]}/>}
+        transition={transition}
+        dispatch={dispatch}
+        drawerState={drawerState}
+        toggleRecoDrawer={toggleRecoDrawer}
+        list={state.list}
+        recommendation={state.recommendations[drawerState.index]}
+        business={state.businesses[drawerState.index]}
+        comments={state.comments[drawerState.index]} />}
     </>
   )
 }

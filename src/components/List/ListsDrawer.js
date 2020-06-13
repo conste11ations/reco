@@ -26,8 +26,8 @@ const UPVOTES = 'UPVOTES';
 const DOWNVOTES = 'DOWNVOTES';
 const RECENTLY_RECOED = 'RECENTLY_RECOED';
 
-export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, setRecoDrawer }) {
-  const {mode, transition} = useVisualMode(DEFAULT)
+export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, setRecoDrawer, transition }) {
+  const {mode: businessListMode, transition: transitionBusinesses} = useVisualMode(DEFAULT)
 
   const businessList = state.businesses.map((business, index) => (
     <DrawerItem
@@ -54,21 +54,21 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
       open={true}>
       <Toolbar />
       <div className={classes.drawerContainer}>
-        <DrawerCard list={state.list}></DrawerCard>
+        <DrawerCard list={state.list} transition={transition}></DrawerCard>
         <List>
           <ListItem style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
             <Typography style={{marginBottom: '1em'}}>order by:</Typography>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(AZ)}>a-z</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(UPVOTES)}>most upvotes</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(DOWNVOTES)}>least downvotes</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transition(RECENTLY_RECOED)}>recently reco'd</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(AZ)}>a-z</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(UPVOTES)}>most upvotes</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(DOWNVOTES)}>least downvotes</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(RECENTLY_RECOED)}>recently reco'd</Button>
           </ListItem>
           {/* ORDER BY - alphabetical,  */}
-          {mode === DEFAULT && businessList}
-          {mode === AZ && sortAlphabetical(businessList)}
-          {mode === UPVOTES && sortUpVotes(businessList)}
-          {mode === DOWNVOTES && sortDownVotes(businessList)}
-          {mode === RECENTLY_RECOED && sortRecentRecos(businessList, state.comments)}
+          {businessListMode === DEFAULT && businessList}
+          {businessListMode === AZ && sortAlphabetical(businessList)}
+          {businessListMode === UPVOTES && sortUpVotes(businessList)}
+          {businessListMode === DOWNVOTES && sortDownVotes(businessList)}
+          {businessListMode === RECENTLY_RECOED && sortRecentRecos(businessList, state.comments)}
         </List>  
       </div>
     </Drawer>

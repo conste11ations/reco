@@ -5,7 +5,6 @@ import Nav from './Nav';
 import ListSpace from './List/';
 import Main from './Main/Main';
 import { New as NewList } from './List/New';
-import { New as NewRecommendation } from './Recommendation/New';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
@@ -46,13 +45,13 @@ function App() {
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
   const CREATE_LIST = "CREATE_LIST";
-  const CREATE_RECOMMENDATION = "CREATE_RECOMMENDATION";
   const MAIN = "MAIN";
 
   const { mode, transition, back } = useVisualMode(MAIN);
 
   const BUBBLE = 'BUBBLE';
   const COMMENT = 'COMMENT';
+  const RECOMMENDATION = 'RECOMMENDATION'
 
   const { mode: listMode, transition: listTransition } = useVisualMode(BUBBLE)
 
@@ -66,10 +65,6 @@ function App() {
 
   function transitionToCreateList() {
     transition(CREATE_LIST);
-  }
-
-  function transitionToCreateRecommendation() {
-    transition(CREATE_RECOMMENDATION);
   }
 
   function transitionToShow() {
@@ -136,13 +131,11 @@ function App() {
         setDrawer={setDrawer}
         mode={listMode}
         transition={listTransition}
-        transitionToCreateRecommendation={transitionToCreateRecommendation}
         dispatch={dispatch}
         state={state} />}
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
-      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}
-      {mode === CREATE_RECOMMENDATION && <NewList onSave={createList} getList={getList}></NewList>}     
+      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}  
     </div>
   );
 }
