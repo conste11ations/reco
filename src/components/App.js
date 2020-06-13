@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List/';
@@ -36,7 +36,12 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, {
+    list: {},
+    businesses: [],
+    recommendations: [],
+    comments: []
+  })
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -47,13 +52,13 @@ function App() {
   const BUBBLE = 'BUBBLE';
   const COMMENT = 'COMMENT';
 
-  const {mode: listMode, transition: listTransition} = useVisualMode(BUBBLE)
+  const { mode: listMode, transition: listTransition } = useVisualMode(BUBBLE)
 
-  const [drawerState, setDrawer] = useState({open: false, index: 0})
+  const [drawerState, setDrawer] = useState({ open: false, index: 0 })
 
   function resetList() {
     listTransition(BUBBLE)
-    setDrawer({open: false, index: 0})
+    setDrawer({ open: false, index: 0 })
     transition(SHOW);
   }
 
@@ -83,7 +88,7 @@ function App() {
       },
         (error) => {
           console.log(error)
-        })
+        }).then(res => { transitionToShow() })
   }
 
   function createList(name, location, description) {
@@ -95,16 +100,12 @@ function App() {
       })
       .then(res => {
         getList(res.data.id);
-        transitionToShow();
       },
         (error) => {
           console.log(error)
-        })
-  }
+        }).then(res => { transitionToShow() })
 
-  useEffect(() => {
-    getList(1)
-  }, [])
+  }
 
   return (
     <div className="App">
@@ -114,13 +115,10 @@ function App() {
         resultId={resultId}
         setResultId={setResultId}
         transitionToCreate={transitionToCreate}
-        transitionToShow={transitionToShow}
         transitionToMain={transitionToMain}
         getList={getList} />}
 
       {mode === MAIN && state.list && <Main
-        name={state.list.name}
-        location={state.list.location}
         resultId={resultId}
         setResultId={setResultId}
         getList={getList}

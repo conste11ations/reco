@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search/Search'
 
 
-export default function Nav({ name, location, transitionToCreate, transitionToShow, transitionToMain, getList, resultId, setResultId }) {
+export default function Nav({ name, location, transitionToCreate, transitionToMain, getList, resultId, setResultId }) {
 
   const classes = useNavStyle();
   return (
@@ -34,7 +34,7 @@ export default function Nav({ name, location, transitionToCreate, transitionToSh
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>
-            <Button onClick={() => { getList(resultId); transitionToShow() }} className={classes.button} variant='contained' size='small' color='secondary'>
+            <Button onClick={() => { getList(resultId) }} className={classes.button} variant='contained' size='small' color='secondary'>
               Search
             </Button>
             <Box className={classes.title}></Box>

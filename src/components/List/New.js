@@ -11,7 +11,6 @@ export function New(props) {
   const [name, setName] = useState(props.name || "");
   const [location, setLocation] = useState(props.location || "");
   const [description, setDescription] = useState(props.description || "");
-  // const [error, setError] = useState("");
 
   return (
     <>
