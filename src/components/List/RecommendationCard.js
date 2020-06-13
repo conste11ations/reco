@@ -13,8 +13,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 380,
-    minWidth: 340,
+    width: 380
   },
   media: {
     height: 0,
