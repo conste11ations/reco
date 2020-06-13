@@ -7,7 +7,7 @@ import Search from '../Search/Search';
 import Ball from './Ball.jsx';
 
 
-export default function Main({ transitionToShow, transitionToCreate, getList, resultId, setResultId }) {
+export default function Main({ transitionToShow, transitionToCreateList, getList, resultId, setResultId }) {
 
   const classes = useMainStyle();
 
@@ -21,7 +21,7 @@ export default function Main({ transitionToShow, transitionToCreate, getList, re
           <Button color='inherit'>Login</Button>
           <Button color='inherit'>Sign Up</Button>
           <Tooltip disableFocusListener disableTouchListener title="Ask for a recommendation!">
-            <Button onClick={() => transitionToCreate()} color='inherit'>
+            <Button onClick={() => transitionToCreateList()} color='inherit'>
               <AddCircle fontSize='large' color='inherit' />
             </Button>
           </Tooltip>

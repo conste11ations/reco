@@ -5,6 +5,7 @@ import Nav from './Nav';
 import ListSpace from './List/';
 import Main from './Main/Main';
 import { New as NewList } from './List/New';
+import { New as NewRecommendation } from './Recommendation/New';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
 
@@ -44,7 +45,8 @@ function App() {
   })
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
-  const CREATE = "CREATE";
+  const CREATE_LIST = "CREATE_LIST";
+  const CREATE_RECOMMENDATION = "CREATE_RECOMMENDATION";
   const MAIN = "MAIN";
 
   const { mode, transition, back } = useVisualMode(MAIN);
@@ -62,8 +64,12 @@ function App() {
     transition(SHOW);
   }
 
-  function transitionToCreate() {
-    transition(CREATE);
+  function transitionToCreateList() {
+    transition(CREATE_LIST);
+  }
+
+  function transitionToCreateRecommendation() {
+    transition(CREATE_RECOMMENDATION);
   }
 
   function transitionToShow() {
@@ -114,7 +120,7 @@ function App() {
         location={state.list.location}
         resultId={resultId}
         setResultId={setResultId}
-        transitionToCreate={transitionToCreate}
+        transitionToCreateList={transitionToCreateList}
         transitionToMain={transitionToMain}
         getList={getList} />}
 
@@ -123,18 +129,20 @@ function App() {
         setResultId={setResultId}
         getList={getList}
         transitionToShow={transitionToShow}
-        transitionToCreate={transitionToCreate}></Main>}
+        transitionToCreateList={transitionToCreateList}></Main>}
 
       {mode === SHOW && state.recommendations && <ListSpace
         drawerState={drawerState}
         setDrawer={setDrawer}
         mode={listMode}
         transition={listTransition}
+        transitionToCreateRecommendation={transitionToCreateRecommendation}
         dispatch={dispatch}
         state={state} />}
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
-      {mode === CREATE && <NewList onSave={createList} getList={getList}></NewList>}
+      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}
+      {mode === CREATE_RECOMMENDATION && <NewList onSave={createList} getList={getList}></NewList>}     
     </div>
   );
 }

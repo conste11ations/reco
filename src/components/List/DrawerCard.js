@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ListCard({list}) {
+export default function ListCard({list, transitionToCreateRecommendation}) {
   const classes = useStyles();
 
   return (
@@ -30,7 +30,7 @@ export default function ListCard({list}) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button variant="outlined" color="secondary" size='large' disableElevation fullWidth>
+        <Button variant="outlined" color="secondary" size='large' disableElevation fullWidth onClick={() => transitionToCreateRecommendation()}>
           recommend a new business
         </Button>
       </CardActions>
