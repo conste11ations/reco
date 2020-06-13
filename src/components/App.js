@@ -159,23 +159,23 @@ function App() {
         <Route path='/lists/:listId'>
           <>
             <Nav
-            name={state.list.name}
-            location={state.list.location}
-            resultId={resultId}
-            setResultId={setResultId}
-            transitionToCreateList={transitionToCreateList}
-            transitionToMain={transitionToMain}
-            getList={getList} />
-      
-          <ListSpace
-            getList={getList}
-            drawerState={drawerState}
-            setDrawer={setDrawer}
-            mode={listMode}
-            transition={listTransition}
-            dispatch={dispatch}
-            state={state} />
-          </>
+              name={state.list.name}
+              location={state.list.location}
+              resultId={resultId}
+              setResultId={setResultId}
+              transitionToCreateList={transitionToCreateList}
+              transitionToMain={transitionToMain}
+              getList={getList} />
+        
+            <ListSpace
+              getList={getList}
+              drawerState={drawerState}
+              setDrawer={setDrawer}
+              mode={listMode}
+              transition={listTransition}
+              dispatch={dispatch}
+              state={state} />
+            </>
         </Route>
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
