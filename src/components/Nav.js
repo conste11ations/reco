@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
@@ -7,12 +7,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { AccountCircle, AddCircle } from '@material-ui/icons';
+import { AddCircle } from '@material-ui/icons';
 import Tooltip from '@material-ui/core/Tooltip';
 import Search from './Search/Search'
 
 
-export default function Nav({ name, location, transitionToCreate, transitionToMain, getList, resultId, setResultId }) {
+export default function Nav({ name, location, transitionToCreateList, transitionToMain, getList, resultId, setResultId }) {
 
   const classes = useNavStyle();
   return (
@@ -43,7 +43,7 @@ export default function Nav({ name, location, transitionToCreate, transitionToMa
             <Button color='inherit'>Login</Button>
             <Button color='inherit'>Sign Up</Button>
             <Tooltip disableFocusListener disableTouchListener title="Ask for a recommendation!">
-              <Button onClick={() => transitionToCreate()} color='inherit'>
+              <Button onClick={() => transitionToCreateList()} color='inherit'>
                 <AddCircle fontSize='large' color='inherit' />
               </Button>
             </Tooltip>
