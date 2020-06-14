@@ -1,26 +1,25 @@
 const sortAlphabetical = (businessList) => {
-  console.log('az')
-  return businessList.sort((a, b) => {
-    if (a.props.business.name < b.props.business.name) {
+  const result = businessList.sort((a, b) => {
+    const A = a.props.business.name.toLowerCase()
+    const B = b.props.business.name.toLowerCase()
+    if (A < B) {
       return -1;
     }
-    if (a.props.business.name > b.props.business.name) {
+    if (A > B) {
       return 1;
     }
-
     return 0
   })
+  return result
 }
 
 const sortUpVotes = (businessList) => {
-  console.log('upvotes')
   return businessList.sort((a, b) => {
     return b.props.upvotes - a.props.upvotes
   })
 }
 
 const sortDownVotes = (businessList) => {
-  console.log('down')
   return businessList.sort((a, b) => {
     return a.props.downvotes - b.props.downvotes
   })
@@ -28,7 +27,6 @@ const sortDownVotes = (businessList) => {
 
 const sortRecentRecos = (businessList, comments) => {
   return businessList.sort((a, b) => {
-    // reduce a and b comments to most recent date 
       const aStart = new Date(a.props.comments[0].updated_at).getTime()
       const A = a.props.comments.reduce((acc, current) => {
         const tmp = new Date(current.updated_at).getTime()
