@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { setState } from 'react';
 import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
@@ -34,7 +34,7 @@ export default function Nav({ name, location, transitionToCreateList, transition
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>
-            <Button onClick={() => { getList(resultId) }} className={classes.button} variant='contained' size='small' color='secondary'>
+            <Button onClick={() => { resultId && getList(resultId) }} className={classes.button} variant='contained' size='small' color='secondary'>
               Search
             </Button>
             <Box className={classes.title}></Box>

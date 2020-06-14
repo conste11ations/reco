@@ -5,7 +5,7 @@ export default function Results(props) {
 
   const classes = useSearchStyle();
   const { results, queryKey, setValue, setPlaceholder, setResultId } = props;
-  const returnVal = queryKey === "list" ? "name" : "name";
+  const returnVal = "name";
   
   if (results === undefined) { return <div></div> };
   return results.map(result => {
