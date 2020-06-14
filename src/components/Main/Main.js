@@ -45,7 +45,7 @@ export default function Main({ transitionToShow, transitionToCreateList, getList
           <Typography align='center' variant='h6' noWrap>
             near
             </Typography>
-          <Search placeholder={'Type a location (optional)'} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
+          <Search placeholder={'Or type a location instead!'} queryKey='location' setResultId={setResultId} transitionToShow={transitionToShow} />
           <Typography align='center' variant='h6' noWrap>
             ?&nbsp;&nbsp;
             </Typography>

@@ -28,7 +28,7 @@ export function New(props) {
             <Typography align='center' variant='h2' noWrap>
               near
             </Typography>
-            <TextField className={classes.textField} id="list-location" label="Type a location ( Default: Canada )" variant="outlined"
+            <TextField className={classes.textField} id="list-location" label="Type a location" variant="outlined"
               value={location} onChange={event => setLocation(event.target.value)} />
             <Typography align='center' variant='h2' noWrap>
               ?

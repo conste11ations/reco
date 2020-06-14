@@ -26,11 +26,11 @@ export default function Nav({ name, location, transitionToCreateList, transition
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={name} queryKey='list' setResultId={setResultId} />
+            <Search placeholder={'E.g. Black owned MTL restaurants'} queryKey='list' setResultId={setResultId} />
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>
-            <Search placeholder={location + ' (optional)'} queryKey='location' setResultId={setResultId}  />
+            <Search placeholder={'Or type a location instead!'} queryKey='location' setResultId={setResultId}  />
             <Typography align='center' variant='h6' noWrap>
               ?&nbsp;&nbsp;
             </Typography>
