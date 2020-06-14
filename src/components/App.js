@@ -1,5 +1,8 @@
 /* eslint-disable default-case */
 import React, { useReducer, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'
+import { makeStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container'
 import './App.css';
 import Nav from './Nav';
 import ListSpace from './List/';
@@ -7,6 +10,18 @@ import Main from './Main/Main';
 import { New as NewList } from './List/New';
 import useVisualMode from "../hooks/useVisualMode";
 import axios from 'axios'
+
+const useStyles = makeStyles((theme) => ({
+  bubbleContainer: {
+    maxWidth: 1000,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
 
 // reducer dispatches
 const SET_LIST = "SET_LIST";
@@ -46,6 +61,8 @@ function reducer(state, action) {
 }
 
 function App() {
+
+  const classes = useStyles();
 
   const [state, dispatch] = useReducer(reducer, {
     list: {},
@@ -146,8 +163,14 @@ function App() {
         getList={getList}
         state={state} />}
 
-      {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
-      {mode === CREATE_LIST && <NewList onSave={createList} getList={getList}></NewList>}
+      <AnimatePresence exitBeforeEnter>
+        {mode === CREATE_LIST &&
+          <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} >
+            <Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
+              <NewList onSave={createList} getList={getList}></NewList>
+            </Container>
+          </motion.div>}
+      </AnimatePresence>
     </div>
   );
 }

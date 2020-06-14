@@ -10,7 +10,7 @@ const Circle = props => (
     style={{ border: "none" }}
   >
     <circle {...props}></circle>
-    <text x="500" y="500" font-family="sans-serif" font-size="14px" fill="black"></text>
+    <text x="500" y="500" fontFamily="sans-serif" fontSize="14px" fill="black"></text>
   </svg>
 );
 

@@ -15,10 +15,10 @@ export function New(props) {
   return (
     <>
       <MuiThemeProvider theme={formTheme}>
-        <Box mt={16} position="relative" align="center">
+        <Box mt={8} ml={-50} position="relative" align="center">
         <Circle cx={400} cy={400} r={400} fill="#ABD3BA"></Circle>
         </Box>
-        <Box className={classes.root} mt={-60} position="relative" display="flex" justifyContent="center" alignItems="center">
+        <Box className={classes.root} mt={-10} ml={-50} position="relative" display="flex" justifyContent="center" alignItems="center">
           <FormControl>
             <Typography align='center' variant='h2' noWrap>
               Any<br />recommendations for
@@ -37,7 +37,7 @@ export function New(props) {
               value={description} onChange={event => setDescription(event.target.value)} />
           </FormControl>
         </Box>
-        <Box position="relative" mt={35}>
+        <Box position="relative" mt={85} ml={-7}>
           <Button onClick={() => props.onSave(name, location, description)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
