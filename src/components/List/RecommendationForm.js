@@ -37,6 +37,7 @@ export default function New({ state, dispatch, list, transition, getList }) {
         commentObj = res.data; return res.data
       })
       .then(() => getList(listId))
+      .then(() => transition('BUBBLE'))
       .catch(error => console.log("error", error));
   }
 
@@ -65,7 +66,7 @@ export default function New({ state, dispatch, list, transition, getList }) {
           </FormControl>
         </Box>
         <Box position="relative" mt={26}>
-          <Button onClick={() => { recommendBusiness(list.id, state, dispatch, businessName, businessUrl, businessImg, comment) }}
+          <Button onClick={() => { recommendBusiness(list.id, businessName, businessUrl, businessImg, comment) }}
             position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
