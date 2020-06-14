@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
 import RecommendationDrawer from './RecommendationDrawer'
@@ -62,8 +63,8 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         recoDrawerState={drawerState}
         transition={transition}
       />
-
-      {mode === BUBBLE && <Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
+      <AnimatePresence exitBeforeEnter>
+      {mode === BUBBLE && <motion.div key={1} initial={{scale: 0}} animate={{ scale: 1 }} exit={{ scale: 0}} ><Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
         <BubbleChart
           width={1000}
           height={900}
@@ -79,22 +80,24 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
           }}
           valueFont={{ color: 'none' }}
         />
-      </Container>}
+      </Container></motion.div>}
 
-      {mode === COMMENT && <CommentForm
-        state={state}
-        dispatch={dispatch}
-        recommendation={state.recommendations[drawerState.index]}
-        business={state.businesses[drawerState.index]}
-        transition={transition} />}
+      {mode === COMMENT && <motion.div key={2} initial={{ scale: 0}} animate={{ scale: 1 }} exit={{ scale: 0}} ><CommentForm
+      state={state} 
+      dispatch={dispatch}
+      recommendation={state.recommendations[drawerState.index]}
+      business={state.businesses[drawerState.index]}
+      transition={transition}/></motion.div>}
+      
 
-      {mode === RECOMMENDATION && <RecommendationForm
-        state={state}
-        dispatch={dispatch}
+      {mode === RECOMMENDATION && <motion.div key={3} initial={{ scale: 0}} animate={{ scale: 1 }} exit={{ scale: 0}} ><RecommendationForm
+      state={state}
+      dispatch={dispatch}
         list={state.list}
-        business={state.businesses[drawerState.index]}
         getList={getList}
-        transition={transition} />}
+        business={state.businesses[drawerState.index]}
+        transition={transition} /></motion.div>}
+      </AnimatePresence>
 
       {state.recommendations[drawerState.index] && <RecommendationDrawer
         transition={transition}
