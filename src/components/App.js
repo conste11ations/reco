@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
 const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 const CREATE_COMMENT = 'CREATE_COMMENT';
+const SET_RECOMMENDATION_ROOMS = 'SET_RECOMMENDATION_ROOMS'
+const SET_ACTIVE_RECO_ROOM = 'SET_ACTIVE_RECO_ROOM'
+const ADD_RECO_ROOM = 'ADD_RECO_ROOM'
+const ADD_COMMENT_TO_ROOM = 'ADD_COMMENT_TO_ROOM'
 
 function reducer(state, action) {
   switch (action.type) {
@@ -55,7 +59,24 @@ function reducer(state, action) {
       })
       return { ...state, comments: [...result] }
     }
-
+    case SET_RECOMMENDATION_ROOMS: {
+      console.log("set reco rooms", { ...state, recommendationRooms: action.data.recommendationRooms })
+      return { ...state, recommendationRooms: action.data.recommendationRooms }
+    }
+    case SET_ACTIVE_RECO_ROOM: {
+      return { ...state, activeRecoRoom: action.data.activeRecoRoom }
+    }
+    case ADD_RECO_ROOM: {
+      return { ...state, recommendationRooms: [...state.recommendationRooms, action.data.recoRoom] }
+    }
+    case ADD_COMMENT_TO_ROOM: {
+      const recommendationRooms = [...state.recommendationRooms];
+      const recoRoom = recommendationRooms.find(
+        recoRoom => recoRoom.id === action.data.comment.recommendation_id
+      );
+      recoRoom.comments = [...recoRoom.comments, action.data.comment];
+      return { ...state, recommendationRooms: [...state.recommendationRooms, recoRoom] }
+    }
     default: throw new Error('not a valid dispatch type')
   }
 }
@@ -68,8 +89,11 @@ function App() {
     list: {},
     businesses: [],
     recommendations: [],
-    comments: []
+    comments: [],
+    recommendationRooms: [],
+    activeRecoRoom: {}
   })
+
   const [resultId, setResultId] = useState(null);
   const SHOW = "SHOW";
   const CREATE_LIST = "CREATE_LIST";

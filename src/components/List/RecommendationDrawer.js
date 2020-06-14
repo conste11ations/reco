@@ -2,7 +2,7 @@ import React from 'react';
 import RecommendationCard from './RecommendationCard'
 
 // Material UI Components and Styling
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationDrawer({transition, dispatch, drawerState, toggleRecoDrawer, recommendation, business, comments}) {
+export default function RecommendationDrawer({ handleReceivedComment, state, transition, dispatch, drawerState, toggleRecoDrawer, recommendation, business, comments }) {
 
   const classes = useStyles();
 
@@ -34,15 +34,17 @@ export default function RecommendationDrawer({transition, dispatch, drawerState,
       anchor='right'
       open={drawerState.open}>
       <Toolbar />
-        <RecommendationCard
-          key={recommendation.id}
-          transition={transition}
-          dispatch={dispatch}
-          drawerState={drawerState}
-          toggleRecoDrawer={toggleRecoDrawer}
-          recommendation={recommendation}
-          business={business}
-          comments={comments}/>
+      <RecommendationCard
+        handleReceivedComment={handleReceivedComment}
+        state={state}
+        key={recommendation.id}
+        transition={transition}
+        dispatch={dispatch}
+        drawerState={drawerState}
+        toggleRecoDrawer={toggleRecoDrawer}
+        recommendation={recommendation}
+        business={business}
+        comments={comments} />
     </Drawer>
   )
 }

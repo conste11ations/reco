@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "framer-motion": "^2.0.0-beta.75",
     "react": "^16.13.1",
+    "react-actioncable-provider": "^2.0.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
