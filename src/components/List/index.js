@@ -32,7 +32,7 @@ const BUBBLE = 'BUBBLE';
 const COMMENT = 'COMMENT';
 const RECOMMENDATION = 'RECOMMENDATION';
 
-export default function ListSpace({ drawerState, setDrawer, mode, transition, state, dispatch }) {
+export default function ListSpace({ drawerState, setDrawer, mode, transition, state, dispatch, getList }) {
 
   const classes = useStyles();
 
@@ -45,7 +45,6 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
     return result
   }
 
-  console.log(state)
   const bubbles = state.businesses.map((business, index) => (
     {
       label: business.name,
@@ -94,6 +93,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         dispatch={dispatch}
         list={state.list}
         business={state.businesses[drawerState.index]}
+        getList={getList}
         transition={transition} />}
 
       {state.recommendations[drawerState.index] && <RecommendationDrawer

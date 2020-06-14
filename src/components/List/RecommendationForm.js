@@ -7,14 +7,14 @@ import { FormControl } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
 
-export default function New({ state, dispatch, list, transition }) {
+export default function New({ state, dispatch, list, transition, getList }) {
   const classes = useFormStyle();
   const [businessName, setBusinessName] = useState("");
   const [businessUrl, setBusinessUrl] = useState("");
   const [businessImg, setBusinessImg] = useState("");
   const [comment, setComment] = useState("");
 
-  function recommendBusiness(listId, state, dispatch, businessName, businessUrl, businessImg, comment) {
+  function recommendBusiness(listId, businessName, businessUrl, businessImg, comment) {
 
     let businessObj = {};
     let recommendationObj = {};
@@ -22,23 +22,21 @@ export default function New({ state, dispatch, list, transition }) {
 
     axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
     .then(res => {
-      businessObj = res.data; console.log(businessObj); return res.data
+      businessObj = res.data; return res.data
     })
       .then(res => {
         return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
       })
       .then(res => {
-        recommendationObj = res.data; console.log(recommendationObj); return res.data
+        recommendationObj = res.data; return res.data
       })
       .then(res => {
         return axios.post(`/api/recommendations/${recommendationObj.id}/comments`, { because: comment })
       })
       .then(res => {
-        commentObj = res.data; console.log(commentObj); return res.data
+        commentObj = res.data; return res.data
       })
-      .then(res => dispatch({ type: 'CREATE_RECOMMENDATION_AND_BUSINESS', data: { recommendation: recommendationObj, business: businessObj } }))
-      .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: commentObj, recoID: recommendationObj.id }}))
-      .then(() => transition('BUBBLE'))
+      .then(() => getList(listId))
       .catch(error => console.log("error", error));
   }
 

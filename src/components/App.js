@@ -12,7 +12,6 @@ import axios from 'axios'
 const SET_LIST = "SET_LIST";
 const VOTE = 'VOTE';
 const CREATE_COMMENT = 'CREATE_COMMENT';
-const CREATE_RECOMMENDATION_AND_BUSINESS = 'CREATE_RECOMMENDATION_AND_BUSINESS';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -41,13 +40,6 @@ function reducer(state, action) {
       })
       return { ...state, comments: [...result] }
     }
-    case CREATE_RECOMMENDATION_AND_BUSINESS: {
-      const businesses = [...state.businesses, action.data.business]
-      const recos = [...state.recommendations, action.data.recommendation]
-      const result = { ...state, recommendations: recos, businesses: businesses }
-      console.log("result", result)
-      return { ...state, recommendations: recos, businesses: businesses }
-    }
 
     default: throw new Error('not a valid dispatch type')
   }
@@ -69,8 +61,8 @@ function App() {
   const { mode, transition, back } = useVisualMode(MAIN);
 
   const BUBBLE = 'BUBBLE';
-  const COMMENT = 'COMMENT';
-  const RECOMMENDATION = 'RECOMMENDATION'
+  // const COMMENT = 'COMMENT';
+  // const RECOMMENDATION = 'RECOMMENDATION'
 
   const { mode: listMode, transition: listTransition } = useVisualMode(BUBBLE)
 
@@ -151,6 +143,7 @@ function App() {
         mode={listMode}
         transition={listTransition}
         dispatch={dispatch}
+        getList={getList}
         state={state} />}
 
       {/* FOR EDIT OF LIST FUNCTIONALITY {mode === CREATE && <NewList onSave={(name, location, description) => createList(name, location, description)}></NewList>} */}
