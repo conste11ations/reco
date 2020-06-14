@@ -13,17 +13,17 @@ export default function New({ state, dispatch, list, transition, getList }) {
   const [businessUrl, setBusinessUrl] = useState("");
   const [businessImg, setBusinessImg] = useState("");
   const [comment, setComment] = useState("");
+  const [error, setError] = useState("");
 
   function recommendBusiness(listId, businessName, businessUrl, businessImg, comment) {
 
     let businessObj = {};
     let recommendationObj = {};
-    let commentObj = {};
 
     axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
-    .then(res => {
-      businessObj = res.data; return res.data
-    })
+      .then(res => {
+        businessObj = res.data; return res.data
+      })
       .then(res => {
         return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
       })
@@ -33,19 +33,25 @@ export default function New({ state, dispatch, list, transition, getList }) {
       .then(res => {
         return axios.post(`/api/recommendations/${recommendationObj.id}/comments`, { because: comment })
       })
-      .then(res => {
-        commentObj = res.data; return res.data
-      })
       .then(() => getList(listId))
       .then(() => transition('BUBBLE'))
-      .catch(error => console.log("error", error));
+      .catch(error => setError("A server error occured."));
   }
+
+  function validateData(name, url, img, comment) {
+    if (name && url && comment && img) {
+      recommendBusiness(list.id, businessName, businessUrl, businessImg, comment)
+    } else {
+      setError("An error occured. Please fill out all the fields.")
+    }
+  }
+
 
   return (
     <>
       <MuiThemeProvider theme={formTheme}>
         <Box mt={25} position="relative" align="center">
-          <Circle cx={399} cy={335} r={320} fill="#B1D6EB"></Circle>
+          <Circle cx={400} cy={335} r={320} fill="#B1D6EB"></Circle>
         </Box>
         <Box className={classes.root} mt={-62} position="relative" display="flex" justifyContent="center" alignItems="center">
           <FormControl>
@@ -66,12 +72,12 @@ export default function New({ state, dispatch, list, transition, getList }) {
           </FormControl>
         </Box>
         <Box position="relative" mt={26}>
-          <Button onClick={() => { recommendBusiness(list.id, businessName, businessUrl, businessImg, comment) }}
+          <Button onClick={() => { validateData(businessName, businessUrl, businessImg, comment) }}
             position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
           <span style={{ color: '#007065', margin: '0 1em' }}>or</span> <Button variant='outlined' style={{ opacity: .60 }} onClick={() => transition('BUBBLE')}>cancel</Button>
-
+          <div style={{ color: '#FF0000', marginTop: "120px" }}>{error}</div>
         </Box>
       </MuiThemeProvider>
     </>
