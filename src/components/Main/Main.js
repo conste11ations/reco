@@ -7,7 +7,7 @@ import Search from '../Search/Search';
 import Ball from './Ball.jsx';
 
 
-export default function Main({ transitionToShow, transitionToCreateList, getList, resultId, setResultId }) {
+export default function Main({ transitionToShow, transitionToCreateList, getList, resultId, setResultId, resetList }) {
 
   const classes = useMainStyle();
 

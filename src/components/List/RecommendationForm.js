@@ -22,24 +22,28 @@ export default function New({ state, dispatch, list, transition, getList }) {
     let commentObj = {};
 
 //recommendation response empty string and we need reconfigure posting a comment
-    axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
+
+      axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
       .then(res => {
-        businessObj = res.data; console.log("b", res); return res.data
+        console.log(res)
+        // businessObj = res.data; console.log("b", res); return res.data
+        return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: res.data.id }))
       })
-      .then(res => {
-        return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
-      })
-      .then(res => {
-        recommendationObj = res.data; console.log("r", res); return res.data
-      })
-      .then(res => {
-        return axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id })
-      })
-      .then(res => {
-        commentObj = res.data; console.log("c", res); return res.data
-      })
+      // .then(res => {
+      //   return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
+      // })
+      // .then(res => {
+      //   recommendationObj = res.data; console.log("HERE", res); return res.data
+      // })
+      // .then(res => {
+      //   return axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id })
+      // })
+      // .then(() => axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id }))
+      // .then(res => {
+      //   commentObj = res.data; console.log("c", res); return res.data
+      // })
       .then(() => getList(listId))
-      .then(() => transition('BUBBLE'))
+      // .then(() => transition('BUBBLE'))
       .catch(error => setError("A server error occured."));
   }
 

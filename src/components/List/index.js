@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT } from '../../constants/index.js';
 import Cable from './Cables';
@@ -57,8 +57,13 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
 
   const handleReceivedComment = response => {
     const { comment } = response;
-    console.log("received comment", response)
+    const currentRecommendationId = comment.recommendation_id-1
+    if (state.recommendationRooms[currentRecommendationId].comments.find(
+      item => item.id === comment.id
+    )) {
+    } else {
     dispatch({ type: 'ADD_COMMENT_TO_ROOM', data: { comment } })
+    }
   };
 
   const classes = useStyles();
@@ -88,7 +93,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         onReceived={handleReceivedRecoRoom}
       />
 
-      {state.recommendationRooms.length ? (
+      { state.recommendationRooms.length ? (
         <Cable
           recommendationRooms={state.recommendationRooms}
           handleReceivedComment={handleReceivedComment}

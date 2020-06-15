@@ -174,6 +174,7 @@ function App() {
         resultId={resultId}
         setResultId={setResultId}
         getList={getList}
+        resetList={resetList}
         transitionToShow={transitionToShow}
         transitionToCreateList={transitionToCreateList}></Main>}
 

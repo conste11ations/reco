@@ -5,6 +5,7 @@ const Cable = ({ recommendationRooms, handleReceivedComment }) => {
   return (
     <Fragment>
       {recommendationRooms.map(recoRoom => {
+        console.log("cable")
         return (
           <ActionCableConsumer
             key={recoRoom.id}  

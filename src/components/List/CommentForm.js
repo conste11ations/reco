@@ -14,8 +14,6 @@ export default function New({state, dispatch, recommendation, business, transiti
 
   function onSubmit(recoID, comment, handleReceivedComment) {
 
-    console.log("recoID, comment", recoID, comment);
-
     axios.post(`/api/recommendations/${recoID}/comments`, { because: comment, recommendation_id: recoID })
     // .then(res => console.log(res))
     // .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))

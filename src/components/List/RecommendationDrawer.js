@@ -25,26 +25,28 @@ export default function RecommendationDrawer({ handleReceivedComment, state, tra
   const classes = useStyles();
 
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="persistent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-      anchor='right'
-      open={drawerState.open}>
-      <Toolbar />
-      <RecommendationCard
-        handleReceivedComment={handleReceivedComment}
-        state={state}
-        key={recommendation.id}
-        transition={transition}
-        dispatch={dispatch}
-        drawerState={drawerState}
-        toggleRecoDrawer={toggleRecoDrawer}
-        recommendation={recommendation}
-        business={business}
-        comments={comments} />
-    </Drawer>
+    <>
+      {recommendation && <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor='right'
+        open={drawerState.open}>
+        <Toolbar />
+        <RecommendationCard
+          handleReceivedComment={handleReceivedComment}
+          state={state}
+          key={recommendation.id}
+          transition={transition}
+          dispatch={dispatch}
+          drawerState={drawerState}
+          toggleRecoDrawer={toggleRecoDrawer}
+          recommendation={recommendation}
+          business={business}
+          comments={comments} />
+      </Drawer>}
+    </>
   )
 }
