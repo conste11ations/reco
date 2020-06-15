@@ -17,9 +17,9 @@ export default function New({state, dispatch, recommendation, business, transiti
     console.log("recoID, comment", recoID, comment);
 
     axios.post(`/api/recommendations/${recoID}/comments`, { because: comment, recommendation_id: recoID })
-    .then(res => res.json())
+    // .then(res => console.log(res))
     // .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
-    // .then(() => transition('BUBBLE'))
+    .then(() => transition('BUBBLE'))
     .catch(e => {throw new Error(e)})
   }
   // scale: [0, 1.3, 0.9, 1, 1.3, 1]
