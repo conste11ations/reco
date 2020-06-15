@@ -10,6 +10,10 @@ import RecommendationDrawer from './RecommendationDrawer'
 import CommentForm from './CommentForm'
 import RecommendationForm from './RecommendationForm'
 
+import {Box, Typography} from '@material-ui/core'
+import UndoIcon from '@material-ui/icons/Undo';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container'
 
@@ -29,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  newList: {
+    color: theme.palette.primary.contrastText,
+    fontFamily: theme.fontFamily
+  }
 }));
 
 const bubbleColours = ['#6FCF97', '#2F80ED', '#F2C94C', '#56CCF2', '#27AE60', '#007065']
@@ -117,7 +125,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         transition={transition}
       />
       <AnimatePresence exitBeforeEnter>
-        {mode === BUBBLE && <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} ><Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
+        {mode === BUBBLE && state.businesses.length > 0 && <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} ><Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
           <BubbleChart
             width={1000}
             height={900}
@@ -155,6 +163,13 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
           getList={getList}
           business={state.businesses[drawerState.index]}
           transition={transition} /></motion.div>}
+
+        {mode === BUBBLE && !state.businesses.length && 
+        <motion.div key={4} initial={{ scale: 0 }} animate={{ scale: 1.5 }} exit={{ scale: 0 }} >
+                  <Box position="relative" align="center">
+                    <Typography variant={'h2'} className={classes.newList} style={{width: '4em', display: 'flex', justifyContent: 'center', marginTop: '5em'}}><ArrowBackIcon style={{paddingRight: '0.5em', fontSize: '1em'}}/>{'Recommend the very first business for this list!'}</Typography>
+                  </Box>
+                </motion.div>}
       </AnimatePresence>
 
       {state.activeRecoRoom && <RecommendationDrawer
