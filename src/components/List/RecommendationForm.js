@@ -22,8 +22,6 @@ export default function New({ state, dispatch, list, transition, getList }) {
     let recommendationObj = {};
     let commentObj = {};
 
-//recommendation response empty string and we need reconfigure posting a comment
-
       axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
       .then(res => {
         return (fetch(`${API_ROOT}/recommendations`, {
@@ -33,24 +31,13 @@ export default function New({ state, dispatch, list, transition, getList }) {
         }))
       })
       
-      // .then(res => {
-        // console.log("json", state)
-      //   return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
-      // })
-      // .then(res => {
-      //   recommendationObj = res; console.log("HERE", res); return res
-      // })
-      // .then(res => {
-      //   return axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id })
-      // })
-      // .then(() => axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id }))
-      // .then(res => {
-      //   commentObj = res.data; console.log("c", res); return res.data
-      // })
       .then(() => getList(listId))
       .then(() => transition('BUBBLE'))
       .catch(error => console.log(error));
       // .catch(error => setError("A server error occured."));
+
+
+      console.log("state", state)
   }
 
   function validateData(name, url, img, comment) {
