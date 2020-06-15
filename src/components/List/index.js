@@ -98,16 +98,12 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
     }
   ))
 
-
-  console.log("state", state)
-
   return (
     <>
 
       <ActionCableConsumer
         channel={{ channel: 'RecommendationsChannel' }}
         onReceived={handleReceivedRecoRoom}
-        onConnected={e => console.log(e, "connected")}
       />
 
       {state.recommendationRooms.length ? (
@@ -138,9 +134,6 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
               if (!drawerState.open) { toggleRecoDrawer() }
               const result = findIndexByName(state.businesses, label)
               setDrawer(prev => ({ ...prev, index: result }))
-              // we need the id of the business that bubble is presenting and we need to plug in that id to a recommendation it belongs to
-              // console.log("findBusinessId", findBusinessIdByLabel(label, state.businesses))
-              // console.log("findRecoByBandL", findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, findBusinessIdByLabel(label, state.businesses)))
               changeRecoRoom(findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, findBusinessIdByLabel(label, state.businesses)))
             }}
             valueFont={{ color: 'none' }}

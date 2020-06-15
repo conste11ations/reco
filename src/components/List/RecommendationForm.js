@@ -18,12 +18,6 @@ export default function New({ state, dispatch, list, transition, getList }) {
 
   function recommendBusiness(state, listId, businessName, businessUrl, businessImg, comment) {
 
-    let businessObj = {};
-    let recommendationObj = {};
-    let commentObj = {};
-
-//recommendation response empty string and we need reconfigure posting a comment
-
       axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
       .then(res => {
         return (fetch(`${API_ROOT}/recommendations`, {
@@ -33,28 +27,16 @@ export default function New({ state, dispatch, list, transition, getList }) {
         }))
       })
       
-      // .then(res => {
-        // console.log("json", state)
-      //   return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
-      // })
-      // .then(res => {
-      //   recommendationObj = res; console.log("HERE", res); return res
-      // })
-      // .then(res => {
-      //   return axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id })
-      // })
-      // .then(() => axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id }))
-      // .then(res => {
-      //   commentObj = res.data; console.log("c", res); return res.data
-      // })
       .then(() => getList(listId))
       .then(() => transition('BUBBLE'))
-      .catch(error => console.log(error));
-      // .catch(error => setError("A server error occured."));
+      .catch(error => setError("A server error occured."));
+
+
+      console.log("state", state)
   }
 
   function validateData(name, url, img, comment) {
-    if (name && url && comment && img) {
+    if (name && url && img) {
       recommendBusiness(state, list.id, businessName, businessUrl, businessImg, comment)
     } else {
       setError("An error occured. Please fill out all the fields.")
@@ -80,14 +62,12 @@ export default function New({ state, dispatch, list, transition, getList }) {
             <TextField className={classes.textField} style={{ width: '28em', margin: '10px' }} id="business-img" label="Post an image!" variant="outlined"
               value={businessImg} onChange={event => setBusinessImg(event.target.value)} />
             <Typography align='center' variant='h5' style={{ color: '#007065', marginBottom: '1em' }}>
-              for '{<span style={{ color: 'black', fontStyle: 'italic' }}>{list.name}</span>}' because...
+              for '{<span style={{ color: 'black', fontStyle: 'italic' }}>{list.name}</span>}'
             </Typography>
-            <TextField className={classes.textField} style={{ width: '28em', margin: '10px', marginTop: '-10px' }} id="business-comment" label="Write the first comment!" variant="outlined"
-              value={comment} onChange={event => setComment(event.target.value)} />
           </FormControl>
         </Box>
-        <Box position="relative" mt={26}>
-          <Button onClick={() => { validateData(businessName, businessUrl, businessImg, comment) }}
+        <Box position="relative" mt={24}>
+          <Button onClick={() => { validateData(businessName, businessUrl, businessImg) }}
             position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
