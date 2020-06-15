@@ -53,14 +53,11 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
   const handleReceivedRecoRoom = response => {
 
     let temp = {}
-
     const { recoRoom } = response;
     fetch(`${API_ROOT}/recommendations`)
     .then(res => res.json())
     .then(res => temp = res)
     .then(res =>     dispatch({ type: 'ADD_RECO_ROOM', data: { recoRoom: temp[temp.length-1] } }))
-
-
   };
 
   const handleReceivedComment = response => {
