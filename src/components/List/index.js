@@ -158,7 +158,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         </motion.div>}
       </AnimatePresence>
 
-      {state.activeRecoRoom && <RecommendationDrawer
+      {state.activeRecoRoom && state.recommendations && <RecommendationDrawer
         handleReceivedComment={handleReceivedComment}
         state={state}
         transition={transition}
