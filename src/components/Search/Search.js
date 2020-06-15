@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Results from './Results';
 import SearchBar from './SearchBar';
 import SearchIcon from "@material-ui/icons/Search";
@@ -16,6 +16,8 @@ export default function Search(props) {
     setTerm
   } = useSearchData(placeholder, queryKey);
 
+  console.log("placeholder", placeholder)
+
   return (
     <>
       <main>
@@ -23,9 +25,9 @@ export default function Search(props) {
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
-          <SearchBar placeholder={state.placeholder} onSearch={term => setTerm(term)} value={state.value} setValue={setValue}/>
+          <SearchBar placeholder={state.placeholder} onSearch={term => setTerm(term)} value={state.value} setValue={setValue} />
         </div>
-        <div className={classes.results}>        
+        <div className={classes.results}>
           <Results results={state.results} setResultId={setResultId} queryKey={state.queryKey} setValue={setValue} setPlaceholder={setPlaceholder} />
         </div>
       </main>

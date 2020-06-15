@@ -1,4 +1,4 @@
-import React, { setState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
@@ -9,7 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { AddCircle } from '@material-ui/icons';
 import Tooltip from '@material-ui/core/Tooltip';
-import Search from './Search/Search'
+import Search from './Search/Search';
+import useSearchData from "../hooks/useSearchData.js";
 
 
 export default function Nav({ name, location, transitionToCreateList, transitionToMain, getList, resultId, setResultId }) {
@@ -26,7 +27,7 @@ export default function Nav({ name, location, transitionToCreateList, transition
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={'E.g. Black owned MTL restaurants'} queryKey='list' setResultId={setResultId} />
+            <Search placeholder={'E.g. Black Owned MTL Restaurants'} queryKey='list' setResultId={setResultId} />
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>

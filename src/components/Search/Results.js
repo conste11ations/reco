@@ -13,7 +13,7 @@ export default function Results(props) {
     return (
       <div key={result.id}
         className={classes.resultItem}
-        onClick={() => { setValue(""); setPlaceholder(result[returnVal]); setResultId(result.id)}}>
+        onClick={() => { setValue(""); setPlaceholder(result[returnVal]); setResultId(result.id); }}>
         {result[returnVal]}
       </div>
     );
