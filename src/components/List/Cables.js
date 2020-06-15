@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import { ActionCable } from 'react-actioncable-provider';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 
-const Cable = ({ recommedationRooms, handleReceivedComment }) => {
+const Cable = ({ recommendationRooms, handleReceivedComment }) => {
   return (
     <Fragment>
-      {recommedationRooms.map(recoRoom => {
+      {recommendationRooms.map(recoRoom => {
         return (
-          <ActionCable
+          <ActionCableConsumer
             key={recoRoom.id}  
             channel={{ channel: 'CommentsChannel', recommendation: recoRoom.id }}
             onReceived={handleReceivedComment}

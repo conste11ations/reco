@@ -8,14 +8,18 @@ import { FormControl } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
 
-export default function New({state, dispatch, recommendation, business, transition}) {
+export default function New({state, dispatch, recommendation, business, transition, handleReceivedComment}) {
   const classes = useFormStyle();
   const [comment, setComment] = useState("");
 
-  function onSubmit(recoID, comment) {
-    axios.post(`/api/recommendations/${recoID}/comments`, { because: comment })
-    .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
-    .then(() => transition('BUBBLE'))
+  function onSubmit(recoID, comment, handleReceivedComment) {
+
+    console.log("recoID, comment", recoID, comment);
+
+    axios.post(`/api/recommendations/${recoID}/comments`, { because: comment, recommendation_id: recoID })
+    .then(res => res.json())
+    // .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
+    // .then(() => transition('BUBBLE'))
     .catch(e => {throw new Error(e)})
   }
   // scale: [0, 1.3, 0.9, 1, 1.3, 1]
@@ -35,7 +39,7 @@ export default function New({state, dispatch, recommendation, business, transiti
           </FormControl>
         </Box>
         <Box position="relative" mt={14}>
-          <Button onClick={() => onSubmit(recommendation.id, comment)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
+          <Button onClick={() => onSubmit(state.activeRecoRoom.id, comment, handleReceivedComment)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
           </Button> 
           <span style={{color: '#007065', margin: '0 1em'}}>or</span>

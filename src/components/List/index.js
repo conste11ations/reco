@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT } from '../../constants/index.js';
 import Cable from './Cables';
-import {findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndList, findBusinessIdByLabel} from '../../helpers/recoRoomHelpers'
+import { findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndList, findBusinessIdByLabel } from '../../helpers/recoRoomHelpers'
 import { motion, AnimatePresence } from 'framer-motion'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import ListsDrawer from './ListsDrawer'
@@ -57,6 +57,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
 
   const handleReceivedComment = response => {
     const { comment } = response;
+    console.log("received comment", response)
     dispatch({ type: 'ADD_COMMENT_TO_ROOM', data: { comment } })
   };
 
@@ -86,6 +87,13 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         channel={{ channel: 'RecommendationsChannel' }}
         onReceived={handleReceivedRecoRoom}
       />
+
+      {state.recommendationRooms.length ? (
+        <Cable
+          recommendationRooms={state.recommendationRooms}
+          handleReceivedComment={handleReceivedComment}
+        />
+      ) : null}
 
       <ListsDrawer
         state={state}
@@ -118,6 +126,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         </Container></motion.div>}
 
         {mode === COMMENT && <motion.div key={2} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} ><CommentForm
+          handleReceivedComment={handleReceivedComment}
           state={state}
           dispatch={dispatch}
           recommendation={state.recommendations[drawerState.index]}

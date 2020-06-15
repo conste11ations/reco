@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecommendationCard({ handleReceivedComment, state, transition, dispatch, toggleRecoDrawer, list, recommendation, business, comments }) {
-  console.log("state", state)
+
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -55,14 +55,13 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
       .catch(e => console.log(e))
   }
 
-  console.log("comments", findActiveRecoRoom(state.recommendationRooms, state.activeRecoRoom))
 
   return (
     <>
-      <ActionCable
+      {/* <ActionCable
         channel={{ channel: 'CommentsChannel', recommendation: state.activeRecoRoom }}
         onReceived={handleReceivedComment}
-      />
+      /> */}
       <List>
         <IconButton style={{ display: 'flex' }} onClick={() => toggleRecoDrawer()}>
           <HighlightOffIcon button='true' style={{ color: '#FF7373' }} />
@@ -79,7 +78,7 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               {/* ultimately, this should be randomized, maybe also carousel?*/}
-              {`"${comments[0].because}"`}
+              {/* {`"${comments[0].because}"`} */}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -108,7 +107,7 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
                 boost this business
           </Button>
               <List>
-                {state.activeRecoRoom.comments.map(comment => {
+                {state.activeRecoRoom && state.activeRecoRoom.comments.map(comment => {
                   return <ListItem key={comment.id}>
                     <Typography paragraph color='secondary'>{comment.because}</Typography>
                   </ListItem>

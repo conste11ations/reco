@@ -15,11 +15,12 @@ export default function New({ state, dispatch, list, transition, getList }) {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
-  function recommendBusiness(listId, businessName, businessUrl, businessImg, comment) {
+  function recommendBusiness(state, listId, businessName, businessUrl, businessImg, comment) {
 
     let businessObj = {};
     let recommendationObj = {};
     let commentObj = {};
+
 //recommendation response empty string and we need reconfigure posting a comment
     axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
       .then(res => {
@@ -32,7 +33,7 @@ export default function New({ state, dispatch, list, transition, getList }) {
         recommendationObj = res.data; console.log("r", res); return res.data
       })
       .then(res => {
-        return axios.post(`/api/recommendations/${recommendationObj.id}/comments`, { because: comment })
+        return axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id })
       })
       .then(res => {
         commentObj = res.data; console.log("c", res); return res.data
@@ -44,7 +45,7 @@ export default function New({ state, dispatch, list, transition, getList }) {
 
   function validateData(name, url, img, comment) {
     if (name && url && comment && img) {
-      recommendBusiness(list.id, businessName, businessUrl, businessImg, comment)
+      recommendBusiness(state, list.id, businessName, businessUrl, businessImg, comment)
     } else {
       setError("An error occured. Please fill out all the fields.")
     }

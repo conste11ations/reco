@@ -41,7 +41,7 @@ function reducer(state, action) {
         businesses: action.data.businesses,
         comments: action.data.comments
       }
-      return result;
+      return {...state, list: result.list, recommendations: result.recommendations, businesses: result.businesses, comments: result.comments};
     }
     case VOTE: {
       const recos = [...state.recommendations]
@@ -60,7 +60,6 @@ function reducer(state, action) {
       return { ...state, comments: [...result] }
     }
     case SET_RECOMMENDATION_ROOMS: {
-      console.log("set reco rooms", { ...state, recommendationRooms: action.data.recommendationRooms })
       return { ...state, recommendationRooms: action.data.recommendationRooms }
     }
     case SET_ACTIVE_RECO_ROOM: {
@@ -91,7 +90,7 @@ function App() {
     recommendations: [],
     comments: [],
     recommendationRooms: [],
-    activeRecoRoom: {}
+    // activeRecoRoom: {}
   })
 
   const [resultId, setResultId] = useState(null);
