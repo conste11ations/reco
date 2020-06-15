@@ -73,7 +73,7 @@ function reducer(state, action) {
       const recoRoom = recommendationRooms.find(
         recoRoom => recoRoom.id === action.data.comment.recommendation_id
       );
-      recoRoom.comments = [...recoRoom.comments, action.data.comment];
+      recoRoom.comments = [action.data.comment,...recoRoom.comments];
       return { ...state, recommendationRooms: [...state.recommendationRooms, recoRoom] }
     }
     default: throw new Error('not a valid dispatch type')
