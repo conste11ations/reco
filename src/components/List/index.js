@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActionCable } from 'react-actioncable-provider';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 import { API_ROOT } from '../../constants/index.js';
 import Cable from './Cables';
 import { findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndList, findBusinessIdByLabel } from '../../helpers/recoRoomHelpers'
@@ -52,6 +52,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
   // to do later
   const handleReceivedRecoRoom = response => {
     const { recoRoom } = response;
+    console.log("hrr", recoRoom)
     dispatch({ type: 'ADD_RECO_ROOM', data: { recoRoom } })
   };
 
@@ -88,9 +89,10 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
   return (
     <>
 
-      <ActionCable
+      <ActionCableConsumer
         channel={{ channel: 'RecommendationsChannel' }}
-        onReceived={handleReceivedRecoRoom}
+        // onReceived={handleReceivedRecoRoom}
+        // onConnected={e => console.log(e, "connected")}
       />
 
       { state.recommendationRooms.length ? (
@@ -122,8 +124,8 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
               const result = findIndexByName(state.businesses, label)
               setDrawer(prev => ({ ...prev, index: result }))
               // we need the id of the business that bubble is presenting and we need to plug in that id to a recommendation it belongs to
-              console.log("findBusinessId", findBusinessIdByLabel(label, state.businesses))
-              console.log("findRecoByBandL", findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, findBusinessIdByLabel(label, state.businesses)))
+              // console.log("findBusinessId", findBusinessIdByLabel(label, state.businesses))
+              // console.log("findRecoByBandL", findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, findBusinessIdByLabel(label, state.businesses)))
               changeRecoRoom(findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, findBusinessIdByLabel(label, state.businesses)))
             }}
             valueFont={{ color: 'none' }}

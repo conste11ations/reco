@@ -6,6 +6,7 @@ import { formTheme, useFormStyle } from './../../constants/FormThemes'
 import { FormControl } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
+import { API_ROOT, HEADERS } from '../../constants/index.js';
 
 export default function New({ state, dispatch, list, transition, getList }) {
   const classes = useFormStyle();
@@ -25,15 +26,19 @@ export default function New({ state, dispatch, list, transition, getList }) {
 
       axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
       .then(res => {
-        console.log(res)
-        // businessObj = res.data; console.log("b", res); return res.data
-        return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: res.data.id }))
+        return (fetch(`${API_ROOT}/recommendations`, {
+          method: 'POST',
+          headers: HEADERS,
+          body: JSON.stringify({ list_id: listId, business_id: res.data.id })
+        }))
+      })
+      
+      .then(res => {
+        console.log("json", res)
+      //   return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
       })
       // .then(res => {
-      //   return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
-      // })
-      // .then(res => {
-      //   recommendationObj = res.data; console.log("HERE", res); return res.data
+      //   recommendationObj = res; console.log("HERE", res); return res
       // })
       // .then(res => {
       //   return axios.post(`/api/recommendations/${state.activeRecoRoom.id}/comments`, { because: comment, recommendation_id: state.activeRecoRoom.id })
@@ -43,8 +48,9 @@ export default function New({ state, dispatch, list, transition, getList }) {
       //   commentObj = res.data; console.log("c", res); return res.data
       // })
       .then(() => getList(listId))
-      // .then(() => transition('BUBBLE'))
-      .catch(error => setError("A server error occured."));
+      .then(() => transition('BUBBLE'))
+      .catch(error => console.log(error));
+      // .catch(error => setError("A server error occured."));
   }
 
   function validateData(name, url, img, comment) {
