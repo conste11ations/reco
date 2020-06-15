@@ -51,19 +51,26 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
 
   // to do later
   const handleReceivedRecoRoom = response => {
+
+    let temp = {}
+
     const { recoRoom } = response;
-    console.log("hrr", recoRoom)
-    dispatch({ type: 'ADD_RECO_ROOM', data: { recoRoom } })
+    fetch(`${API_ROOT}/recommendations`)
+    .then(res => res.json())
+    .then(res => temp = res)
+    .then(res =>     dispatch({ type: 'ADD_RECO_ROOM', data: { recoRoom: temp[temp.length-1] } }))
+
+
   };
 
   const handleReceivedComment = response => {
     const { comment } = response;
-    const currentRecommendationId = comment.recommendation_id-1
+    const currentRecommendationId = comment.recommendation_id - 1
     if (state.recommendationRooms[currentRecommendationId].comments.find(
       item => item.id === comment.id
     )) {
     } else {
-    dispatch({ type: 'ADD_COMMENT_TO_ROOM', data: { comment } })
+      dispatch({ type: 'ADD_COMMENT_TO_ROOM', data: { comment } })
     }
   };
 
@@ -86,16 +93,19 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
     }
   ))
 
+
+  console.log("state", state)
+
   return (
     <>
 
       <ActionCableConsumer
         channel={{ channel: 'RecommendationsChannel' }}
-        // onReceived={handleReceivedRecoRoom}
-        // onConnected={e => console.log(e, "connected")}
+        onReceived={handleReceivedRecoRoom}
+        onConnected={e => console.log(e, "connected")}
       />
 
-      { state.recommendationRooms.length ? (
+      {state.recommendationRooms.length ? (
         <Cable
           recommendationRooms={state.recommendationRooms}
           handleReceivedComment={handleReceivedComment}

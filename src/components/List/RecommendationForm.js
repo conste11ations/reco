@@ -33,10 +33,10 @@ export default function New({ state, dispatch, list, transition, getList }) {
         }))
       })
       
-      .then(res => {
-        console.log("json", res)
+      // .then(res => {
+        // console.log("json", state)
       //   return (axios.post(`/api/recommendations/`, { list_id: listId, business_id: businessObj.id }))
-      })
+      // })
       // .then(res => {
       //   recommendationObj = res; console.log("HERE", res); return res
       // })

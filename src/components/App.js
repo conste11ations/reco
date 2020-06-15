@@ -60,12 +60,14 @@ function reducer(state, action) {
       return { ...state, comments: [...result] }
     }
     case SET_RECOMMENDATION_ROOMS: {
+      console.log("new reco rooms", { ...state, recommendationRooms: action.data.recommendationRooms })
       return { ...state, recommendationRooms: action.data.recommendationRooms }
     }
     case SET_ACTIVE_RECO_ROOM: {
       return { ...state, activeRecoRoom: action.data.activeRecoRoom }
     }
     case ADD_RECO_ROOM: {
+      console.log("adding reco room", { ...state, recommendationRooms: [...state.recommendationRooms, action.data.recoRoom] })
       return { ...state, recommendationRooms: [...state.recommendationRooms, action.data.recoRoom] }
     }
     case ADD_COMMENT_TO_ROOM: {
