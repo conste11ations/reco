@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from "framer-motion"
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Circle from '../Circle';
 import { Box, TextField, Typography } from '@material-ui/core';
@@ -15,7 +14,6 @@ export default function New({state, dispatch, recommendation, business, transiti
   function onSubmit(recoID, comment, handleReceivedComment) {
 
     axios.post(`/api/recommendations/${recoID}/comments`, { because: comment, recommendation_id: recoID })
-    // .then(res => dispatch({type: 'CREATE_COMMENT', data: { comment: res.data, recoID }}))
     .then(() => transition('BUBBLE'))
     .catch(e => {throw new Error(e)})
   }

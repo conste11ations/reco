@@ -13,6 +13,14 @@ export function New(props) {
   const [description, setDescription] = useState(props.description || "");
   const [error, setError] = useState("");
 
+  function validateData(name, location, description) {
+    if (name && location) {
+      props.onSave(name, location, description)
+    } else {
+      setError("An error occured. Name and location must be filled out.")
+    }
+  }
+
   return (
     <>
       <MuiThemeProvider theme={formTheme}>
@@ -39,10 +47,11 @@ export function New(props) {
           </FormControl>
         </Box>
         <Box position="relative" mt={85} ml={-13}>
-          <Button onClick={() => props.onSave(name, location, description)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
+          <Button onClick={() => validateData(name, location, description)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
         <span style={{ color: '#007065', margin: '0 1em' }}>or</span> <Button variant='outlined' style={{ opacity: .60 }} onClick={() => props.back()}>cancel</Button>
+        <div style={{ position: "absolute", color: '#FF0000', marginTop: "20px" }}>{error}</div>
         </Box>
       </MuiThemeProvider>
     </>

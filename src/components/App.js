@@ -94,8 +94,6 @@ function App() {
   })
 
   const [resultId, setResultId] = useState(null);
-  const [place1, setPlace1] = useState('E.g. Black owned MTL restaurants');
-  const [place2, setPlace2] = useState('Or type a location instead!');
 
   const SHOW = "SHOW";
   const CREATE_LIST = "CREATE_LIST";
