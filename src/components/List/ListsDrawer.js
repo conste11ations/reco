@@ -26,12 +26,13 @@ const UPVOTES = 'UPVOTES';
 const DOWNVOTES = 'DOWNVOTES';
 const RECENTLY_RECOED = 'RECENTLY_RECOED';
 
-export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, setRecoDrawer, transition }) {
+export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, setRecoDrawer, transition, changeRecoRoom }) {
   const {mode: businessListMode, transition: transitionBusinesses} = useVisualMode(DEFAULT)
 
   const businessList = state.businesses.map((business, index) => (
     <DrawerItem
     key={business.id} 
+    state={state}
     business={business}
     comments={state.comments[index]}
     upvotes={state.recommendations[index].upvotes}
@@ -39,8 +40,11 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
     showReco={() => setRecoDrawer(prev => ({...prev, index}))}
     recoDrawerState={recoDrawerState}
     toggleRecoDrawer={toggleRecoDrawer}
+    changeRecoRoom={changeRecoRoom}
     />
   ))
+
+
 
   const classes = useStyles();
   return (

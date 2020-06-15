@@ -3,12 +3,15 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import { findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndList, findBusinessIdByLabel } from '../../helpers/recoRoomHelpers'
 
-export default function DrawerItem({business, upvotes, downvotes, recoDrawerState, toggleRecoDrawer, showReco}){
+
+export default function DrawerItem({state, business, upvotes, downvotes, recoDrawerState, toggleRecoDrawer, showReco, changeRecoRoom}){
 
   const handleClick = () => {
     if (!recoDrawerState.open) {toggleRecoDrawer()}
     showReco()
+    changeRecoRoom(findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, business.id))
   };
   return (
     <>

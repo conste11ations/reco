@@ -119,6 +119,7 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         setRecoDrawer={setDrawer}
         recoDrawerState={drawerState}
         transition={transition}
+        changeRecoRoom={changeRecoRoom}
       />
       <AnimatePresence exitBeforeEnter>
         {mode === BUBBLE && state.businesses.length > 0 && <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} ><Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
