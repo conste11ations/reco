@@ -16,8 +16,6 @@ export default function Search(props) {
     setTerm
   } = useSearchData(placeholder, queryKey);
 
-  console.log("placeholder", placeholder)
-
   return (
     <>
       <main>

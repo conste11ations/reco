@@ -16,7 +16,7 @@ export default function New({ state, dispatch, list, transition, getList }) {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
-  function recommendBusiness(state, listId, businessName, businessUrl, businessImg, comment) {
+  function recommendBusiness(state, listId, businessName, businessUrl, businessImg) {
 
       axios.post(`/api/businesses/`, { name: businessName, website: businessUrl, image: businessImg })
       .then(res => {
@@ -31,11 +31,9 @@ export default function New({ state, dispatch, list, transition, getList }) {
       .then(() => transition('BUBBLE'))
       .catch(error => setError("A server error occured."));
 
-
-      console.log("state", state)
   }
 
-  function validateData(name, url, img, comment) {
+  function validateData(name, url, img) {
     if (name && url && img) {
       recommendBusiness(state, list.id, businessName, businessUrl, businessImg, comment)
     } else {

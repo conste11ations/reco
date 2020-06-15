@@ -11,6 +11,7 @@ export function New(props) {
   const [name, setName] = useState(props.name || "");
   const [location, setLocation] = useState(props.location || "");
   const [description, setDescription] = useState(props.description || "");
+  const [error, setError] = useState("");
 
   return (
     <>
@@ -37,10 +38,11 @@ export function New(props) {
               value={description} onChange={event => setDescription(event.target.value)} />
           </FormControl>
         </Box>
-        <Box position="relative" mt={85} ml={-7}>
+        <Box position="relative" mt={85} ml={-13}>
           <Button onClick={() => props.onSave(name, location, description)} position="relative" variant="contained" size="large" color="primary" className={classes.margin}>
             Submit
         </Button>
+        <span style={{ color: '#007065', margin: '0 1em' }}>or</span> <Button variant='outlined' style={{ opacity: .60 }} onClick={() => props.back()}>cancel</Button>
         </Box>
       </MuiThemeProvider>
     </>

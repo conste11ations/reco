@@ -122,7 +122,6 @@ function App() {
   }
 
   function transitionToShow() {
-    console.log("showing")
     transition(SHOW);
   }
 
@@ -182,7 +181,8 @@ function App() {
         transitionToShow={transitionToShow}
         transitionToCreateList={transitionToCreateList}></Main>}
 
-      {mode === SHOW && state.recommendations && <ListSpace
+      {mode === SHOW && state.recommendations &&       
+      <ListSpace
         drawerState={drawerState}
         setDrawer={setDrawer}
         mode={listMode}
@@ -195,7 +195,7 @@ function App() {
         {mode === CREATE_LIST &&
           <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} >
             <Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
-              <NewList onSave={createList} getList={getList}></NewList>
+              <NewList onSave={createList} getList={getList} back={back}></NewList>
             </Container>
           </motion.div>}
       </AnimatePresence>
