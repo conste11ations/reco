@@ -170,25 +170,27 @@ function App() {
         transitionToMain={transitionToMain}
         getList={getList} />}
 
-      {mode === MAIN && state.list && <Main
+    <AnimatePresence exitBeforeEnter>
+      {mode === MAIN && state.list && <motion.div key={1} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} ><Main
         resultId={resultId}
         setResultId={setResultId}
         getList={getList}
         transitionToShow={transitionToShow}
-        transitionToCreateList={transitionToCreateList}></Main>}
+        transitionToCreateList={transitionToCreateList}></Main></motion.div>}
 
-      {mode === SHOW && state.recommendations && <ListSpace
+    
+      {mode === SHOW && state.recommendations && <motion.div key={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} ><ListSpace
         drawerState={drawerState}
         setDrawer={setDrawer}
         mode={listMode}
         transition={listTransition}
         dispatch={dispatch}
         getList={getList}
-        state={state} />}
+        state={state} /></motion.div>}
 
-      <AnimatePresence exitBeforeEnter>
+    
         {mode === CREATE_LIST &&
-          <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} >
+          <motion.div key={3} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} >
             <Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
               <NewList onSave={createList} getList={getList}></NewList>
             </Container>
