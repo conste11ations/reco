@@ -9,9 +9,9 @@ import { findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndLi
 export default function DrawerItem({state, business, upvotes, downvotes, recoDrawerState, toggleRecoDrawer, showReco, changeRecoRoom}){
 
   const handleClick = () => {
+    changeRecoRoom(findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, business.id))
     if (!recoDrawerState.open) {toggleRecoDrawer()}
     showReco()
-    changeRecoRoom(findRecoRoomByBusinessAndList(state.recommendationRooms, state.list.id, business.id))
   };
   return (
     <>

@@ -64,15 +64,15 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
             <Typography style={{marginBottom: '1em'}}>order by:</Typography>
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(AZ)}>a-z</Button>
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(UPVOTES)}>most upvotes</Button>
-            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(DOWNVOTES)}>least downvotes</Button>
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(RECENTLY_RECOED)}>recently reco'd</Button>
+            <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(DOWNVOTES)}>least downvotes</Button>
           </ListItem>
           {/* ORDER BY - alphabetical,  */}
           {businessListMode === DEFAULT && businessList}
           {businessListMode === AZ && sortAlphabetical(businessList)}
           {businessListMode === UPVOTES && sortUpVotes(businessList)}
           {businessListMode === DOWNVOTES && sortDownVotes(businessList)}
-          {businessListMode === RECENTLY_RECOED && sortRecentRecos(businessList, state.comments)}
+          {businessListMode === RECENTLY_RECOED && sortRecentRecos(businessList, state.comments, state)}
         </List>  
       </div>
     </Drawer>

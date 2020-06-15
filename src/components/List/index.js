@@ -113,14 +113,14 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
         />
       ) : null}
 
-      <ListsDrawer
+      {state.recommendationRooms.length ? <ListsDrawer
         state={state}
         toggleRecoDrawer={toggleRecoDrawer}
         setRecoDrawer={setDrawer}
         recoDrawerState={drawerState}
         transition={transition}
         changeRecoRoom={changeRecoRoom}
-      />
+      /> : null }
       <AnimatePresence exitBeforeEnter>
         {mode === BUBBLE && state.businesses.length > 0 && <motion.div key={1} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} ><Container className={classes.bubbleContainer} style={{ paddingTop: '4em' }}>
           <BubbleChart

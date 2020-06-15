@@ -25,8 +25,39 @@ const sortDownVotes = (businessList) => {
   })
 }
 
-const sortRecentRecos = (businessList, comments) => {
-  return businessList.sort((a, b) => {
+// const sortRecentRecos = (businessList, comments, state) => {
+//   console.log(state)
+//   return businessList.sort((a, b) => {
+//       const aStart = new Date(a.props.comments[0].updated_at).getTime()
+//       const A = a.props.comments.reduce((acc, current) => {
+//         const tmp = new Date(current.updated_at).getTime()
+//         if (tmp > acc) {
+//           acc = tmp
+//         }
+//         return acc
+//       }, aStart)
+
+//       const bStart = new Date(b.props.comments[0].updated_at).getTime()
+//       const B = b.props.comments.reduce((acc, current) => {
+//         const tmp = new Date(current.updated_at).getTime()
+//         if (tmp > acc) {
+//           acc = tmp
+//         }
+//         return acc
+//       }, bStart)
+
+//     return B - A;
+//   })
+// }
+
+const sortRecentRecos = (businessList, comments, state) => {
+  console.log(state)
+
+  // const businesses = state.recommendationRooms.filter(recoRoom => recoRoom.list_id === state.list.id)
+  
+  const noComments = businessList.filter(business => !business.props.comments.length)
+  const haveComments = businessList.filter(business => business.props.comments.length)
+  const sorted = haveComments.sort((a, b) => {
       const aStart = new Date(a.props.comments[0].updated_at).getTime()
       const A = a.props.comments.reduce((acc, current) => {
         const tmp = new Date(current.updated_at).getTime()
@@ -47,6 +78,8 @@ const sortRecentRecos = (businessList, comments) => {
 
     return B - A;
   })
+
+  return [...sorted, ...noComments]
 }
 
 export {sortAlphabetical, sortUpVotes, sortDownVotes, sortRecentRecos}
