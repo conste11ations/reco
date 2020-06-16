@@ -76,10 +76,10 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
             image={business.image}
           />
           <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
+            {/* <Typography variant="body2" color="textSecondary" component="p">
               {/* ultimately, this should be randomized, maybe also carousel?*/}
               {/* {`"${comments[0].because}"`} */}
-            </Typography>
+            {/* </Typography> */}
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="upvote" style={{ color: '#27AE60' }} onClick={() => upvote(recommendation.id)}>
@@ -110,11 +110,7 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
                 {state.activeRecoRoom && state.activeRecoRoom.comments.map(comment => {
                   return <ListItem key={comment.id}>
                     <Typography paragraph color='secondary'>{comment.because}</Typography>
-                  </ListItem>
-                }
-                )
-
-                }
+                  </ListItem>})}
               </List>
             </CardContent>
           </Collapse>
