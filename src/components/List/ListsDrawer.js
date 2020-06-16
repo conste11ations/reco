@@ -67,7 +67,6 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(RECENTLY_RECOED)}>recently reco'd</Button>
             <Button color='primary' variant='contained' size='small'style={{marginBottom: '1em'}} onClick={() => transitionBusinesses(DOWNVOTES)}>least downvotes</Button>
           </ListItem>
-          {/* ORDER BY - alphabetical,  */}
           {businessListMode === DEFAULT && businessList}
           {businessListMode === AZ && sortAlphabetical(businessList)}
           {businessListMode === UPVOTES && sortUpVotes(businessList)}

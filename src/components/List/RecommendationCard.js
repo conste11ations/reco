@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { ActionCable } from 'react-actioncable-provider';
-import { findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndList, findBusinessIdByLabel } from '../../helpers/recoRoomHelpers'
 import clsx from 'clsx';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecommendationCard({ handleReceivedComment, state, transition, dispatch, toggleRecoDrawer, list, recommendation, business, comments }) {
+export default function RecommendationCard({state, transition, dispatch, toggleRecoDrawer, list, recommendation, business, comments }) {
 
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -101,10 +99,9 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
                 boost this business
           </Button>
               <List>
-                {state.activeRecoRoom && state.activeRecoRoom.comments.map(comment => {
-                  return <ListItem key={comment.id}>
+                {state.activeRecoRoom && state.activeRecoRoom.comments.map( comment => <ListItem key={comment.id}>
                     <Typography paragraph color='secondary'>{comment.because}</Typography>
-                  </ListItem>})}
+                  </ListItem>)}
               </List>
             </CardContent>
           </Collapse>
