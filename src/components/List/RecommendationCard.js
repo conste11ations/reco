@@ -55,8 +55,6 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
       .catch(e => console.log(e))
   }
 
-  console.log('comments: ', comments)
-
   return (
     <>
       <List>

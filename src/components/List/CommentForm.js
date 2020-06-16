@@ -17,7 +17,7 @@ export default function New({state, dispatch, recommendation, business, transiti
     .then(() => transition('BUBBLE'))
     .catch(e => {throw new Error(e)})
   }
-  // scale: [0, 1.3, 0.9, 1, 1.3, 1]
+
   return (
     <>
       <MuiThemeProvider theme={formTheme}>

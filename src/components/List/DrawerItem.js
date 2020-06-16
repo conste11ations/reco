@@ -3,7 +3,7 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { findActiveRecoRoom, mapRecommendationRooms, findRecoRoomByBusinessAndList, findBusinessIdByLabel } from '../../helpers/recoRoomHelpers'
+import { findRecoRoomByBusinessAndList } from '../../helpers/recoRoomHelpers'
 
 
 export default function DrawerItem({state, business, upvotes, downvotes, recoDrawerState, toggleRecoDrawer, showReco, changeRecoRoom}){

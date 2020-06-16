@@ -25,7 +25,6 @@ export default function ListCard({list, transition}) {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {/* ultimately, this should be randomized*/}
           {list.description}
         </Typography>
       </CardContent>
