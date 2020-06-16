@@ -25,7 +25,7 @@ const sortDownVotes = (businessList) => {
   })
 }
 
-const sortRecentRecos = (businessList, comments, state) => {
+const sortRecentRecos = (businessList) => {
   return businessList.sort((a, b) => {
       const aStart = new Date(a.props.business.created_at).getTime()
       const A = a.props.comments.reduce((acc, current) => {

@@ -55,13 +55,10 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
       .catch(e => console.log(e))
   }
 
+  console.log('comments: ', comments)
 
   return (
     <>
-      {/* <ActionCable
-        channel={{ channel: 'CommentsChannel', recommendation: state.activeRecoRoom }}
-        onReceived={handleReceivedComment}
-      /> */}
       <List>
         <IconButton style={{ display: 'flex' }} onClick={() => toggleRecoDrawer()}>
           <HighlightOffIcon button='true' style={{ color: '#FF7373' }} />
@@ -76,10 +73,9 @@ export default function RecommendationCard({ handleReceivedComment, state, trans
             image={business.image}
           />
           <CardContent>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              {/* ultimately, this should be randomized, maybe also carousel?*/}
-              {/* {`"${comments[0].because}"`} */}
-            {/* </Typography> */}
+            <Typography variant="body2" color="textSecondary" component="p">
+              {comments.length > 0 ? `"${comments[0].because}"` : '⚠️ This business needs a boost! ⚠️'}
+            </Typography>
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="upvote" style={{ color: '#27AE60' }} onClick={() => upvote(recommendation.id)}>

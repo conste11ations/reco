@@ -33,7 +33,6 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
     <DrawerItem
     key={business.id} 
     state={state}
-    createdAt={business.created_at}
     business={business}
     comments={state.comments[index]}
     upvotes={state.recommendations[index].upvotes}
@@ -73,7 +72,7 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
           {businessListMode === AZ && sortAlphabetical(businessList)}
           {businessListMode === UPVOTES && sortUpVotes(businessList)}
           {businessListMode === DOWNVOTES && sortDownVotes(businessList)}
-          {businessListMode === RECENTLY_RECOED && sortRecentRecos(businessList, state.comments, state)}
+          {businessListMode === RECENTLY_RECOED && sortRecentRecos(businessList)}
         </List>  
       </div>
     </Drawer>
