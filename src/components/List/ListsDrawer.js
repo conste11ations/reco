@@ -33,6 +33,7 @@ export default function ListDrawer({state, recoDrawerState, toggleRecoDrawer, se
     <DrawerItem
     key={business.id} 
     state={state}
+    createdAt={business.created_at}
     business={business}
     comments={state.comments[index]}
     upvotes={state.recommendations[index].upvotes}
