@@ -1,15 +1,16 @@
-import React, { setState } from 'react';
+import React from 'react';
 import { navTheme, useNavStyle } from '../constants/navThemes'
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+// Although seemingly unused, TextField is needed for Typography
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { AddCircle } from '@material-ui/icons';
 import Tooltip from '@material-ui/core/Tooltip';
-import Search from './Search/Search'
+import Search from './Search/Search';
 
 
 export default function Nav({ name, location, transitionToCreateList, transitionToMain, getList, resultId, setResultId }) {
@@ -26,7 +27,7 @@ export default function Nav({ name, location, transitionToCreateList, transition
             <Typography align='center' variant='h6' noWrap>
               Any recommendations for
             </Typography>
-            <Search placeholder={'E.g. Black owned MTL restaurants'} queryKey='list' setResultId={setResultId} />
+            <Search placeholder={'E.g. Black Owned MTL Restaurants'} queryKey='list' setResultId={setResultId} />
             <Typography align='center' variant='h6' noWrap>
               near
             </Typography>

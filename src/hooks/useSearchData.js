@@ -58,10 +58,9 @@ export default function useSearchData(placeholder, queryKey) {
 
   const setResults = (queryKey, term) => {
 
-    const BASE_URL = '/api';
-    const ENDPOINT = '/search';
+    const ENDPOINT = '/api/search';
 
-    const query = `${BASE_URL}${ENDPOINT}?key=${queryKey}&term=${term}`
+    const query = `${ENDPOINT}?key=${queryKey}&term=${term}`
 
     return axios({
       method: 'GET',

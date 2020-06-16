@@ -1,7 +1,6 @@
 import React from 'react';
 
 const findActiveRecoRoom = (recommendationRooms, activeRecoRoom) => {
-  console.log("print", recommendationRooms, activeRecoRoom)
   return recommendationRooms.find(
     recoRoom => recoRoom.id === activeRecoRoom
   );

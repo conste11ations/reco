@@ -10,7 +10,7 @@ import RecommendationDrawer from './RecommendationDrawer'
 import CommentForm from './CommentForm'
 import RecommendationForm from './RecommendationForm'
 
-import {Box, Typography} from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import UndoIcon from '@material-ui/icons/Undo';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
@@ -63,9 +63,9 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
     let temp = {}
     const { recoRoom } = response;
     fetch(`${API_ROOT}/recommendations`)
-    .then(res => res.json())
-    .then(res => temp = res)
-    .then(res =>     dispatch({ type: 'ADD_RECO_ROOM', data: { recoRoom: temp[temp.length-1] } }))
+      .then(res => res.json())
+      .then(res => temp = res)
+      .then(res => dispatch({ type: 'ADD_RECO_ROOM', data: { recoRoom: temp[temp.length - 1] } }))
   };
 
   const handleReceivedComment = response => {
@@ -100,7 +100,6 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
 
   return (
     <>
-
       <ActionCableConsumer
         channel={{ channel: 'RecommendationsChannel' }}
         onReceived={handleReceivedRecoRoom}
@@ -158,12 +157,12 @@ export default function ListSpace({ drawerState, setDrawer, mode, transition, st
           business={state.businesses[drawerState.index]}
           transition={transition} /></motion.div>}
 
-        {mode === BUBBLE && !state.businesses.length && 
-        <motion.div key={4} initial={{ scale: 0 }} animate={{ scale: 1.5 }} exit={{ scale: 0 }} >
-                  <Box position="relative" align="center">
-                    <Typography variant={'h2'} className={classes.newList} style={{width: '4em', display: 'flex', justifyContent: 'center', marginTop: '5em'}}><ArrowBackIcon style={{paddingRight: '0.5em', fontSize: '1em'}}/>{'Recommend the very first business for this list!'}</Typography>
-                  </Box>
-                </motion.div>}
+        {mode === BUBBLE && !state.businesses.length &&
+          <motion.div key={4} initial={{ scale: 0 }} animate={{ scale: 1.5 }} exit={{ scale: 0 }} >
+            <Box position="relative" align="center">
+              <Typography variant={'h2'} className={classes.newList} style={{ width: '4em', display: 'flex', justifyContent: 'center', marginTop: '5em' }}><ArrowBackIcon style={{ paddingRight: '0.5em', fontSize: '1em' }} />{'Recommend the very first business for this list!'}</Typography>
+            </Box>
+          </motion.div>}
       </AnimatePresence>
 
       {state.activeRecoRoom && <RecommendationDrawer
