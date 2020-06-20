@@ -22,10 +22,18 @@ Ruby on Rails, Action Cable websockets, Redis, PostgreSQL
     * `npm start`
 
 The api server with websockets runs on port 3001, the reco app runs on port 3000.
-http://localhost:3000/
-http://localhost:3001/
+ * http://localhost:3000/
+ * http://localhost:3001/
 
 ### Sample screenshots
+
+![Reco main](doc/reco-main.png)
+![Reco search](doc/reco-search.png)
+![Reco list](doc/reco-list.png)
+![Reco new list](doc/reco-new-list.png)
+![Reco new comment](doc/reco-new-comment.png)
+![Reco new recommend](doc/reco-new-recommend.png)
+
 
 
 
