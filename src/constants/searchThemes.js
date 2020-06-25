@@ -26,7 +26,7 @@ const useSearchStyle = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-      width: "260px"
+      width: "300px"
     }
   },
   searchIcon: {
