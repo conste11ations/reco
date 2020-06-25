@@ -46,7 +46,7 @@ const useSearchStyle = makeStyles(theme => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
-    width: "100%",
+    width: "260px",
     [theme.breakpoints.up("md")]: {
       minWidth: "260px"
     }
