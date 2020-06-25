@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 export const Animation = (props) => {
   return (
     <motion.div
+    initial={{ opacity: 0.1 }} 
       animate={{
         scale: [1, 2, 2, 1, 1],
         rotate: [0, 0, 270, 270, 0],
