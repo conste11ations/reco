@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "http://localhost:3001/api/*"
+  from = "/api/*"
   to = "https://lhl-reco-api.herokuapp.com/api/:splat"
   status = 200
   force = true
