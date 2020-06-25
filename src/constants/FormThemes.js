@@ -34,7 +34,7 @@ const useFormStyle = makeStyles((theme) => ({
       margin: theme.spacing(2),
       marginLeft: theme.spacing(-0.4),
       padding: theme.spacing(1),
-      minWidth: '300px',
+      minWidth: '600px',
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
