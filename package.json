@@ -15,7 +15,7 @@
     "react": "^16.13.1",
     "react-actioncable-provider": "^2.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "5.0.1"
   },
   "proxy": "http://localhost:3001",
   "scripts": {
